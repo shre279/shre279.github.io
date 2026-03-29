@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shreyansh Mishra — Research & Writings</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300..700;1,9..40,300..700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ink: #1a1f36;
+            --ink-light: #4a5568;
+            --ink-muted: #718096;
+            --surface: #ffffff;
+            --surface-warm: #faf9f7;
+            --surface-tinted: #f0f7fa;
+            --accent: #0c7c8a;
+            --accent-light: #e6f4f6;
+            --accent-warm: #d4eeef;
+            --border: #e2e8f0;
+            --border-light: #edf2f7;
+            --tag-research: #0c7c8a;
+            --tag-blog: #b45309;
+            --tag-talk: #6d28d9;
+            --tag-publication: #059669;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.03);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.06), 0 2px 4px rgba(0,0,0,0.04);
+            --shadow-lg: 0 12px 40px rgba(0,0,0,0.08);
+            --radius: 12px;
+            --radius-sm: 8px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'DM Sans', -apple-system, sans-serif;
+            color: var(--ink);
+            background: var(--surface);
+            line-height: 1.7;
+            font-size: 15.5px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ── NAV ── */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(255,255,255,0.92);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border-light);
+            transition: box-shadow 0.3s;
+        }
+        nav.scrolled { box-shadow: var(--shadow-sm); }
+        .nav-inner {
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 0 32px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 64px;
+        }
+        .nav-brand {
+            font-family: 'Instrument Serif', serif;
+            font-size: 22px;
+            color: var(--ink);
+            text-decoration: none;
+            letter-spacing: -0.3px;
+        }
+        .nav-brand span { color: var(--accent); }
+        .nav-links { display: flex; gap: 8px; align-items: center; }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--ink-light);
+            font-size: 14px;
+            font-weight: 500;
+            padding: 6px 14px;
+            border-radius: 6px;
+            transition: all 0.2s;
+        }
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--accent);
+            background: var(--accent-light);
+        }
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 4px;
+        }
+        .hamburger span {
+            width: 22px; height: 2px;
+            background: var(--ink);
+            border-radius: 2px;
+            transition: 0.3s;
+        }
+
+        /* ── HERO ── */
+        .hero {
+            background: linear-gradient(175deg, var(--surface) 0%, var(--surface-tinted) 50%, var(--accent-light) 100%);
+            border-bottom: 1px solid var(--border-light);
+            overflow: hidden;
+            position: relative;
+        }
+        .hero::after {
+            content: '';
+            position: absolute;
+            right: -60px;
+            bottom: -40px;
+            width: 420px;
+            height: 420px;
+            background: radial-gradient(circle, rgba(12,124,138,0.06) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        .hero-inner {
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 72px 32px 80px;
+            display: grid;
+            grid-template-columns: 1fr 380px;
+            gap: 64px;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+        .hero h1 {
+            font-family: 'Instrument Serif', serif;
+            font-size: clamp(36px, 4.5vw, 52px);
+            line-height: 1.15;
+            color: var(--ink);
+            margin-bottom: 20px;
+            letter-spacing: -0.5px;
+        }
+        .hero h1 em {
+            color: var(--accent);
+            font-style: italic;
+        }
+        .hero-desc {
+            font-size: 16.5px;
+            color: var(--ink-light);
+            line-height: 1.75;
+            margin-bottom: 28px;
+            max-width: 560px;
+        }
+        .hero-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .hero-tag {
+            display: inline-block;
+            padding: 5px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 500;
+            background: var(--surface);
+            color: var(--ink-light);
+            border: 1px solid var(--border);
+            transition: all 0.25s;
+        }
+        .hero-tag:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            transform: translateY(-1px);
+        }
+
+        /* Hero illustration */
+        .hero-visual {
+            position: relative;
+            width: 100%;
+            height: 340px;
+            border-radius: var(--radius);
+            overflow: hidden;
+        }
+        .hero-svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* ── UPDATES STRIP ── */
+        .updates-strip {
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 0 32px;
+            transform: translateY(-36px);
+            position: relative;
+            z-index: 2;
+        }
+        .updates-card {
+            background: var(--surface);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-md);
+            padding: 28px 32px;
+        }
+        .updates-card h3 {
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            color: var(--ink-muted);
+            margin-bottom: 18px;
+            font-weight: 600;
+        }
+        .update-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border-light);
+        }
+        .update-item:last-child { border-bottom: none; }
+        .update-tag {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 5px;
+            font-size: 11.5px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        .update-tag.research { background: #e6f4f6; color: var(--tag-research); }
+        .update-tag.blog { background: #fef3c7; color: var(--tag-blog); }
+        .update-tag.talk { background: #ede9fe; color: var(--tag-talk); }
+        .update-tag.publication { background: #d1fae5; color: var(--tag-publication); }
+        .update-meta {
+            flex: 1;
+        }
+        .update-date {
+            font-size: 12.5px;
+            color: var(--ink-muted);
+            margin-bottom: 2px;
+        }
+        .update-text {
+            font-size: 14.5px;
+            color: var(--ink);
+            line-height: 1.5;
+        }
+        .update-text a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+        .update-text a:hover { text-decoration: underline; }
+        .see-all {
+            display: inline-block;
+            margin-top: 16px;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--accent);
+            text-decoration: none;
+            transition: 0.2s;
+        }
+        .see-all:hover { opacity: 0.75; }
+        .see-all::after { content: ' →'; }
+
+        /* ── SECTIONS ── */
+        section { padding: 72px 0; }
+        .container {
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+        .section-label {
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        .section-title {
+            font-family: 'Instrument Serif', serif;
+            font-size: clamp(28px, 3vw, 36px);
+            color: var(--ink);
+            margin-bottom: 12px;
+            letter-spacing: -0.3px;
+        }
+        .section-desc {
+            color: var(--ink-muted);
+            max-width: 520px;
+            font-size: 15px;
+            margin-bottom: 40px;
+            line-height: 1.7;
+        }
+
+        /* ── RESEARCH CARDS ── */
+        .research-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        .research-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 32px 28px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .research-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: var(--accent);
+            transform: scaleX(0);
+            transition: transform 0.3s;
+            transform-origin: left;
+        }
+        .research-card:hover {
+            border-color: var(--accent);
+            box-shadow: var(--shadow-md);
+            transform: translateY(-3px);
+        }
+        .research-card:hover::before { transform: scaleX(1); }
+        .card-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 22px;
+        }
+        .card-icon.hydro { background: #e0f2fe; color: #0284c7; }
+        .card-icon.ml { background: #fce7f3; color: #db2777; }
+        .card-icon.geo { background: #dcfce7; color: #16a34a; }
+        .card-icon.climate { background: #fef9c3; color: #ca8a04; }
+        .card-icon.optim { background: #ede9fe; color: #7c3aed; }
+        .card-icon.data { background: #ffedd5; color: #ea580c; }
+        .research-card h4 {
+            font-size: 17px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--ink);
+        }
+        .research-card p {
+            font-size: 14px;
+            color: var(--ink-muted);
+            line-height: 1.65;
+        }
+
+        /* ── PUBLICATIONS ── */
+        .pub-list { display: flex; flex-direction: column; gap: 16px; }
+        .pub-item {
+            padding: 24px 28px;
+            background: var(--surface);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-sm);
+            transition: all 0.25s;
+        }
+        .pub-item:hover {
+            border-color: var(--accent);
+            box-shadow: var(--shadow-sm);
+        }
+        .pub-year {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            margin-bottom: 6px;
+        }
+        .pub-title {
+            font-size: 15.5px;
+            font-weight: 600;
+            color: var(--ink);
+            margin-bottom: 6px;
+            line-height: 1.45;
+        }
+        .pub-authors {
+            font-size: 13.5px;
+            color: var(--ink-muted);
+            margin-bottom: 4px;
+        }
+        .pub-venue {
+            font-size: 13px;
+            color: var(--ink-light);
+            font-style: italic;
+        }
+        .pub-links { margin-top: 10px; display: flex; gap: 10px; }
+        .pub-link {
+            font-size: 12.5px;
+            font-weight: 600;
+            text-decoration: none;
+            color: var(--accent);
+            padding: 3px 10px;
+            border: 1px solid var(--accent);
+            border-radius: 5px;
+            transition: all 0.2s;
+        }
+        .pub-link:hover {
+            background: var(--accent);
+            color: #fff;
+        }
+
+        /* ── BLOG CARDS ── */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+        .blog-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 28px;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: block;
+        }
+        .blog-card:hover {
+            border-color: var(--accent);
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
+        }
+        .blog-date {
+            font-size: 12.5px;
+            color: var(--ink-muted);
+            margin-bottom: 8px;
+        }
+        .blog-card h4 {
+            font-size: 17px;
+            font-weight: 600;
+            color: var(--ink);
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+        .blog-card p {
+            font-size: 14px;
+            color: var(--ink-muted);
+            line-height: 1.6;
+        }
+        .blog-read {
+            display: inline-block;
+            margin-top: 14px;
+            font-size: 13.5px;
+            font-weight: 600;
+            color: var(--accent);
+        }
+        .blog-read::after { content: ' →'; transition: 0.2s; }
+        .blog-card:hover .blog-read::after { padding-left: 4px; }
+
+        /* ── ABOUT ── */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            align-items: start;
+        }
+        .about-text p {
+            color: var(--ink-light);
+            margin-bottom: 16px;
+            font-size: 15px;
+        }
+        .about-links {
+            display: flex;
+            gap: 12px;
+            margin-top: 24px;
+        }
+        .about-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 18px;
+            border-radius: 8px;
+            font-size: 13.5px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        .about-link.primary {
+            background: var(--accent);
+            color: #fff;
+        }
+        .about-link.primary:hover { opacity: 0.88; }
+        .about-link.secondary {
+            background: var(--surface);
+            color: var(--ink-light);
+            border: 1px solid var(--border);
+        }
+        .about-link.secondary:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .info-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+        .info-card {
+            background: var(--surface-tinted);
+            border-radius: var(--radius-sm);
+            padding: 20px 24px;
+            border: 1px solid transparent;
+        }
+        .info-card-label {
+            font-size: 11.5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--ink-muted);
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        .info-card-value {
+            font-size: 15px;
+            color: var(--ink);
+            font-weight: 500;
+        }
+        .info-card-value a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+        .info-card-value a:hover { text-decoration: underline; }
+
+        /* ── FOOTER ── */
+        footer {
+            border-top: 1px solid var(--border-light);
+            padding: 40px 0;
+            text-align: center;
+        }
+        .footer-inner {
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+        .footer-socials {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+        .footer-socials a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 38px;
+            height: 38px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            color: var(--ink-muted);
+            text-decoration: none;
+            transition: all 0.2s;
+            font-size: 16px;
+        }
+        .footer-socials a:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            background: var(--accent-light);
+        }
+        .footer-copy {
+            font-size: 13px;
+            color: var(--ink-muted);
+        }
+
+        /* ── ANIMATIONS ── */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(18px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 900px) {
+            .hero-inner { grid-template-columns: 1fr; }
+            .hero-visual { height: 220px; margin-top: 32px; }
+            .research-grid { grid-template-columns: repeat(2, 1fr); }
+            .blog-grid { grid-template-columns: 1fr; }
+            .about-grid { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 640px) {
+            .nav-links { 
+                display: none;
+                position: absolute;
+                top: 64px; left: 0; right: 0;
+                background: var(--surface);
+                flex-direction: column;
+                padding: 16px 24px;
+                border-bottom: 1px solid var(--border);
+                box-shadow: var(--shadow-md);
+            }
+            .nav-links.open { display: flex; }
+            .hamburger { display: flex; }
+            .research-grid { grid-template-columns: 1fr; }
+            .hero-inner { padding: 48px 24px 56px; }
+            .container { padding: 0 20px; }
+            section { padding: 56px 0; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+    <div class="nav-inner">
+        <a href="#" class="nav-brand">S<span>.</span> Mishra</a>
+        <div class="nav-links" id="navLinks">
+            <a href="#home" class="active">Home</a>
+            <a href="#research">Research</a>
+            <a href="#publications">Publications</a>
+            <a href="#blog">Blog</a>
+            <a href="#about">About</a>
+        </div>
+        <div class="hamburger" id="hamburger" onclick="document.getElementById('navLinks').classList.toggle('open')">
+            <span></span><span></span><span></span>
+        </div>
+    </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+    <div class="hero-inner">
+        <div class="hero-content">
+            <h1>Groundwater Modelling<br>& <em>Hydroinformatics</em></h1>
+            <p class="hero-desc">
+                Postdoctoral Researcher at BRGM, France. I work on groundwater simulation, 
+                hydroeconomic optimization, and machine learning surrogates for water resource 
+                management — with an emphasis on open, reproducible science.
+            </p>
+            <div class="hero-tags">
+                <span class="hero-tag">Groundwater Modelling</span>
+                <span class="hero-tag">ML Surrogates</span>
+                <span class="hero-tag">NSGA-II Optimization</span>
+                <span class="hero-tag">Geospatial Analysis</span>
+                <span class="hero-tag">Hydroeconomics</span>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <!-- Water cycle / aquifer SVG illustration -->
+            <svg class="hero-svg" viewBox="0 0 380 340" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Sky gradient -->
+                <defs>
+                    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stop-color="#e0f2fe"/>
+                        <stop offset="100%" stop-color="#bae6fd"/>
+                    </linearGradient>
+                    <linearGradient id="ground" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stop-color="#a3d9a5"/>
+                        <stop offset="100%" stop-color="#6abf69"/>
+                    </linearGradient>
+                    <linearGradient id="aquifer" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stop-color="#7dd3fc"/>
+                        <stop offset="100%" stop-color="#38bdf8"/>
+                    </linearGradient>
+                    <linearGradient id="soil" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stop-color="#d4a76a"/>
+                        <stop offset="100%" stop-color="#c4935a"/>
+                    </linearGradient>
+                </defs>
+                <!-- Sky -->
+                <rect width="380" height="340" rx="12" fill="url(#sky)"/>
+                <!-- Hills -->
+                <path d="M0 160 Q60 110 120 140 Q180 100 240 130 Q300 90 380 120 L380 200 L0 200 Z" fill="url(#ground)" opacity="0.9"/>
+                <!-- Soil layer -->
+                <rect x="0" y="190" width="380" height="60" fill="url(#soil)" opacity="0.6"/>
+                <!-- Aquifer -->
+                <path d="M0 240 Q50 230 100 245 Q160 255 200 240 Q260 225 310 242 Q350 250 380 238 L380 300 Q300 310 200 305 Q100 300 0 310 Z" fill="url(#aquifer)" opacity="0.7"/>
+                <!-- Bedrock -->
+                <rect x="0" y="300" width="380" height="40" rx="0 0 12 12" fill="#94a3b8" opacity="0.3"/>
+                <!-- Well -->
+                <rect x="170" y="120" width="8" height="120" rx="2" fill="#64748b" opacity="0.7"/>
+                <rect x="164" y="115" width="20" height="10" rx="3" fill="#475569"/>
+                <!-- Water drops (infiltration) -->
+                <circle cx="100" cy="175" r="3" fill="#38bdf8" opacity="0.6">
+                    <animate attributeName="cy" values="175;230;175" dur="3s" repeatCount="indefinite"/>
+                    <animate attributeName="opacity" values="0.6;0.2;0.6" dur="3s" repeatCount="indefinite"/>
+                </circle>
+                <circle cx="260" cy="180" r="2.5" fill="#38bdf8" opacity="0.5">
+                    <animate attributeName="cy" values="180;235;180" dur="3.5s" repeatCount="indefinite"/>
+                    <animate attributeName="opacity" values="0.5;0.15;0.5" dur="3.5s" repeatCount="indefinite"/>
+                </circle>
+                <circle cx="320" cy="170" r="2" fill="#38bdf8" opacity="0.5">
+                    <animate attributeName="cy" values="170;228;170" dur="4s" repeatCount="indefinite"/>
+                    <animate attributeName="opacity" values="0.5;0.15;0.5" dur="4s" repeatCount="indefinite"/>
+                </circle>
+                <!-- Data points on aquifer -->
+                <circle cx="80" cy="248" r="5" fill="#0c7c8a" opacity="0.8"/>
+                <circle cx="150" cy="242" r="5" fill="#0c7c8a" opacity="0.8"/>
+                <circle cx="230" cy="250" r="5" fill="#0c7c8a" opacity="0.8"/>
+                <circle cx="310" cy="240" r="5" fill="#0c7c8a" opacity="0.8"/>
+                <!-- Labels -->
+                <text x="20" y="155" font-family="DM Sans, sans-serif" font-size="10" fill="#4a5568" font-weight="600">Recharge</text>
+                <text x="280" y="155" font-family="DM Sans, sans-serif" font-size="10" fill="#4a5568" font-weight="600">Surface</text>
+                <text x="20" y="265" font-family="DM Sans, sans-serif" font-size="10" fill="#0e7490" font-weight="600">Aquifer</text>
+                <text x="170" y="108" font-family="DM Sans, sans-serif" font-size="9" fill="#475569" font-weight="500">Well</text>
+                <text x="20" y="320" font-family="DM Sans, sans-serif" font-size="9" fill="#64748b" font-weight="500">Bedrock</text>
+                <!-- Cloud -->
+                <g transform="translate(50, 20)" opacity="0.6">
+                    <ellipse cx="30" cy="20" rx="24" ry="14" fill="white"/>
+                    <ellipse cx="50" cy="18" rx="18" ry="12" fill="white"/>
+                    <ellipse cx="16" cy="22" rx="14" ry="10" fill="white"/>
+                </g>
+                <!-- Rain from cloud -->
+                <line x1="60" y1="42" x2="58" y2="56" stroke="#93c5fd" stroke-width="1.5" opacity="0.4">
+                    <animate attributeName="y2" values="56;70;56" dur="2s" repeatCount="indefinite"/>
+                </line>
+                <line x1="75" y1="38" x2="73" y2="54" stroke="#93c5fd" stroke-width="1.5" opacity="0.3">
+                    <animate attributeName="y2" values="54;68;54" dur="2.3s" repeatCount="indefinite"/>
+                </line>
+                <line x1="88" y1="40" x2="86" y2="55" stroke="#93c5fd" stroke-width="1.5" opacity="0.35">
+                    <animate attributeName="y2" values="55;66;55" dur="2.6s" repeatCount="indefinite"/>
+                </line>
+            </svg>
+        </div>
+    </div>
+</section>
+
+<!-- RECENT UPDATES -->
+<div class="updates-strip">
+    <div class="updates-card fade-in">
+        <h3>Recent Updates</h3>
+        <div class="update-item">
+            <span class="update-tag research">Research</span>
+            <div class="update-meta">
+                <div class="update-date">Mar 2026</div>
+                <div class="update-text">KAN-based surrogate model for WEAP-NSGA-II hydroeconomic optimization — manuscript in preparation</div>
+            </div>
+        </div>
+        <div class="update-item">
+            <span class="update-tag publication">Package</span>
+            <div class="update-meta">
+                <div class="update-date">Jan 2026</div>
+                <div class="update-text">Released <a href="#">SwarmPs</a> — Multi-Objective PSO calibration for PASTAS models</div>
+            </div>
+        </div>
+        <div class="update-item">
+            <span class="update-tag blog">Blog</span>
+            <div class="update-meta">
+                <div class="update-date">Dec 2025</div>
+                <div class="update-text">National-scale PASTAS groundwater modelling for India (~1000 CGWB wells)</div>
+            </div>
+        </div>
+        <a href="#blog" class="see-all">See all news</a>
+    </div>
+</div>
+
+<!-- RESEARCH FOCUS -->
+<section id="research">
+    <div class="container">
+        <div class="section-label fade-in">Core Research Focus</div>
+        <div class="section-title fade-in">What I work on</div>
+        <div class="section-desc fade-in">
+            Bridging physics-based hydrological models with data-driven methods 
+            for scalable, basin-agnostic water resource solutions.
+        </div>
+        <div class="research-grid">
+            <div class="research-card fade-in">
+                <div class="card-icon hydro">💧</div>
+                <h4>Groundwater Modelling</h4>
+                <p>PASTAS-based time-series models, WEAP simulation, and physics-informed approaches for aquifer characterization and recharge estimation.</p>
+            </div>
+            <div class="research-card fade-in">
+                <div class="card-icon ml">🧠</div>
+                <h4>ML Surrogate Models</h4>
+                <p>KAN (Kolmogorov-Arnold Networks) as surrogates for computationally expensive hydrological simulations within optimization loops.</p>
+            </div>
+            <div class="research-card fade-in">
+                <div class="card-icon optim">⚡</div>
+                <h4>Multi-Objective Optimization</h4>
+                <p>NSGA-II and Particle Swarm methods for hydroeconomic optimization, drought risk analysis, and water allocation under climate uncertainty.</p>
+            </div>
+            <div class="research-card fade-in">
+                <div class="card-icon geo">🌍</div>
+                <h4>Geospatial Analysis</h4>
+                <p>Large-scale spatial modelling with GeoPandas, remote sensing integration, and visualization of hydrogeological datasets across basins.</p>
+            </div>
+            <div class="research-card fade-in">
+                <div class="card-icon climate">🌡️</div>
+                <h4>Climate & Drought Risk</h4>
+                <p>Assessing water resource vulnerability under climate change scenarios with emphasis on drought propagation and basin-scale impacts.</p>
+            </div>
+            <div class="research-card fade-in">
+                <div class="card-icon data">📊</div>
+                <h4>Open & Reproducible Science</h4>
+                <p>Python packages, open datasets, and reproducible workflows. Building tools others can actually use — not just cite.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PUBLICATIONS -->
+<section id="publications" style="background: var(--surface-warm);">
+    <div class="container">
+        <div class="section-label fade-in">Publications</div>
+        <div class="section-title fade-in">Selected Works</div>
+        <div class="section-desc fade-in">
+            A curated list — full profile on Google Scholar.
+        </div>
+        <div class="pub-list">
+            <div class="pub-item fade-in">
+                <div class="pub-year">2026 · In Preparation</div>
+                <div class="pub-title">KAN-based Surrogate Modelling for Simulation-Optimization in Hydroeconomic Systems</div>
+                <div class="pub-authors"><strong>S. Mishra</strong> et al.</div>
+                <div class="pub-venue">Target: Water Resources Research</div>
+            </div>
+            <div class="pub-item fade-in">
+                <div class="pub-year">2025</div>
+                <div class="pub-title">Your Published Paper Title Goes Here</div>
+                <div class="pub-authors"><strong>S. Mishra</strong>, Co-Author A, Co-Author B</div>
+                <div class="pub-venue">Journal of Hydrology</div>
+                <div class="pub-links">
+                    <a href="#" class="pub-link">PDF</a>
+                    <a href="#" class="pub-link">DOI</a>
+                    <a href="#" class="pub-link">Code</a>
+                </div>
+            </div>
+            <div class="pub-item fade-in">
+                <div class="pub-year">2024 · PhD Thesis</div>
+                <div class="pub-title">Your PhD Thesis Title (Geoinformatics, IIT BHU)</div>
+                <div class="pub-authors"><strong>S. Mishra</strong></div>
+                <div class="pub-venue">Indian Institute of Technology (BHU), Varanasi</div>
+                <div class="pub-links">
+                    <a href="#" class="pub-link">PDF</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- BLOG -->
+<section id="blog">
+    <div class="container">
+        <div class="section-label fade-in">Writings</div>
+        <div class="section-title fade-in">Blog & Notes</div>
+        <div class="section-desc fade-in">
+            Research notes, technical walkthroughs, and occasional musings on science, code, and craft.
+        </div>
+        <div class="blog-grid">
+            <a href="#" class="blog-card fade-in">
+                <div class="blog-date">March 2026</div>
+                <h4>Building a National-Scale Groundwater Model with PASTAS</h4>
+                <p>How I modelled ~1000 CGWB wells across India using transfer-function noise models — and what the data actually tells us.</p>
+                <span class="blog-read">Read more</span>
+            </a>
+            <a href="#" class="blog-card fade-in">
+                <div class="blog-date">February 2026</div>
+                <h4>KAN vs MLP: When Kolmogorov Beats the Perceptron</h4>
+                <p>A practical breakdown of when KAN-based surrogates outperform standard neural networks for hydrological simulation.</p>
+                <span class="blog-read">Read more</span>
+            </a>
+            <a href="#" class="blog-card fade-in">
+                <div class="blog-date">January 2026</div>
+                <h4>SwarmPs: Multi-Objective PSO for PASTAS Calibration</h4>
+                <p>Announcing a Python package that wraps MOPSO around PASTAS — why I built it and how to use it.</p>
+                <span class="blog-read">Read more</span>
+            </a>
+            <a href="#" class="blog-card fade-in">
+                <div class="blog-date">November 2025</div>
+                <h4>On Reproducible Science and the State of Hydrology Code</h4>
+                <p>Most hydrology code is write-once-read-never. Some thoughts on why we should care and what we can do.</p>
+                <span class="blog-read">Read more</span>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" style="background: var(--surface-warm);">
+    <div class="container">
+        <div class="section-label fade-in">About</div>
+        <div class="section-title fade-in">Shreyansh Mishra</div>
+        <div class="about-grid" style="margin-top: 32px;">
+            <div class="about-text fade-in">
+                <p>
+                    I'm a postdoctoral researcher at <strong>BRGM</strong> (Bureau de Recherches 
+                    Géologiques et Minières) in Orléans, France, working on groundwater modelling, 
+                    hydroeconomic optimization, and machine learning methods for water resource management.
+                </p>
+                <p>
+                    I completed my PhD in <strong>Geoinformatics from IIT BHU</strong>, where I 
+                    developed expertise in geospatial data analysis, remote sensing, and hydrological 
+                    simulation. My current work focuses on building scalable, basin-agnostic 
+                    methodologies — combining physics-based models with ML surrogates for 
+                    multi-objective optimization under climate uncertainty.
+                </p>
+                <p>
+                    Outside the lab, I'm interested in Vedic philosophy, Ayurveda, cycling the Loire 
+                    Valley, and capturing moody frames on my iPhone.
+                </p>
+                <div class="about-links">
+                    <a href="mailto:your.email@brgm.fr" class="about-link primary">
+                        ✉ Contact
+                    </a>
+                    <a href="#" class="about-link secondary">
+                        📄 CV / Resume
+                    </a>
+                </div>
+            </div>
+            <div class="info-cards fade-in">
+                <div class="info-card">
+                    <div class="info-card-label">Position</div>
+                    <div class="info-card-value">Postdoctoral Researcher, BRGM</div>
+                </div>
+                <div class="info-card">
+                    <div class="info-card-label">Education</div>
+                    <div class="info-card-value">PhD Geoinformatics, IIT BHU</div>
+                </div>
+                <div class="info-card">
+                    <div class="info-card-label">Location</div>
+                    <div class="info-card-value">Orléans, France 🇫🇷</div>
+                </div>
+                <div class="info-card">
+                    <div class="info-card-label">Scholar</div>
+                    <div class="info-card-value"><a href="#">Google Scholar Profile →</a></div>
+                </div>
+                <div class="info-card">
+                    <div class="info-card-label">Code</div>
+                    <div class="info-card-value"><a href="#">GitHub →</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-inner">
+        <div class="footer-socials">
+            <a href="#" title="GitHub">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+            </a>
+            <a href="https://twitter.com/sminfr279" title="Twitter / X">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+            <a href="https://instagram.com/sminfr279" title="Instagram">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+            </a>
+            <a href="#" title="Google Scholar">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 100 14 7 7 0 000-14z"/></svg>
+            </a>
+        </div>
+        <div class="footer-copy">
+            © 2026 Shreyansh Mishra · Built with purpose, hosted on GitHub Pages
+        </div>
+    </div>
+</footer>
+
+<script>
+    // Scroll shadow on nav
+    window.addEventListener('scroll', () => {
+        document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 10);
+    });
+
+    // Intersection Observer for fade-in
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry, i) => {
+            if (entry.isIntersecting) {
+                setTimeout(() => entry.target.classList.add('visible'), i * 80);
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    // Active nav link on scroll
+    const sections = document.querySelectorAll('section[id]');
+    window.addEventListener('scroll', () => {
+        const scrollY = window.scrollY + 100;
+        sections.forEach(sec => {
+            const top = sec.offsetTop - 80;
+            const bottom = top + sec.offsetHeight;
+            const id = sec.getAttribute('id');
+            const link = document.querySelector(`.nav-links a[href="#${id}"]`);
+            if (link) {
+                link.classList.toggle('active', scrollY >= top && scrollY < bottom);
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
