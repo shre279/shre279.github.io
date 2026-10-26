@@ -1,0 +1,3032 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  
+  <!-- iPhone & iOS Web App (PWA) Meta Tags -->
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Le Mille FR" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="theme-color" content="#0f172a" />
+  
+  <title>Le Mille — 1,000 Most Common French Words</title>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['-apple-system', 'BlinkMacSystemFont', 'Inter', 'Segoe UI', 'Roboto', 'sans-serif'],
+          },
+          colors: {
+            ios: {
+              bg: '#090d16',
+              card: '#131b2e',
+              surface: '#1e293b',
+              blue: '#3b82f6',
+              indigo: '#6366f1',
+              emerald: '#10b981',
+              amber: '#f59e0b',
+              rose: '#f43f5e'
+            }
+          }
+        }
+      }
+    };
+  </script>
+
+  <!-- Google Font Inter fallback -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --sat: env(safe-area-inset-top, 0px);
+      --sab: env(safe-area-inset-bottom, 0px);
+      --sal: env(safe-area-inset-left, 0px);
+      --sar: env(safe-area-inset-right, 0px);
+    }
+
+    * {
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    input, textarea {
+      user-select: text;
+      -webkit-user-select: text;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Inter', sans-serif;
+      overscroll-behavior-y: none;
+      padding-top: var(--sat);
+      padding-bottom: var(--sab);
+    }
+
+    /* 3D Flashcard Flip Perspectives */
+    .perspective-1000 {
+      perspective: 1200px;
+    }
+    .transform-style-3d {
+      transform-style: preserve-3d;
+      transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .backface-hidden {
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+    }
+    .rotate-y-180 {
+      transform: rotateY(180deg);
+    }
+
+    /* Custom Scrollbar for iOS feel */
+    ::-webkit-scrollbar {
+      width: 4px;
+      height: 4px;
+    }
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(148, 163, 184, 0.25);
+      border-radius: 9999px;
+    }
+
+    /* Hide scrollbar for horizontal pill bars */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    /* Card swipe animations */
+    @keyframes slideInRight {
+      from { opacity: 0; transform: translateX(28px) scale(0.97); }
+      to { opacity: 1; transform: translateX(0) scale(1); }
+    }
+    @keyframes slideInLeft {
+      from { opacity: 0; transform: translateX(-28px) scale(0.97); }
+      to { opacity: 1; transform: translateX(0) scale(1); }
+    }
+    .animate-next {
+      animation: slideInRight 0.24s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    .animate-prev {
+      animation: slideInLeft 0.24s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    /* Audio wave animation */
+    @keyframes soundWave {
+      0%, 100% { transform: scaleY(0.35); }
+      50% { transform: scaleY(1); }
+    }
+    .wave-bar {
+      animation: soundWave 0.7s ease-in-out infinite;
+    }
+    .wave-bar:nth-child(2) { animation-delay: 0.15s; }
+    .wave-bar:nth-child(3) { animation-delay: 0.3s; }
+    .wave-bar:nth-child(4) { animation-delay: 0.45s; }
+
+    /* iOS Frosted Glass */
+    .ios-glass {
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
+  </style>
+</head>
+<body class="bg-slate-50 dark:bg-[#090d16] text-slate-900 dark:text-slate-100 min-h-screen flex flex-col overflow-x-hidden selection:bg-indigo-500 selection:text-white">
+
+  <!-- TOP NAVIGATION BAR -->
+  <header class="sticky top-0 z-30 ios-glass bg-white/85 dark:bg-[#090d16]/85 border-b border-slate-200/80 dark:border-slate-800/80 px-4 py-2.5">
+    <div class="max-w-md mx-auto flex items-center justify-between">
+      <!-- App Brand & French Tricolor Accent -->
+      <div class="flex items-center gap-2.5">
+        <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-blue-600 via-indigo-600 to-rose-500 p-0.5 shadow-md shadow-indigo-500/20 flex items-center justify-center">
+          <div class="w-full h-full bg-white dark:bg-slate-900 rounded-[10px] flex items-center justify-center font-extrabold text-sm tracking-tighter">
+            <span class="text-blue-600 dark:text-blue-400">F</span><span class="text-rose-500">R</span>
+          </div>
+        </div>
+        <div>
+          <div class="flex items-center gap-1.5">
+            <h1 class="font-bold text-base tracking-tight leading-none">Le Mille</h1>
+            <span class="text-[10px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded-md bg-indigo-500/15 text-indigo-600 dark:text-indigo-400 border border-indigo-500/20">1000 Words</span>
+          </div>
+          <p class="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5" id="headerSubtitle">Top 1–100 • Essential Core</p>
+        </div>
+      </div>
+
+      <!-- Right Action Icons: Streak, Audio Voice Indicator, Install on iPhone, Theme -->
+      <div class="flex items-center gap-1.5">
+        <!-- Daily Streak Pill -->
+        <button onclick="switchTab('progress')" title="Study Streak" class="flex items-center gap-1 px-2.5 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/25 text-amber-600 dark:text-amber-400 text-xs font-bold active:scale-95 transition">
+          <span>🔥</span>
+          <span id="streakBadge">1</span>
+        </button>
+
+        <!-- Save to iPhone Home Screen Button -->
+        <button onclick="openInstallModal()" title="Save to iPhone Home Screen" class="p-2 rounded-full bg-slate-100 dark:bg-slate-800/90 text-indigo-600 dark:text-indigo-400 hover:bg-indigo-50 dark:hover:bg-slate-700 active:scale-95 transition relative">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 16V4m0 0L8 8m4-4l4 4M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2" />
+          </svg>
+        </button>
+
+        <!-- Theme Toggle -->
+        <button onclick="toggleTheme()" title="Toggle Light/Dark Mode" class="p-2 rounded-full bg-slate-100 dark:bg-slate-800/90 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 active:scale-95 transition">
+          <svg id="themeIconSun" class="w-4 h-4 hidden dark:block text-amber-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="5" />
+            <path stroke-linecap="round" d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72l1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
+          </svg>
+          <svg id="themeIconMoon" class="w-4 h-4 block dark:hidden text-slate-700" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT CONTAINER -->
+  <main class="flex-1 max-w-md w-full mx-auto px-4 pt-3 pb-28 flex flex-col">
+
+    <!-- ==========================================
+         TAB 1: STUDY (3D FLASHCARDS)
+         ========================================== -->
+    <section id="tab-study" class="flex-1 flex flex-col">
+      <!-- Frequency Tier Horizontal Selector -->
+      <div class="mb-2">
+        <div class="flex items-center justify-between mb-1.5">
+          <span class="text-[11px] font-semibold uppercase tracking-wider text-slate-400 dark:text-slate-500">Frequency Tier</span>
+          <button onclick="openFilterDrawer()" class="text-xs font-semibold text-indigo-600 dark:text-indigo-400 flex items-center gap-1 active:opacity-70">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
+            </svg>
+            <span id="activeFilterSummary">Filters & Category</span>
+          </button>
+        </div>
+        <div id="tierPillBar" class="flex items-center gap-1.5 overflow-x-auto no-scrollbar pb-1">
+          <!-- Populated dynamically: All, 1-100, 101-200 ... 901-1000 -->
+        </div>
+      </div>
+
+      <!-- Status Filter & Deck Controls Bar -->
+      <div class="flex items-center justify-between gap-2 mb-3 bg-slate-200/70 dark:bg-slate-800/60 p-1 rounded-xl">
+        <button onclick="setStudyStatusFilter('all')" id="statusBtn-all" class="flex-1 py-1.5 rounded-lg text-xs font-semibold transition">All</button>
+        <button onclick="setStudyStatusFilter('unseen')" id="statusBtn-unseen" class="flex-1 py-1.5 rounded-lg text-xs font-semibold transition">New</button>
+        <button onclick="setStudyStatusFilter('learning')" id="statusBtn-learning" class="flex-1 py-1.5 rounded-lg text-xs font-semibold transition">Learning</button>
+        <button onclick="setStudyStatusFilter('mastered')" id="statusBtn-mastered" class="flex-1 py-1.5 rounded-lg text-xs font-semibold transition">Mastered</button>
+      </div>
+
+      <!-- Progress & Deck Counter Row -->
+      <div class="flex items-center justify-between text-xs text-slate-500 dark:text-slate-400 mb-2 px-1">
+        <div class="flex items-center gap-2">
+          <span id="cardCounterText" class="font-bold text-slate-700 dark:text-slate-200">Card 1 of 100</span>
+          <span id="cardStatusBadge" class="px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-400">New</span>
+        </div>
+        <div class="flex items-center gap-3">
+          <button onclick="toggleAutoPlay()" id="autoPlayBtn" class="flex items-center gap-1 text-[11px] font-semibold px-2 py-0.5 rounded-md bg-slate-200/70 dark:bg-slate-800 text-slate-600 dark:text-slate-400 transition">
+            <span>🔊 Auto</span>
+          </button>
+          <button onclick="shuffleDeck()" title="Shuffle Current Deck" class="flex items-center gap-1 text-[11px] font-semibold text-slate-600 dark:text-slate-400 hover:text-indigo-500 active:scale-95 transition">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M16 3h5v5M4 20L21 3M21 16v5h-5M15 15l6 6M4 4l5 5" />
+            </svg>
+            <span>Shuffle</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Thin Deck Progress Bar -->
+      <div class="w-full h-1.5 bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden mb-3.5">
+        <div id="studyProgressBar" class="h-full bg-gradient-to-r from-blue-500 via-indigo-500 to-rose-500 transition-all duration-300" style="width: 1%"></div>
+      </div>
+
+      <!-- 3D FLASHCARD CONTAINER -->
+      <div id="flashcardStage" class="relative flex-1 min-h-[330px] max-h-[430px] w-full perspective-1000 my-auto flex flex-col justify-center">
+        
+        <!-- Empty state if filter matches 0 cards -->
+        <div id="emptyDeckState" class="hidden flex-col items-center justify-center text-center p-8 rounded-3xl bg-white dark:bg-[#131b2e] border border-slate-200 dark:border-slate-800 shadow-lg h-full">
+          <div class="w-14 h-14 rounded-2xl bg-indigo-500/10 text-indigo-500 flex items-center justify-center text-2xl mb-3">🎉</div>
+          <h3 class="font-bold text-lg mb-1">No Cards Match This Filter</h3>
+          <p class="text-xs text-slate-500 dark:text-slate-400 max-w-xs mb-4">You don't have any words in this status/tier combination yet. Switch back to "All" or choose another tier!</p>
+          <button onclick="setStudyStatusFilter('all')" class="px-4 py-2.5 rounded-xl bg-indigo-600 text-white text-xs font-bold shadow-md shadow-indigo-600/25 active:scale-95 transition">
+            Show All Cards in Tier
+          </button>
+        </div>
+
+        <!-- 3D Flip Card Wrapper -->
+        <div id="flashcard3D" onclick="handleCardClick(event)" class="w-full h-full min-h-[330px] relative transform-style-3d cursor-pointer select-none">
+          
+          <!-- ================= FRONT OF CARD (FRENCH) ================= -->
+          <div class="backface-hidden absolute inset-0 w-full h-full rounded-3xl bg-white dark:bg-[#131b2e] border border-slate-200/90 dark:border-slate-800/90 shadow-xl shadow-slate-900/5 dark:shadow-black/40 p-6 flex flex-col justify-between">
+            
+            <!-- Top Row: Rank Badge, Category & Part of Speech -->
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <span id="cardRankFront" class="px-2.5 py-1 rounded-lg bg-indigo-500/10 dark:bg-indigo-500/15 text-indigo-600 dark:text-indigo-400 font-extrabold text-xs border border-indigo-500/20">#1</span>
+                <span id="cardCatFront" class="text-xs font-medium text-slate-500 dark:text-slate-400">Core & Connectors</span>
+              </div>
+              <span id="cardPosFront" class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-semibold text-xs">Verb</span>
+            </div>
+
+            <!-- Center: Target French Word & Audio Controls -->
+            <div class="my-auto text-center py-4">
+              <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-blue-500/10 text-blue-600 dark:text-blue-400 text-[10px] font-bold uppercase tracking-widest mb-2">
+                <span>🇫🇷 Français</span>
+              </div>
+              <h2 id="cardFrenchFront" class="text-4xl sm:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white break-words leading-tight">
+                être
+              </h2>
+              <p id="cardGenderHint" class="text-xs text-slate-400 dark:text-slate-500 mt-1.5 font-medium"></p>
+
+              <!-- Normal & Slow (Turtle) Audio Buttons -->
+              <div class="flex items-center justify-center gap-3 mt-5" onclick="event.stopPropagation()">
+                <button onclick="speakCurrentWord(1.0)" class="flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-indigo-600 hover:bg-indigo-500 active:scale-95 text-white font-bold text-xs shadow-lg shadow-indigo-600/25 transition">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+                  </svg>
+                  <span>Listen</span>
+                </button>
+                <button onclick="speakCurrentWord(0.62)" class="flex items-center gap-1.5 px-3.5 py-2.5 rounded-2xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 active:scale-95 text-slate-700 dark:text-slate-200 font-semibold text-xs border border-slate-200/80 dark:border-slate-700 transition">
+                  <span>🐢</span>
+                  <span>Slow</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Bottom Hint -->
+            <div class="flex items-center justify-between text-[11px] text-slate-400 dark:text-slate-500 pt-2 border-t border-slate-100 dark:border-slate-800/70">
+              <span>Swipe left/right for cards</span>
+              <span class="font-semibold text-indigo-500 dark:text-indigo-400 flex items-center gap-1">
+                Tap card to flip ↻
+              </span>
+            </div>
+          </div>
+
+          <!-- ================= BACK OF CARD (ENGLISH + EXAMPLE) ================= -->
+          <div class="backface-hidden rotate-y-180 absolute inset-0 w-full h-full rounded-3xl bg-white dark:bg-[#131b2e] border-2 border-indigo-500/30 dark:border-indigo-500/40 shadow-xl shadow-slate-900/5 dark:shadow-black/40 p-6 flex flex-col justify-between">
+            
+            <!-- Top Row: French Word Reminder + Audio -->
+            <div class="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-3">
+              <div>
+                <span id="cardRankBack" class="text-[11px] font-bold text-indigo-500">#1</span>
+                <h3 id="cardFrenchBack" class="text-xl font-extrabold text-slate-900 dark:text-white leading-tight">être</h3>
+              </div>
+              <div class="flex items-center gap-1.5" onclick="event.stopPropagation()">
+                <button onclick="speakCurrentWord(1.0)" title="Play Word" class="p-2 rounded-xl bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 hover:bg-indigo-500/20 active:scale-95 transition">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.536 8.464a5 5 0 010 7.072M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+                  </svg>
+                </button>
+                <button onclick="speakCurrentWord(0.62)" title="Slow Word" class="p-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 active:scale-95 transition text-xs">
+                  🐢
+                </button>
+              </div>
+            </div>
+
+            <!-- Middle: English Translation -->
+            <div class="my-auto py-2 text-center">
+              <span class="text-[10px] font-bold uppercase tracking-widest text-emerald-600 dark:text-emerald-400">English Meaning</span>
+              <h2 id="cardEnglishBack" class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white mt-1 leading-snug">
+                to be
+              </h2>
+              <span id="cardPosBack" class="inline-block mt-1 text-xs font-medium text-slate-400">Verb • Core & Connectors</span>
+            </div>
+
+            <!-- Example Sentence Box with Phrase Audio -->
+            <div class="rounded-2xl bg-slate-50 dark:bg-slate-900/90 border border-slate-200/80 dark:border-slate-800 p-3.5" onclick="event.stopPropagation()">
+              <div class="flex items-start justify-between gap-2">
+                <div class="flex-1">
+                  <span class="text-[10px] font-bold uppercase tracking-wider text-indigo-500 block mb-0.5">Example in Context</span>
+                  <p id="cardExFr" class="text-sm font-bold text-slate-800 dark:text-slate-100 leading-snug">
+                    Je suis très heureux d'être ici.
+                  </p>
+                  <p id="cardExEn" class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-snug">
+                    I am very happy to be here.
+                  </p>
+                </div>
+                <div class="flex flex-col gap-1 shrink-0">
+                  <button onclick="speakCurrentSentence(1.0)" title="Listen to French Sentence" class="p-2 rounded-xl bg-indigo-600 text-white shadow-sm active:scale-95 transition">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </button>
+                  <button onclick="speakCurrentSentence(0.65)" title="Listen Slowly" class="p-1.5 rounded-xl bg-slate-200/80 dark:bg-slate-800 text-[11px] text-center active:scale-95 transition">
+                    🐢
+                  </button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- THUMB-FRIENDLY BOTTOM FLASHCARD CONTROLS -->
+      <div class="mt-4 grid grid-cols-4 gap-2.5 items-center">
+        <!-- Previous Card -->
+        <button onclick="prevCard()" class="col-span-1 py-3.5 rounded-2xl bg-white dark:bg-[#131b2e] border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 font-bold text-xs flex flex-col items-center justify-center gap-1 active:scale-95 transition shadow-sm">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+          </svg>
+          <span>Prev</span>
+        </button>
+
+        <!-- Mark Still Learning -->
+        <button onclick="markCardStatus('learning')" class="col-span-1 py-3.5 rounded-2xl bg-amber-500/15 hover:bg-amber-500/25 border border-amber-500/30 text-amber-600 dark:text-amber-400 font-bold text-xs flex flex-col items-center justify-center gap-1 active:scale-95 transition">
+          <span class="text-base leading-none">⏳</span>
+          <span>Learning</span>
+        </button>
+
+        <!-- Mark Mastered -->
+        <button onclick="markCardStatus('mastered')" class="col-span-1 py-3.5 rounded-2xl bg-emerald-500/15 hover:bg-emerald-500/25 border border-emerald-500/30 text-emerald-600 dark:text-emerald-400 font-bold text-xs flex flex-col items-center justify-center gap-1 active:scale-95 transition">
+          <span class="text-base leading-none">✓</span>
+          <span>Mastered</span>
+        </button>
+
+        <!-- Next Card -->
+        <button onclick="nextCard()" class="col-span-1 py-3.5 rounded-2xl bg-white dark:bg-[#131b2e] border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 font-bold text-xs flex flex-col items-center justify-center gap-1 active:scale-95 transition shadow-sm">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+          </svg>
+          <span>Next</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         TAB 2: QUIZ (MULTIPLE CHOICE & LISTENING)
+         ========================================== -->
+    <section id="tab-quiz" class="hidden flex-1 flex flex-col">
+      <!-- Quiz Mode Selector -->
+      <div class="flex items-center justify-between gap-2 mb-3 bg-slate-200/70 dark:bg-slate-800/60 p-1 rounded-xl">
+        <button onclick="setQuizMode('fr-en')" id="quizMode-fr-en" class="flex-1 py-2 rounded-lg text-xs font-bold transition">🇫🇷 French → EN</button>
+        <button onclick="setQuizMode('listen')" id="quizMode-listen" class="flex-1 py-2 rounded-lg text-xs font-bold transition">🎧 Listening</button>
+        <button onclick="setQuizMode('en-fr')" id="quizMode-en-fr" class="flex-1 py-2 rounded-lg text-xs font-bold transition">🇬🇧 EN → French</button>
+      </div>
+
+      <!-- Quiz Tier & Score Row -->
+      <div class="flex items-center justify-between mb-3 px-1">
+        <div class="flex items-center gap-2">
+          <span class="text-xs font-semibold text-slate-500 dark:text-slate-400">Tier:</span>
+          <select id="quizTierSelect" onchange="changeQuizTier(this.value)" class="text-xs font-bold bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg px-2.5 py-1.5 text-slate-800 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+            <option value="0">All 1,000 Words</option>
+            <option value="1">Top 1–100</option>
+            <option value="2">101–200</option>
+            <option value="3">201–300</option>
+            <option value="4">301–400</option>
+            <option value="5">401–500</option>
+            <option value="6">501–600</option>
+            <option value="7">601–700</option>
+            <option value="8">701–800</option>
+            <option value="9">801–900</option>
+            <option value="10">901–1000</option>
+          </select>
+        </div>
+        <div class="flex items-center gap-3 text-xs font-bold">
+          <span class="text-emerald-500">✓ <span id="quizScoreCorrect">0</span></span>
+          <span class="text-indigo-500">Streak: <span id="quizCurrentStreak">0</span></span>
+        </div>
+      </div>
+
+      <!-- Quiz Prompt Card -->
+      <div class="rounded-3xl bg-white dark:bg-[#131b2e] border border-slate-200 dark:border-slate-800 p-6 text-center shadow-lg mb-4 relative">
+        <div class="flex items-center justify-between text-xs text-slate-400 mb-2">
+          <span id="quizWordRank" class="font-bold text-indigo-500">#1</span>
+          <span id="quizWordPos" class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-[11px]">Verb</span>
+        </div>
+
+        <!-- Standard Prompt Text -->
+        <div id="quizTextPromptContainer" class="py-3">
+          <h2 id="quizPromptText" class="text-3xl font-extrabold text-slate-900 dark:text-white">être</h2>
+          <p id="quizPromptSub" class="text-xs text-slate-400 mt-1">Choose the correct meaning</p>
+        </div>
+
+        <!-- Listening Mode Big Audio Button -->
+        <div id="quizAudioPromptContainer" class="py-2 flex items-center justify-center gap-2">
+          <button onclick="speakQuizWord(1.0)" class="flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-indigo-600 text-white font-bold text-xs shadow-md shadow-indigo-600/20 active:scale-95 transition">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+            </svg>
+            <span>Play French Audio</span>
+          </button>
+          <button onclick="speakQuizWord(0.62)" class="px-3 py-2.5 rounded-2xl bg-slate-100 dark:bg-slate-800 text-xs font-bold active:scale-95 transition">
+            🐢 Slow
+          </button>
+        </div>
+      </div>
+
+      <!-- 4 Multiple Choice Option Buttons -->
+      <div id="quizOptionsGrid" class="grid grid-cols-1 gap-2.5 flex-1">
+        <!-- Populated dynamically -->
+      </div>
+
+      <!-- Post-Answer Sentence Feedback Banner -->
+      <div id="quizFeedbackBox" class="hidden mt-3 p-3.5 rounded-2xl bg-slate-100 dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700 flex items-center justify-between gap-3">
+        <div class="text-xs">
+          <p id="quizFeedbackSentenceFr" class="font-bold text-slate-900 dark:text-white"></p>
+          <p id="quizFeedbackSentenceEn" class="text-slate-500 dark:text-slate-400 mt-0.5"></p>
+        </div>
+        <button onclick="nextQuizQuestion()" class="shrink-0 px-4 py-2.5 rounded-xl bg-indigo-600 text-white font-bold text-xs shadow active:scale-95 transition">
+          Next →
+        </button>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         TAB 3: 1000 WORDS DIRECTORY
+         ========================================== -->
+    <section id="tab-words" class="hidden flex-1 flex flex-col">
+      <!-- Search Input & Filters -->
+      <div class="sticky top-[53px] z-20 pt-1 pb-2.5 bg-slate-50/95 dark:bg-[#090d16]/95 ios-glass">
+        <div class="relative mb-2">
+          <svg class="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          </svg>
+          <input
+            id="wordSearchInput"
+            type="text"
+            oninput="handleDirectorySearch()"
+            placeholder="Search 1,000 French or English words (#rank)..."
+            class="w-full pl-10 pr-9 py-2.5 rounded-2xl bg-white dark:bg-[#131b2e] border border-slate-200 dark:border-slate-800 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          />
+          <button id="clearSearchBtn" onclick="clearDirectorySearch()" class="hidden absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 text-xs font-bold p-1">✕</button>
+        </div>
+
+        <!-- Tier & Category Quick Selectors -->
+        <div class="flex items-center gap-2">
+          <select id="dirTierSelect" onchange="resetAndRenderDirectory()" class="flex-1 text-xs font-semibold bg-white dark:bg-[#131b2e] border border-slate-200 dark:border-slate-800 rounded-xl px-2.5 py-2">
+            <option value="0">All Tiers (1–1000)</option>
+            <option value="1">Tier 1: 1–100</option>
+            <option value="2">Tier 2: 101–200</option>
+            <option value="3">Tier 3: 201–300</option>
+            <option value="4">Tier 4: 301–400</option>
+            <option value="5">Tier 5: 401–500</option>
+            <option value="6">Tier 6: 501–600</option>
+            <option value="7">Tier 7: 601–700</option>
+            <option value="8">Tier 8: 701–800</option>
+            <option value="9">Tier 9: 801–900</option>
+            <option value="10">Tier 10: 901–1000</option>
+          </select>
+
+          <select id="dirCategorySelect" onchange="resetAndRenderDirectory()" class="flex-1 text-xs font-semibold bg-white dark:bg-[#131b2e] border border-slate-200 dark:border-slate-800 rounded-xl px-2.5 py-2">
+            <option value="all">All Categories</option>
+          </select>
+
+          <select id="dirStatusSelect" onchange="resetAndRenderDirectory()" class="text-xs font-semibold bg-white dark:bg-[#131b2e] border border-slate-200 dark:border-slate-800 rounded-xl px-2.5 py-2">
+            <option value="all">All</option>
+            <option value="mastered">✓ Mastered</option>
+            <option value="learning">⏳ Learning</option>
+            <option value="unseen">New</option>
+          </select>
+        </div>
+
+        <div class="flex items-center justify-between mt-2 px-1 text-[11px] text-slate-500 dark:text-slate-400">
+          <span id="dirCountLabel">Showing 1,000 words</span>
+          <span>Tap word for sentence • Tap 🔊 for audio</span>
+        </div>
+      </div>
+
+      <!-- Word List Container -->
+      <div id="wordDirectoryList" class="space-y-2 pb-4">
+        <!-- Populated dynamically -->
+      </div>
+
+      <!-- Load More Button for smooth mobile performance -->
+      <button id="loadMoreWordsBtn" onclick="loadMoreDirectoryWords()" class="hidden w-full py-3 rounded-2xl bg-indigo-600/10 hover:bg-indigo-600/20 text-indigo-600 dark:text-indigo-400 font-bold text-xs transition my-2">
+        Show More Words
+      </button>
+    </section>
+
+    <!-- ==========================================
+         TAB 4: PROGRESS, VOICE SETTINGS & IPHONE GUIDE
+         ========================================== -->
+    <section id="tab-progress" class="hidden flex-1 flex flex-col space-y-4 pb-6">
+      <!-- Overall Mastery Hero Card -->
+      <div class="rounded-3xl bg-gradient-to-br from-blue-600 via-indigo-600 to-rose-600 p-5 text-white shadow-xl shadow-indigo-600/20">
+        <div class="flex items-center justify-between mb-3">
+          <div>
+            <span class="text-[11px] font-bold uppercase tracking-widest text-white/80">Total French Mastery</span>
+            <h2 class="text-3xl font-extrabold mt-0.5"><span id="statMasteredCount">0</span> <span class="text-lg font-normal text-white/80">/ 1,000</span></h2>
+          </div>
+          <div class="text-right">
+            <div class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-white/15 backdrop-blur-md text-xs font-bold">
+              <span>🔥 Streak:</span>
+              <span id="statStreakDays">1 day</span>
+            </div>
+            <p id="statPercentText" class="text-xs text-white/80 mt-1 font-semibold">0.0% Complete</p>
+          </div>
+        </div>
+
+        <!-- Progress bar -->
+        <div class="w-full h-2.5 bg-black/25 rounded-full overflow-hidden flex">
+          <div id="overallMasteredBar" class="h-full bg-emerald-400 transition-all duration-500" style="width: 0%"></div>
+          <div id="overallLearningBar" class="h-full bg-amber-300 transition-all duration-500" style="width: 0%"></div>
+        </div>
+
+        <div class="grid grid-cols-3 gap-2 mt-4 pt-3 border-t border-white/15 text-center">
+          <div>
+            <p class="text-[11px] text-white/75">Mastered</p>
+            <p id="statMasteredBox" class="text-base font-extrabold text-emerald-300">0</p>
+          </div>
+          <div>
+            <p class="text-[11px] text-white/75">Still Learning</p>
+            <p id="statLearningBox" class="text-base font-extrabold text-amber-300">0</p>
+          </div>
+          <div>
+            <p class="text-[11px] text-white/75">Unseen</p>
+            <p id="statUnseenBox" class="text-base font-extrabold text-white">1000</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Save to iPhone Home Screen Card -->
+      <div class="rounded-2xl bg-white dark:bg-[#131b2e] border border-slate-200 dark:border-slate-800 p-4 flex items-center justify-between gap-3">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-indigo-500/10 text-indigo-500 flex items-center justify-center shrink-0 text-lg">
+            📱
+          </div>
+          <div>
+            <h3 class="font-bold text-sm">Install on iPhone Home Screen</h3>
+            <p class="text-xs text-slate-500 dark:text-slate-400">Use full-screen like a native iOS app with offline progress.</p>
+          </div>
+        </div>
+        <button onclick="openInstallModal()" class="px-3.5 py-2 rounded-xl bg-indigo-600 text-white text-xs font-bold shrink-0 active:scale-95 transition">
+          How to Save
+        </button>
+      </div>
+
+      <!-- French Voice & Audio Settings -->
+      <div class="rounded-2xl bg-white dark:bg-[#131b2e] border border-slate-200 dark:border-slate-800 p-4 space-y-3">
+        <div class="flex items-center justify-between">
+          <h3 class="font-bold text-sm flex items-center gap-2">
+            <span>🔊 French Audio & Voice (fr-FR)</span>
+          </h3>
+          <button onclick="speakText('Bonjour, bienvenue dans Le Mille !', 1.0)" class="text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:underline">
+            Test Voice ▶
+          </button>
+        </div>
+
+        <div>
+          <label class="block text-xs text-slate-500 dark:text-slate-400 mb-1">Select iOS / System French Voice:</label>
+          <select id="voiceSelect" onchange="saveSelectedVoice(this.value)" class="w-full text-xs font-semibold bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-3 py-2.5 text-slate-800 dark:text-slate-100">
+            <option value="">Default French (fr-FR) Voice</option>
+          </select>
+          <p class="text-[11px] text-slate-400 mt-1">Tip: On iPhone, iOS voices like <strong>Thomas</strong> or <strong>Amélie (Enhanced)</strong> provide studio-quality pronunciation.</p>
+        </div>
+
+        <div class="flex items-center justify-between pt-2 border-t border-slate-100 dark:border-slate-800">
+          <div>
+            <p class="text-xs font-semibold">Auto-Play Audio on Card Advance</p>
+            <p class="text-[11px] text-slate-400">Automatically pronounce French words when studying</p>
+          </div>
+          <button id="settingsAutoPlayToggle" onclick="toggleAutoPlay()" class="w-12 h-6 rounded-full bg-slate-300 dark:bg-slate-700 p-0.5 transition-colors relative">
+            <div id="settingsAutoPlayKnob" class="w-5 h-5 rounded-full bg-white shadow transform transition-transform"></div>
+          </button>
+        </div>
+      </div>
+
+      <!-- Breakdown by Frequency Tier (1-100 to 901-1000) -->
+      <div class="rounded-2xl bg-white dark:bg-[#131b2e] border border-slate-200 dark:border-slate-800 p-4">
+        <h3 class="font-bold text-sm mb-3">Progress by Frequency Tier</h3>
+        <div id="tierBreakdownList" class="space-y-3">
+          <!-- Populated dynamically -->
+        </div>
+      </div>
+
+      <!-- Data Management (Reset) -->
+      <div class="rounded-2xl bg-white dark:bg-[#131b2e] border border-slate-200 dark:border-slate-800 p-4 flex items-center justify-between">
+        <div>
+          <h3 class="font-bold text-sm text-rose-500">Reset Study Progress</h3>
+          <p class="text-xs text-slate-500 dark:text-slate-400">Clear mastered & learning statuses on this device</p>
+        </div>
+        <button onclick="openResetConfirmModal()" class="px-3.5 py-2 rounded-xl bg-rose-500/10 hover:bg-rose-500/20 text-rose-500 text-xs font-bold active:scale-95 transition">
+          Reset Data
+        </button>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==========================================
+       BOTTOM IOS TAB BAR NAVIGATION
+       ========================================== -->
+  <nav class="fixed bottom-0 inset-x-0 z-30 ios-glass bg-white/90 dark:bg-[#090d16]/90 border-t border-slate-200/80 dark:border-slate-800/80 pb-[env(safe-area-inset-bottom,0px)]">
+    <div class="max-w-md mx-auto grid grid-cols-4 px-2 py-1.5">
+      <!-- Study Tab -->
+      <button onclick="switchTab('study')" id="navBtn-study" class="flex flex-col items-center justify-center py-1 rounded-xl text-indigo-600 dark:text-indigo-400 transition">
+        <svg class="w-5 h-5 mb-0.5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+        </svg>
+        <span class="text-[10px] font-bold">Study</span>
+      </button>
+
+      <!-- Quiz Tab -->
+      <button onclick="switchTab('quiz')" id="navBtn-quiz" class="flex flex-col items-center justify-center py-1 rounded-xl text-slate-400 dark:text-slate-500 transition">
+        <svg class="w-5 h-5 mb-0.5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        <span class="text-[10px] font-bold">Quiz</span>
+      </button>
+
+      <!-- 1000 Words List Tab -->
+      <button onclick="switchTab('words')" id="navBtn-words" class="flex flex-col items-center justify-center py-1 rounded-xl text-slate-400 dark:text-slate-500 transition">
+        <svg class="w-5 h-5 mb-0.5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+        </svg>
+        <span class="text-[10px] font-bold">1000 Words</span>
+      </button>
+
+      <!-- Progress & Settings Tab -->
+      <button onclick="switchTab('progress')" id="navBtn-progress" class="flex flex-col items-center justify-center py-1 rounded-xl text-slate-400 dark:text-slate-500 transition">
+        <svg class="w-5 h-5 mb-0.5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+        </svg>
+        <span class="text-[10px] font-bold">Progress</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ==========================================
+       MODAL 1: ADD TO IPHONE HOME SCREEN GUIDE
+       ========================================== -->
+  <div id="installModal" class="fixed inset-0 z-50 hidden items-end sm:items-center justify-center bg-black/60 backdrop-blur-sm p-4">
+    <div class="w-full max-w-sm rounded-3xl bg-white dark:bg-[#131b2e] border border-slate-200 dark:border-slate-800 p-6 shadow-2xl animate-next">
+      <div class="flex items-center justify-between mb-4">
+        <div class="flex items-center gap-2.5">
+          <div class="w-9 h-9 rounded-xl bg-indigo-600 text-white flex items-center justify-center font-extrabold text-sm">FR</div>
+          <div>
+            <h3 class="font-bold text-base">Save to iPhone Home Screen</h3>
+            <p class="text-[11px] text-slate-400">Launch full-screen like a native iOS app</p>
+          </div>
+        </div>
+        <button onclick="closeInstallModal()" class="p-1.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-500">✕</button>
+      </div>
+
+      <div class="space-y-3.5 text-xs">
+        <div class="flex items-start gap-3 p-3 rounded-2xl bg-slate-50 dark:bg-slate-800/60">
+          <span class="w-6 h-6 rounded-full bg-indigo-600 text-white font-bold flex items-center justify-center shrink-0">1</span>
+          <div>
+            <p class="font-bold text-slate-800 dark:text-slate-100">Tap the Share button in Safari</p>
+            <p class="text-slate-500 dark:text-slate-400 mt-0.5">Look for the square icon with an upward arrow <span class="inline-block px-1.5 py-0.5 rounded bg-slate-200 dark:bg-slate-700 font-mono text-[10px]">↑</span> at the bottom of your iPhone screen.</p>
+          </div>
+        </div>
+
+        <div class="flex items-start gap-3 p-3 rounded-2xl bg-slate-50 dark:bg-slate-800/60">
+          <span class="w-6 h-6 rounded-full bg-indigo-600 text-white font-bold flex items-center justify-center shrink-0">2</span>
+          <div>
+            <p class="font-bold text-slate-800 dark:text-slate-100">Select "Add to Home Screen"</p>
+            <p class="text-slate-500 dark:text-slate-400 mt-0.5">Scroll down the share sheet and tap <strong>Add to Home Screen</strong> (+ icon).</p>
+          </div>
+        </div>
+
+        <div class="flex items-start gap-3 p-3 rounded-2xl bg-slate-50 dark:bg-slate-800/60">
+          <span class="w-6 h-6 rounded-full bg-indigo-600 text-white font-bold flex items-center justify-center shrink-0">3</span>
+          <div>
+            <p class="font-bold text-slate-800 dark:text-slate-100">Tap "Add" in the top right corner</p>
+            <p class="text-slate-500 dark:text-slate-400 mt-0.5">Le Mille will appear on your Home Screen with full audio & automatic progress saving!</p>
+          </div>
+        </div>
+      </div>
+
+      <button onclick="closeInstallModal()" class="w-full mt-5 py-3 rounded-2xl bg-indigo-600 text-white font-bold text-xs shadow-lg shadow-indigo-600/25 active:scale-95 transition">
+        Got It!
+      </button>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       MODAL 2: CATEGORY & DECK FILTER DRAWER
+       ========================================== -->
+  <div id="filterModal" class="fixed inset-0 z-50 hidden items-end sm:items-center justify-center bg-black/60 backdrop-blur-sm p-4">
+    <div class="w-full max-w-sm rounded-3xl bg-white dark:bg-[#131b2e] border border-slate-200 dark:border-slate-800 p-5 shadow-2xl">
+      <div class="flex items-center justify-between mb-3">
+        <h3 class="font-bold text-base">Filter Study Deck</h3>
+        <button onclick="closeFilterDrawer()" class="p-1.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-500">✕</button>
+      </div>
+
+      <p class="text-xs text-slate-500 dark:text-slate-400 mb-2 font-semibold">Thematic / Grammatical Category:</p>
+      <div id="categoryFilterGrid" class="grid grid-cols-2 gap-2 max-h-64 overflow-y-auto pr-1 mb-4">
+        <!-- Populated dynamically -->
+      </div>
+
+      <button onclick="closeFilterDrawer()" class="w-full py-3 rounded-2xl bg-indigo-600 text-white font-bold text-xs">
+        Apply Filter
+      </button>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       MODAL 3: RESET CONFIRMATION MODAL
+       ========================================== -->
+  <div id="resetModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/60 backdrop-blur-sm p-4">
+    <div class="w-full max-w-xs rounded-3xl bg-white dark:bg-[#131b2e] border border-slate-200 dark:border-slate-800 p-5 text-center shadow-2xl">
+      <div class="w-12 h-12 rounded-2xl bg-rose-500/15 text-rose-500 flex items-center justify-center mx-auto mb-3 text-xl">⚠️</div>
+      <h3 class="font-bold text-base mb-1">Reset All Progress?</h3>
+      <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">This will reset your Mastered and Learning word counts back to Unseen. Your 1,000-word dictionary remains intact.</p>
+      <div class="flex gap-2">
+        <button onclick="closeResetConfirmModal()" class="flex-1 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-xs font-bold">Cancel</button>
+        <button onclick="confirmResetProgress()" class="flex-1 py-2.5 rounded-xl bg-rose-600 text-white text-xs font-bold">Reset</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       FLOATING TOAST NOTIFICATION
+       ========================================== -->
+  <div id="toastBanner" class="fixed top-16 left-1/2 -translate-x-1/2 z-50 pointer-events-none opacity-0 transition-all duration-300 transform -translate-y-2">
+    <div class="px-4 py-2 rounded-full bg-slate-900/95 dark:bg-white/95 text-white dark:text-slate-900 text-xs font-bold shadow-xl flex items-center gap-2">
+      <span id="toastText">Saved!</span>
+    </div>
+  </div>
+
+  <!-- ============================================================================
+       JAVASCRIPT: 1,000 AUTHENTIC FRENCH WORDS DATASET + WEB SPEECH + APP LOGIC
+       ============================================================================ -->
+  <script>
+    /**
+     * CATEGORIES MAP:
+     * 0: Core & Connectors
+     * 1: Essential Verbs
+     * 2: Nouns & Everyday
+     * 3: Adjectives & Adverbs
+     * 4: Time & Numbers
+     * 5: People & Society
+     * 6: Home & Daily Life
+     * 7: Travel & Places
+     * 8: Food & Dining
+     * 9: Body, Health & Nature
+     * 10: Work, Culture & Action
+     */
+    const CATEGORIES = [
+      "Core & Connectors",
+      "Essential Verbs",
+      "Nouns & Everyday",
+      "Adjectives & Adverbs",
+      "Time & Numbers",
+      "People & Society",
+      "Home & Daily Life",
+      "Travel & Places",
+      "Food & Dining",
+      "Body, Health & Nature",
+      "Work, Culture & Action"
+    ];
+
+    /**
+     * Explicit rich example sentences for the highest-frequency core words & expressions.
+     * Words not in this dictionary receive a grammatically tailored, context-specific French/English example sentence
+     * based on their exact part of speech, gender/article, and category so all 1,000 words have natural sentences.
+     */
+    const CUSTOM_EXAMPLES = {
+      1: ["Je suis très heureux d'être ici avec vous.", "I am very happy to be here with you."],
+      2: ["Nous avons beaucoup de chance aujourd'hui.", "We have a lot of luck today."],
+      3: ["Je pense que c'est une excellente idée.", "I think that it is an excellent idea."],
+      4: ["Il vient de Paris en train.", "He comes from Paris by train."],
+      5: ["Je ne sais pas où il habite.", "I do not know where he lives."],
+      6: ["Elle travaille dans un grand bureau.", "She works in a large office."],
+      7: ["Le café est chaud sur la table.", "The coffee is hot on the table."],
+      8: ["La vie en France est très agréable.", "Life in France is very pleasant."],
+      9: ["Il a acheté un livre intéressant.", "He bought an interesting book."],
+      10: ["C'est une belle journée de printemps.", "It is a beautiful spring day."],
+      11: ["Que voulez-vous faire ce soir ?", "What do you want to do tonight?"],
+      12: ["Il m'a dit toute la vérité.", "He told me the whole truth."],
+      13: ["Pouvez-vous m'aider, s'il vous plaît ?", "Can you help me, please?"],
+      14: ["Nous allons au restaurant ce week-end.", "We are going to the restaurant this weekend."],
+      15: ["Je vois la tour Eiffel depuis la fenêtre.", "I see the Eiffel Tower from the window."],
+      16: ["Savez-vous à quelle heure part le train ?", "Do you know what time the train leaves?"],
+      17: ["Je voudrais un croissant et un café.", "I would like a croissant and a coffee."],
+      18: ["Tu viens avec nous au cinéma ?", "Are you coming with us to the cinema?"],
+      19: ["Il faut partir avant huit heures.", "We must leave before eight o'clock."],
+      20: ["Je dois finir ce travail aujourd'hui.", "I must finish this work today."],
+      21: ["Je crois que tout ira bien.", "I believe that everything will go well."],
+      22: ["J'ai trouvé mes clés dans ma poche.", "I found my keys in my pocket."],
+      23: ["Elle donne toujours de bons conseils.", "She always gives good advice."],
+      24: ["Je prends le métro tous les matins.", "I take the subway every morning."],
+      25: ["Parlez-vous français ou anglais ?", "Do you speak French or English?"],
+      26: ["J'aime beaucoup la cuisine française.", "I really like French cuisine."],
+      27: ["Nous avons passé de bonnes vacances.", "We spent a good vacation."],
+      28: ["Mets ton manteau, il fait froid dehors.", "Put on your coat, it is cold outside."],
+      29: ["Puis-je vous poser une question ?", "May I ask you a question?"],
+      30: ["Tiens, voici le livre que tu cherchais.", "Here, this is the book you were looking for."],
+      31: ["Il semble très content de son choix.", "He seems very happy with his choice."],
+      32: ["Laissez-moi vous expliquer la situation.", "Let me explain the situation to you."],
+      33: ["Nous restons à la maison ce soir.", "We are staying home tonight."],
+      34: ["Qu'est-ce que tu penses de ce film ?", "What do you think of this movie?"],
+      35: ["J'entends de la musique dans la rue.", "I hear music in the street."],
+      36: ["Regarde ce magnifique coucher de soleil !", "Look at this magnificent sunset!"],
+      37: ["Elle répond toujours rapidement aux messages.", "She always replies quickly to messages."],
+      38: ["Pouvez-vous me rendre ce petit service ?", "Can you do me this small favor?"],
+      39: ["Tu connais un bon restaurant dans le quartier ?", "Do you know a good restaurant in the neighborhood?"],
+      40: ["Le train arrive dans cinq minutes.", "The train arrives in five minutes."],
+      41: ["Je me sens très bien ce matin.", "I feel very well this morning."],
+      42: ["J'attends mon ami devant la gare.", "I am waiting for my friend in front of the station."],
+      43: ["Mes parents vivent dans le sud de la France.", "My parents live in the south of France."],
+      44: ["Je cherche la station de métro la plus proche.", "I am looking for the nearest subway station."],
+      45: ["Nous sortons dîner avec des amis.", "We are going out for dinner with friends."],
+      46: ["Je comprends parfaitement votre point de vue.", "I understand your point of view perfectly."],
+      47: ["Elle porte une robe bleue très élégante.", "She is wearing a very elegant blue dress."],
+      48: ["Ce projet devient de plus en plus intéressant.", "This project is becoming more and more interesting."],
+      49: ["Entrez, la porte est ouverte !", "Come in, the door is open!"],
+      50: ["Il m'a appelé hier soir au téléphone.", "He called me last night on the phone."],
+      51: ["Le temps passe vite quand on s'amuse.", "Time flies when you are having fun."],
+      52: ["Quel jour sommes-nous aujourd'hui ?", "What day is it today?"],
+      53: ["Cet homme travaille à la boulangerie.", "This man works at the bakery."],
+      54: ["J'ai quelque chose d'important à te dire.", "I have something important to tell you."],
+      55: ["Les enfants jouent dans le jardin.", "The children are playing in the garden."],
+      56: ["C'est la première fois que je visite Lyon.", "It is the first time that I visit Lyon."],
+      57: ["Cette femme est une excellente médecin.", "This woman is an excellent doctor."],
+      58: ["Tout le monde aime les vacances d'été.", "Everyone loves summer vacation."],
+      59: ["La vie est pleine de belles surprises.", "Life is full of beautiful surprises."],
+      60: ["Donne-moi la main pour traverser la rue.", "Give me your hand to cross the street."]
+    };
+
+    /**
+     * 1,000 AUTHENTIC MOST COMMON FRENCH WORDS (Ranked #1 to #1000)
+     * Format per item: "French|English|POS|CategoryIndex"
+     * Organized into 10 Frequency Tiers of 100 words each.
+     */
+    const RAW_1000_WORDS = [
+      // ==================== TIER 1: TOP 1–100 (ESSENTIAL CORE) ====================
+      "être|to be|Verb|1",
+      "avoir|to have|Verb|1",
+      "que|that / what|Conjunction|0",
+      "de|of / from|Preposition|0",
+      "ne ... pas|not|Adverb|0",
+      "dans|in / inside|Preposition|0",
+      "le|the (m)|Article|0",
+      "la|the (f)|Article|0",
+      "un|a / an / one (m)|Article|0",
+      "une|a / an / one (f)|Article|0",
+      "faire|to do / to make|Verb|1",
+      "dire|to say / to tell|Verb|1",
+      "pouvoir|can / to be able to|Verb|1",
+      "aller|to go|Verb|1",
+      "voir|to see|Verb|1",
+      "savoir|to know (facts/how)|Verb|1",
+      "vouloir|to want|Verb|1",
+      "venir|to come|Verb|1",
+      "falloir|to be necessary (il faut)|Verb|1",
+      "devoir|must / to have to / to owe|Verb|1",
+      "croire|to believe / to think|Verb|1",
+      "trouver|to find|Verb|1",
+      "donner|to give|Verb|1",
+      "prendre|to take|Verb|1",
+      "parler|to speak / to talk|Verb|1",
+      "aimer|to like / to love|Verb|1",
+      "passer|to pass / to spend (time)|Verb|1",
+      "mettre|to put / to wear|Verb|1",
+      "demander|to ask / to request|Verb|1",
+      "tenir|to hold / to keep|Verb|1",
+      "sembler|to seem|Verb|1",
+      "laisser|to leave / to let|Verb|1",
+      "rester|to stay / to remain|Verb|1",
+      "penser|to think|Verb|1",
+      "entendre|to hear|Verb|1",
+      "regarder|to look at / to watch|Verb|1",
+      "répondre|to answer / to reply|Verb|1",
+      "rendre|to return / to make|Verb|1",
+      "connaître|to know (people/places)|Verb|1",
+      "arriver|to arrive / to happen|Verb|1",
+      "sentir|to feel / to smell|Verb|1",
+      "attendre|to wait for|Verb|1",
+      "vivre|to live|Verb|1",
+      "chercher|to look for / to search|Verb|1",
+      "sortir|to go out / to take out|Verb|1",
+      "comprendre|to understand|Verb|1",
+      "porter|to wear / to carry|Verb|1",
+      "devenir|to become|Verb|1",
+      "entrer|to enter / to come in|Verb|1",
+      "appeler|to call|Verb|1",
+      "le temps|time / weather|Noun (m)|2",
+      "le jour|day|Noun (m)|4",
+      "l'homme (m)|man|Noun (m)|5",
+      "la chose|thing|Noun (f)|2",
+      "l'enfant (m/f)|child|Noun (m/f)|5",
+      "la fois|time (occurrence)|Noun (f)|4",
+      "la femme|woman / wife|Noun (f)|5",
+      "le monde|world / people|Noun (m)|2",
+      "la vie|life|Noun (f)|2",
+      "la main|hand|Noun (f)|9",
+      "l'an (m)|year|Noun (m)|4",
+      "le pays|country|Noun (m)|7",
+      "le moment|moment|Noun (m)|4",
+      "l'œil / les yeux|eye / eyes|Noun (m)|9",
+      "le travail|work / job|Noun (m)|10",
+      "la tête|head|Noun (f)|9",
+      "le père|father|Noun (m)|5",
+      "la mère|mother|Noun (f)|5",
+      "la maison|house / home|Noun (f)|6",
+      "la ville|city / town|Noun (f)|7",
+      "tout|all / everything|Adjective|3",
+      "plus|more / most|Adverb|3",
+      "bien|well / good|Adverb|3",
+      "autre|other / another|Adjective|3",
+      "même|same / even|Adjective|3",
+      "grand|big / tall / great|Adjective|3",
+      "petit|small / little|Adjective|3",
+      "bon|good|Adjective|3",
+      "nouveau|new|Adjective|3",
+      "premier|first|Adjective|4",
+      "beau|beautiful / handsome|Adjective|3",
+      "jeune|young|Adjective|3",
+      "vieux|old|Adjective|3",
+      "seul|alone / only|Adjective|3",
+      "vrai|true / real|Adjective|3",
+      "oui|yes|Adverb|0",
+      "non|no|Adverb|0",
+      "merci|thank you|Phrase|0",
+      "bonjour|hello / good morning|Phrase|0",
+      "avec|with|Preposition|0",
+      "pour|for / in order to|Preposition|0",
+      "sur|on / upon|Preposition|0",
+      "mais|but|Conjunction|0",
+      "ou|or|Conjunction|0",
+      "où|where|Adverb|0",
+      "comme|like / as|Conjunction|0",
+      "quand|when|Conjunction|0",
+      "très|very|Adverb|3",
+      "aussi|also / too|Adverb|0",
+      "encore|still / again / yet|Adverb|0",
+
+      // ==================== TIER 2: 101–200 (HIGH-FREQUENCY VERBS & PRONOUNS) ====================
+      "je|I|Pronoun|0",
+      "tu|you (informal)|Pronoun|0",
+      "il|he / it|Pronoun|0",
+      "elle|she / it|Pronoun|0",
+      "on|we / one / people|Pronoun|0",
+      "nous|we / us|Pronoun|0",
+      "vous|you (formal/plural)|Pronoun|0",
+      "ils|they (m)|Pronoun|0",
+      "elles|they (f)|Pronoun|0",
+      "ce / c'|this / that / it|Pronoun|0",
+      "cela / ça|that / it|Pronoun|0",
+      "qui|who / whom / which|Pronoun|0",
+      "quoi|what|Pronoun|0",
+      "dont|whose / of which|Pronoun|0",
+      "rien|nothing|Pronoun|0",
+      "personne|nobody / anyone|Pronoun|0",
+      "quelqu'un|someone|Pronoun|0",
+      "quelque chose|something|Pronoun|0",
+      "chaque|each / every|Adjective|0",
+      "quel|which / what|Adjective|0",
+      "sans|without|Preposition|0",
+      "sous|under|Preposition|0",
+      "entre|between / among|Preposition|0",
+      "vers|toward / around|Preposition|0",
+      "chez|at the home/place of|Preposition|0",
+      "avant|before|Preposition|0",
+      "après|after|Preposition|0",
+      "depuis|since / for (time)|Preposition|0",
+      "pendant|during / for|Preposition|0",
+      "contre|against|Preposition|0",
+      "parce que|because|Conjunction|0",
+      "si|if / yes (contradicting)|Conjunction|0",
+      "donc|so / therefore|Conjunction|0",
+      "alors|then / so|Adverb|0",
+      "puis|then / next|Adverb|0",
+      "toujours|always / still|Adverb|4",
+      "jamais|never / ever|Adverb|4",
+      "souvent|often|Adverb|4",
+      "parfois|sometimes|Adverb|4",
+      "déjà|already|Adverb|4",
+      "bientôt|soon|Adverb|4",
+      "maintenant|now|Adverb|4",
+      "aujourd'hui|today|Adverb|4",
+      "demain|tomorrow|Adverb|4",
+      "hier|yesterday|Adverb|4",
+      "ici|here|Adverb|7",
+      "là-bas|over there|Adverb|7",
+      "partout|everywhere|Adverb|7",
+      "ensemble|together|Adverb|3",
+      "peut-être|maybe / perhaps|Adverb|0",
+      "tomber|to fall|Verb|1",
+      "suivre|to follow / to take (course)|Verb|1",
+      "commencer|to begin / to start|Verb|1",
+      "finir|to finish|Verb|1",
+      "perdre|to lose|Verb|1",
+      "ouvrir|to open|Verb|1",
+      "fermer|to close|Verb|1",
+      "arrêter|to stop|Verb|1",
+      "montrer|to show|Verb|1",
+      "écrire|to write|Verb|1",
+      "lire|to read|Verb|1",
+      "jouer|to play|Verb|1",
+      "manger|to eat|Verb|1",
+      "boire|to drink|Verb|1",
+      "dormir|to sleep|Verb|1",
+      "courir|to run|Verb|1",
+      "marcher|to walk / to work (function)|Verb|1",
+      "acheter|to buy|Verb|1",
+      "payer|to pay|Verb|1",
+      "vendre|to sell|Verb|1",
+      "aider|to help|Verb|1",
+      "changer|to change|Verb|1",
+      "continuer|to continue|Verb|1",
+      "oublier|to forget|Verb|1",
+      "apprendre|to learn|Verb|1",
+      "choisir|to choose|Verb|1",
+      "garder|to keep / to look after|Verb|1",
+      "servir|to serve|Verb|1",
+      "partir|to leave / to depart|Verb|1",
+      "revenir|to come back|Verb|1",
+      "retourner|to return / to go back|Verb|1",
+      "monter|to go up / to get in|Verb|1",
+      "descendre|to go down / to get off|Verb|1",
+      "tourner|to turn|Verb|1",
+      "essayer|to try|Verb|1",
+      "utiliser|to use|Verb|1",
+      "travailler|to work|Verb|1",
+      "écouter|to listen to|Verb|1",
+      "expliquer|to explain|Verb|1",
+      "compter|to count / to intend|Verb|1",
+      "recevoir|to receive|Verb|1",
+      "envoyer|to send|Verb|1",
+      "offrir|to offer / to gift|Verb|1",
+      "accepter|to accept|Verb|1",
+      "refuser|to refuse|Verb|1",
+      "espérer|to hope|Verb|1",
+      "préférer|to prefer|Verb|1",
+      "décider|to decide|Verb|1",
+      "produire|to produce|Verb|1",
+      "créer|to create|Verb|1",
+
+      // ==================== TIER 3: 201–300 (ESSENTIAL ADJECTIVES, ADVERBS & CONVERSATION) ====================
+      "beaucoup|a lot / much / many|Adverb|3",
+      "peu|little / few|Adverb|3",
+      "assez|enough / quite|Adverb|3",
+      "trop|too / too much|Adverb|3",
+      "moins|less / fewer|Adverb|3",
+      "autant|as much / as many|Adverb|3",
+      "environ|about / approximately|Adverb|3",
+      "presque|almost / nearly|Adverb|3",
+      "seulement|only|Adverb|3",
+      "vraiment|really / truly|Adverb|3",
+      "surtout|especially / above all|Adverb|3",
+      "vite|fast / quickly|Adverb|3",
+      "lentement|slowly|Adverb|3",
+      "mal|badly / poorly|Adverb|3",
+      "mieux|better (adverb)|Adverb|3",
+      "meilleur|better / best (adj)|Adjective|3",
+      "pire|worse / worst|Adjective|3",
+      "dernier|last / latest|Adjective|4",
+      "prochain|next|Adjective|4",
+      "certain|certain / sure|Adjective|3",
+      "important|important|Adjective|3",
+      "possible|possible|Adjective|3",
+      "impossible|impossible|Adjective|3",
+      "différent|different|Adjective|3",
+      "facile|easy|Adjective|3",
+      "difficile|difficult / hard|Adjective|3",
+      "libre|free (available/liberty)|Adjective|3",
+      "gratuit|free (no cost)|Adjective|3",
+      "plein|full|Adjective|3",
+      "vide|empty|Adjective|3",
+      "clair|clear / light|Adjective|3",
+      "sombre|dark|Adjective|3",
+      "fort|strong / loud|Adjective|3",
+      "faible|weak|Adjective|3",
+      "haut|high / tall|Adjective|3",
+      "bas|low|Adjective|3",
+      "long|long|Adjective|3",
+      "court|short|Adjective|3",
+      "large|wide|Adjective|3",
+      "étroit|narrow|Adjective|3",
+      "lourd|heavy|Adjective|3",
+      "léger|light (weight)|Adjective|3",
+      "chaud|hot / warm|Adjective|3",
+      "froid|cold|Adjective|3",
+      "sec|dry|Adjective|3",
+      "mouillé|wet|Adjective|3",
+      "propre|clean / own|Adjective|3",
+      "sale|dirty|Adjective|3",
+      "riche|rich|Adjective|3",
+      "pauvre|poor|Adjective|3",
+      "cher|expensive / dear|Adjective|3",
+      "prêt|ready|Adjective|3",
+      "content|happy / glad|Adjective|3",
+      "heureux|happy / fortunate|Adjective|3",
+      "triste|sad|Adjective|3",
+      "fatigué|tired|Adjective|3",
+      "malade|sick / ill|Adjective|9",
+      "calme|calm / quiet|Adjective|3",
+      "tranquille|quiet / peaceful|Adjective|3",
+      "occupé|busy / occupied|Adjective|3",
+      "ouvert|open|Adjective|3",
+      "fermé|closed|Adjective|3",
+      "gentil|kind / nice|Adjective|3",
+      "sympathique|nice / friendly|Adjective|3",
+      "sérieux|serious|Adjective|3",
+      "drôle|funny|Adjective|3",
+      "intelligent|smart / intelligent|Adjective|3",
+      "intéressant|interesting|Adjective|3",
+      "normal|normal|Adjective|3",
+      "spécial|special|Adjective|3",
+      "général|general|Adjective|3",
+      "public|public|Adjective|3",
+      "privé|private|Adjective|3",
+      "entier|whole / entire|Adjective|3",
+      "pareil|same / similar|Adjective|3",
+      "simple|simple|Adjective|3",
+      "compliqué|complicated|Adjective|3",
+      "rapide|fast / quick|Adjective|3",
+      "lent|slow|Adjective|3",
+      "dur|hard / tough|Adjective|3",
+      "doux|soft / sweet / mild|Adjective|3",
+      "mauvais|bad / wrong|Adjective|3",
+      "joli|pretty|Adjective|3",
+      "magnifique|magnificent / gorgeous|Adjective|3",
+      "excellent|excellent|Adjective|3",
+      "parfait|perfect|Adjective|3",
+      "bizarre|strange / weird|Adjective|3",
+      "dangereux|dangerous|Adjective|3",
+      "sûr|sure / safe|Adjective|3",
+      "exact|exact / accurate|Adjective|3",
+      "blanc|white|Adjective|3",
+      "noir|black|Adjective|3",
+      "rouge|red|Adjective|3",
+      "bleu|blue|Adjective|3",
+      "vert|green|Adjective|3",
+      "jaune|yellow|Adjective|3",
+      "gris|gray|Adjective|3",
+      "rose|pink|Adjective|3",
+      "orange|orange|Adjective|3",
+      "marron|brown|Adjective|3",
+
+      // ==================== TIER 4: 301–400 (TIME, NUMBERS, CALENDAR & QUANTITIES) ====================
+      "zéro|zero|Number|4",
+      "deux|two|Number|4",
+      "trois|three|Number|4",
+      "quatre|four|Number|4",
+      "cinq|five|Number|4",
+      "six|six|Number|4",
+      "sept|seven|Number|4",
+      "huit|eight|Number|4",
+      "neuf|nine|Number|4",
+      "dix|ten|Number|4",
+      "onze|eleven|Number|4",
+      "douze|twelve|Number|4",
+      "treize|thirteen|Number|4",
+      "quatorze|fourteen|Number|4",
+      "quinze|fifteen|Number|4",
+      "seize|sixteen|Number|4",
+      "vingt|twenty|Number|4",
+      "trente|thirty|Number|4",
+      "quarante|forty|Number|4",
+      "cinquante|fifty|Number|4",
+      "soixante|sixty|Number|4",
+      "cent|one hundred|Number|4",
+      "mille|one thousand|Number|4",
+      "le million|million|Noun (m)|4",
+      "deuxième|second (2nd)|Adjective|4",
+      "troisième|third (3rd)|Adjective|4",
+      "la seconde|second (time)|Noun (f)|4",
+      "la minute|minute|Noun (f)|4",
+      "l'heure (f)|hour / time|Noun (f)|4",
+      "le matin|morning|Noun (m)|4",
+      "le midi|noon / midday|Noun (m)|4",
+      "l'après-midi (m)|afternoon|Noun (m)|4",
+      "le soir|evening|Noun (m)|4",
+      "la nuit|night|Noun (f)|4",
+      "minuit|midnight|Noun (m)|4",
+      "la journée|day (duration)|Noun (f)|4",
+      "la soirée|evening (duration/party)|Noun (f)|4",
+      "la semaine|week|Noun (f)|4",
+      "le week-end|weekend|Noun (m)|4",
+      "le mois|month|Noun (m)|4",
+      "l'année (f)|year (duration)|Noun (f)|4",
+      "le siècle|century|Noun (m)|4",
+      "lundi|Monday|Noun (m)|4",
+      "mardi|Tuesday|Noun (m)|4",
+      "mercredi|Wednesday|Noun (m)|4",
+      "jeudi|Thursday|Noun (m)|4",
+      "vendredi|Friday|Noun (m)|4",
+      "samedi|Saturday|Noun (m)|4",
+      "dimanche|Sunday|Noun (m)|4",
+      "janvier|January|Noun (m)|4",
+      "février|February|Noun (m)|4",
+      "mars|March|Noun (m)|4",
+      "avril|April|Noun (m)|4",
+      "mai|May|Noun (m)|4",
+      "juin|June|Noun (m)|4",
+      "juillet|July|Noun (m)|4",
+      "août|August|Noun (m)|4",
+      "septembre|September|Noun (m)|4",
+      "octobre|October|Noun (m)|4",
+      "novembre|November|Noun (m)|4",
+      "décembre|December|Noun (m)|4",
+      "le printemps|spring|Noun (m)|4",
+      "l'été (m)|summer|Noun (m)|4",
+      "l'automne (m)|autumn / fall|Noun (m)|4",
+      "l'hiver (m)|winter|Noun (m)|4",
+      "la date|date|Noun (f)|4",
+      "le calendrier|calendar|Noun (m)|4",
+      "le début|beginning / start|Noun (m)|4",
+      "la fin|end|Noun (f)|4",
+      "le milieu|middle|Noun (m)|4",
+      "la moitié|half|Noun (f)|4",
+      "le quart|quarter|Noun (m)|4",
+      "le nombre|number / amount|Noun (m)|4",
+      "le numéro|number (serial/phone)|Noun (m)|4",
+      "le total|total|Noun (m)|4",
+      "la partie|part / game|Noun (f)|2",
+      "le morceau|piece|Noun (m)|2",
+      "le groupe|group|Noun (m)|5",
+      "la paire|pair|Noun (f)|2",
+      "la sorte|kind / sort|Noun (f)|2",
+      "le type|type / guy|Noun (m)|2",
+      "la façon|way / manner|Noun (f)|2",
+      "la manière|manner / way|Noun (f)|2",
+      "l'exemple (m)|example|Noun (m)|2",
+      "la raison|reason|Noun (f)|2",
+      "la cause|cause|Noun (f)|2",
+      "l'effet (m)|effect|Noun (m)|2",
+      "le résultat|result|Noun (m)|2",
+      "le but|goal / purpose|Noun (m)|2",
+      "le problème|problem|Noun (m)|2",
+      "la solution|solution|Noun (f)|2",
+      "la question|question|Noun (f)|2",
+      "la réponse|answer|Noun (f)|2",
+      "l'idée (f)|idea|Noun (f)|2",
+      "le sujet|subject / topic|Noun (m)|2",
+      "l'histoire (f)|story / history|Noun (f)|2",
+      "le point|point / dot|Noun (m)|2",
+      "le cas|case|Noun (m)|2",
+      "l'état (m)|state / condition|Noun (m)|2",
+      "la forme|shape / form|Noun (f)|2",
+
+      // ==================== TIER 5: 401–500 (PEOPLE, FAMILY, EMOTIONS & SOCIETY) ====================
+      "la personne|person|Noun (f)|5",
+      "les gens (m pl)|people|Noun (m)|5",
+      "la famille|family|Noun (f)|5",
+      "les parents (m)|parents / relatives|Noun (m)|5",
+      "le fils|son|Noun (m)|5",
+      "la fille|daughter / girl|Noun (f)|5",
+      "le garçon|boy / waiter|Noun (m)|5",
+      "le frère|brother|Noun (m)|5",
+      "la sœur|sister|Noun (f)|5",
+      "le mari|husband|Noun (m)|5",
+      "l'époux / l'épouse|spouse|Noun (m/f)|5",
+      "le grand-père|grandfather|Noun (m)|5",
+      "la grand-mère|grandmother|Noun (f)|5",
+      "l'oncle (m)|uncle|Noun (m)|5",
+      "la tante|aunt|Noun (f)|5",
+      "le cousin / la cousine|cousin|Noun (m/f)|5",
+      "le bébé|baby|Noun (m)|5",
+      "l'adulte (m/f)|adult|Noun (m/f)|5",
+      "l'ami (m) / l'amie (f)|friend|Noun (m/f)|5",
+      "le copain / la copine|friend / boyfriend / girlfriend|Noun (m/f)|5",
+      "le voisin|neighbor|Noun (m)|5",
+      "le collègue|colleague|Noun (m)|5",
+      "le client|client / customer|Noun (m)|5",
+      "le chef|boss / leader / chef|Noun (m)|5",
+      "le roi|king|Noun (m)|5",
+      "la reine|queen|Noun (f)|5",
+      "le président|president|Noun (m)|5",
+      "le citoyen|citizen|Noun (m)|5",
+      "le peuple|people / nation|Noun (m)|5",
+      "la société|society / company|Noun (f)|5",
+      "la communauté|community|Noun (f)|5",
+      "l'équipe (f)|team|Noun (f)|5",
+      "le membre|member|Noun (m)|5",
+      "monsieur|sir / Mr. / gentleman|Noun (m)|5",
+      "madame|madam / Mrs.|Noun (f)|5",
+      "le nom|last name / noun|Noun (m)|5",
+      "le prénom|first name|Noun (m)|5",
+      "l'âge (m)|age|Noun (m)|5",
+      "l'amour (m)|love|Noun (m)|5",
+      "la joie|joy|Noun (f)|5",
+      "le bonheur|happiness|Noun (m)|5",
+      "le plaisir|pleasure|Noun (m)|5",
+      "la peur|fear|Noun (f)|5",
+      "la colère|anger|Noun (f)|5",
+      "la surprise|surprise|Noun (f)|5",
+      "la honte|shame|Noun (f)|5",
+      "la peine|sorrow / trouble|Noun (f)|5",
+      "l'espoir (m)|hope|Noun (m)|5",
+      "le désir|desire / wish|Noun (m)|5",
+      "le rêve|dream|Noun (m)|5",
+      "le souvenir|memory / souvenir|Noun (m)|5",
+      "le sentiment|feeling|Noun (m)|5",
+      "l'émotion (f)|emotion|Noun (f)|5",
+      "l'humeur (f)|mood|Noun (f)|5",
+      "le sourire|smile|Noun (m)|5",
+      "le rire|laughter|Noun (m)|5",
+      "la larme|tear|Noun (f)|5",
+      "le caractère|character / temper|Noun (m)|5",
+      "la confiance|trust / confidence|Noun (f)|5",
+      "le respect|respect|Noun (m)|5",
+      "la vérité|truth|Noun (f)|5",
+      "le mensonge|lie|Noun (m)|5",
+      "le secret|secret|Noun (m)|5",
+      "la faute|mistake / fault|Noun (f)|5",
+      "l'erreur (f)|error / mistake|Noun (f)|5",
+      "la chance|luck / chance|Noun (f)|5",
+      "le courage|courage|Noun (m)|5",
+      "la paix|peace|Noun (f)|5",
+      "la guerre|war|Noun (f)|5",
+      "la liberté|freedom / liberty|Noun (f)|5",
+      "la justice|justice|Noun (f)|5",
+      "la loi|law|Noun (f)|5",
+      "le droit|right / law|Noun (m)|5",
+      "la règle|rule / ruler|Noun (f)|5",
+      "la police|police|Noun (f)|5",
+      "la sécurité|safety / security|Noun (f)|5",
+      "le gouvernement|government|Noun (m)|5",
+      "la politique|politics / policy|Noun (f)|5",
+      "l'armée (f)|army|Noun (f)|5",
+      "le mariage|marriage / wedding|Noun (m)|5",
+      "la naissance|birth|Noun (f)|5",
+      "la mort|death|Noun (f)|5",
+      "la fête|party / holiday|Noun (f)|5",
+      "le cadeau|gift / present|Noun (m)|5",
+      "le rendez-vous|appointment / date|Noun (m)|5",
+      "la rencontre|meeting / encounter|Noun (f)|5",
+      "la visite|visit|Noun (f)|5",
+      "l'invité (m)|guest|Noun (m)|5",
+      "le discours|speech|Noun (m)|5",
+      "la conversation|conversation|Noun (f)|5",
+      "le mot|word|Noun (m)|2",
+      "la phrase|sentence|Noun (f)|2",
+      "la langue|language / tongue|Noun (f)|2",
+      "la voix|voice|Noun (f)|5",
+      "le silence|silence|Noun (m)|2",
+      "le bruit|noise|Noun (m)|2",
+      "le cri|shout / scream|Noun (m)|5",
+      "le conseil|advice / council|Noun (m)|5",
+      "la promesse|promise|Noun (f)|5",
+      "l'aide (f)|help / aid|Noun (f)|5",
+
+      // ==================== TIER 6: 501–600 (HOME, DAILY LIFE, OBJECTS & CLOTHING) ====================
+      "l'appartement (m)|apartment|Noun (m)|6",
+      "le bâtiment|building|Noun (m)|6",
+      "la pièce|room / coin / play|Noun (f)|6",
+      "la chambre|bedroom|Noun (f)|6",
+      "le salon|living room|Noun (m)|6",
+      "la cuisine|kitchen / cooking|Noun (f)|6",
+      "la salle de bains|bathroom|Noun (f)|6",
+      "les toilettes (f pl)|restroom / toilet|Noun (f)|6",
+      "le couloir|hallway / corridor|Noun (m)|6",
+      "l'escalier (m)|stairs|Noun (m)|6",
+      "l'ascenseur (m)|elevator|Noun (m)|6",
+      "l'étage (m)|floor / story|Noun (m)|6",
+      "le toit|roof|Noun (m)|6",
+      "le mur|wall|Noun (m)|6",
+      "le sol|floor / ground|Noun (m)|6",
+      "le plafond|ceiling|Noun (m)|6",
+      "la porte|door / gate|Noun (f)|6",
+      "la fenêtre|window|Noun (f)|6",
+      "la clé|key|Noun (f)|6",
+      "la serrure|lock|Noun (f)|6",
+      "le jardin|garden / yard|Noun (m)|6",
+      "la cour|courtyard|Noun (f)|6",
+      "le garage|garage|Noun (m)|6",
+      "le meuble|piece of furniture|Noun (m)|6",
+      "la table|table|Noun (f)|6",
+      "la chaise|chair|Noun (f)|6",
+      "le fauteuil|armchair|Noun (m)|6",
+      "le canapé|sofa / couch|Noun (m)|6",
+      "le lit|bed|Noun (m)|6",
+      "l'oreiller (m)|pillow|Noun (m)|6",
+      "la couverture|blanket / cover|Noun (f)|6",
+      "le drap|bedsheet|Noun (m)|6",
+      "l'armoire (f)|wardrobe / cabinet|Noun (f)|6",
+      "le tiroir|drawer|Noun (m)|6",
+      "l'étagère (f)|shelf|Noun (f)|6",
+      "le miroir|mirror|Noun (m)|6",
+      "le tapis|rug / carpet|Noun (m)|6",
+      "le rideau|curtain|Noun (m)|6",
+      "la lampe|lamp|Noun (f)|6",
+      "la lumière|light|Noun (f)|6",
+      "l'électricité (f)|electricity|Noun (f)|6",
+      "le chauffage|heating|Noun (m)|6",
+      "la climatisation|air conditioning|Noun (f)|6",
+      "la douche|shower|Noun (f)|6",
+      "le bain|bath|Noun (m)|6",
+      "le savon|soap|Noun (m)|6",
+      "la serviette|towel / napkin|Noun (f)|6",
+      "la brosse|brush|Noun (f)|6",
+      "le peigne|comb|Noun (m)|6",
+      "la machine|machine|Noun (f)|6",
+      "le réfrigérateur|refrigerator|Noun (m)|6",
+      "le four|oven|Noun (m)|6",
+      "la boîte|box / can|Noun (f)|6",
+      "le sac|bag|Noun (m)|6",
+      "la poche|pocket|Noun (f)|6",
+      "le parapluie|umbrella|Noun (m)|6",
+      "la montre|watch|Noun (f)|6",
+      "l'horloge (f)|clock|Noun (f)|6",
+      "les lunettes (f pl)|glasses|Noun (f)|6",
+      "le bijou|jewel / jewelry|Noun (m)|6",
+      "la bague|ring|Noun (f)|6",
+      "le vêtement|garment / clothing|Noun (m)|6",
+      "la chemise|shirt|Noun (f)|6",
+      "le t-shirt|T-shirt|Noun (m)|6",
+      "le pull|sweater|Noun (m)|6",
+      "la veste|jacket|Noun (f)|6",
+      "le manteau|coat|Noun (m)|6",
+      "le pantalon|pants / trousers|Noun (m)|6",
+      "le jean|jeans|Noun (m)|6",
+      "la jupe|skirt|Noun (f)|6",
+      "la robe|dress|Noun (f)|6",
+      "le costume|suit / costume|Noun (m)|6",
+      "la chaussure|shoe|Noun (f)|6",
+      "la botte|boot|Noun (f)|6",
+      "la chaussette|sock|Noun (f)|6",
+      "le chapeau|hat|Noun (m)|6",
+      "l'écharpe (f)|scarf|Noun (f)|6",
+      "le gant|glove|Noun (m)|6",
+      "la ceinture|belt|Noun (f)|6",
+      "le bouton|button|Noun (m)|6",
+      "l'objet (m)|object|Noun (m)|6",
+      "le papier|paper|Noun (m)|6",
+      "le stylo|pen|Noun (m)|6",
+      "le crayon|pencil|Noun (m)|6",
+      "le cahier|notebook|Noun (m)|6",
+      "la feuille|sheet of paper / leaf|Noun (f)|6",
+      "l'enveloppe (f)|envelope|Noun (f)|6",
+      "le timbre|stamp|Noun (m)|6",
+      "le couteau|knife|Noun (m)|8",
+      "la fourchette|fork|Noun (f)|8",
+      "la cuillère|spoon|Noun (f)|8",
+      "l'assiette (f)|plate|Noun (f)|8",
+      "le verre|glass|Noun (m)|8",
+      "la tasse|cup|Noun (f)|8",
+      "le bol|bowl|Noun (m)|8",
+      "la bouteille|bottle|Noun (f)|8",
+      "la casserole|saucepan / pot|Noun (f)|8",
+      "la poubelle|trash can|Noun (f)|6",
+      "le jouet|toy|Noun (m)|6",
+      "le cadeau|present / gift|Noun (m)|6",
+
+      // ==================== TIER 7: 601–700 (TRAVEL, CITY, DIRECTIONS & TRANSPORT) ====================
+      "le voyage|trip / journey|Noun (m)|7",
+      "les vacances (f pl)|vacation / holidays|Noun (f)|7",
+      "le touriste|tourist|Noun (m)|7",
+      "le passeport|passport|Noun (m)|7",
+      "le billet|ticket / banknote|Noun (m)|7",
+      "la valise|suitcase|Noun (f)|7",
+      "le bagage|luggage|Noun (m)|7",
+      "le départ|departure|Noun (m)|7",
+      "l'arrivée (f)|arrival|Noun (f)|7",
+      "le vol|flight / theft|Noun (m)|7",
+      "l'avion (m)|airplane|Noun (m)|7",
+      "l'aéroport (m)|airport|Noun (m)|7",
+      "le train|train|Noun (m)|7",
+      "la gare|train station|Noun (f)|7",
+      "le quai|platform / quay|Noun (m)|7",
+      "le métro|subway / metro|Noun (m)|7",
+      "le bus|bus|Noun (m)|7",
+      "l'arrêt (m)|stop (bus/metro)|Noun (m)|7",
+      "le tramway|tram / streetcar|Noun (m)|7",
+      "le taxi|taxi|Noun (m)|7",
+      "la voiture|car|Noun (f)|7",
+      "le camion|truck|Noun (m)|7",
+      "le vélo|bicycle|Noun (m)|7",
+      "la moto|motorcycle|Noun (f)|7",
+      "le bateau|boat / ship|Noun (m)|7",
+      "le port|port / harbor|Noun (m)|7",
+      "le moteur|engine / motor|Noun (m)|7",
+      "la roue|wheel|Noun (f)|7",
+      "l'essence (f)|gasoline / fuel|Noun (f)|7",
+      "le permis|license / permit|Noun (m)|7",
+      "la route|road|Noun (f)|7",
+      "l'autoroute (f)|highway|Noun (f)|7",
+      "le chemin|path / way|Noun (m)|7",
+      "la rue|street|Noun (f)|7",
+      "l'avenue (f)|avenue|Noun (f)|7",
+      "le boulevard|boulevard|Noun (m)|7",
+      "le trottoir|sidewalk|Noun (m)|7",
+      "le carrefour|intersection|Noun (m)|7",
+      "le coin|corner|Noun (m)|7",
+      "la place|square / seat / place|Noun (f)|7",
+      "le pont|bridge|Noun (m)|7",
+      "le parc|park|Noun (m)|7",
+      "le quartier|neighborhood / district|Noun (m)|7",
+      "le centre-ville|downtown / city center|Noun (m)|7",
+      "la banlieue|suburb|Noun (f)|7",
+      "le village|village|Noun (m)|7",
+      "la campagne|countryside|Noun (f)|7",
+      "la région|region|Noun (f)|7",
+      "la frontière|border|Noun (f)|7",
+      "la carte|map / menu / card|Noun (f)|7",
+      "le plan|city map / plan|Noun (m)|7",
+      "l'endroit (m)|place / spot|Noun (m)|7",
+      "le lieu|place / location|Noun (m)|7",
+      "la zone|zone / area|Noun (f)|7",
+      "le nord|north|Noun (m)|7",
+      "le sud|south|Noun (m)|7",
+      "l'est (m)|east|Noun (m)|7",
+      "l'ouest (m)|west|Noun (m)|7",
+      "la droite|right (direction)|Noun (f)|7",
+      "la gauche|left (direction)|Noun (f)|7",
+      "tout droit|straight ahead|Adverb|7",
+      "devant|in front of|Preposition|7",
+      "derrière|behind|Preposition|7",
+      "à côté de|next to / beside|Preposition|7",
+      "près de|near / close to|Preposition|7",
+      "loin de|far from|Preposition|7",
+      "autour de|around|Preposition|7",
+      "en haut|upstairs / at the top|Adverb|7",
+      "en bas|downstairs / at the bottom|Adverb|7",
+      "dedans|inside|Adverb|7",
+      "dehors|outside|Adverb|7",
+      "la distance|distance|Noun (f)|7",
+      "le kilomètre|kilometer|Noun (m)|7",
+      "le mètre|meter|Noun (m)|7",
+      "le pas|step / pace|Noun (m)|7",
+      "la vitesse|speed|Noun (f)|7",
+      "la direction|direction|Noun (f)|7",
+      "l'entrée (f)|entrance|Noun (f)|7",
+      "la sortie|exit|Noun (f)|7",
+      "l'hôtel (m)|hotel|Noun (m)|7",
+      "la réception|reception / front desk|Noun (f)|7",
+      "la réservation|reservation|Noun (f)|7",
+      "le musée|museum|Noun (m)|7",
+      "le château|castle|Noun (m)|7",
+      "l'église (f)|church|Noun (f)|7",
+      "la cathédrale|cathedral|Noun (f)|7",
+      "le monument|monument|Noun (m)|7",
+      "le théâtre|theater|Noun (m)|7",
+      "le cinéma|cinema / movie theater|Noun (m)|7",
+      "la bibliothèque|library|Noun (f)|7",
+      "l'école (f)|school|Noun (f)|10",
+      "l'université (f)|university|Noun (f)|10",
+      "l'hôpital (m)|hospital|Noun (m)|9",
+      "la pharmacie|pharmacy|Noun (f)|9",
+      "la banque|bank|Noun (f)|7",
+      "la poste|post office|Noun (f)|7",
+      "le commissariat|police station|Noun (m)|7",
+      "la mairie|city hall|Noun (f)|7",
+      "le stade|stadium|Noun (m)|7",
+      "la piscine|swimming pool|Noun (f)|7",
+
+      // ==================== TIER 8: 701–800 (FOOD, DINING, CAFÉ & SHOPPING) ====================
+      "le repas|meal|Noun (m)|8",
+      "le petit-déjeuner|breakfast|Noun (m)|8",
+      "le déjeuner|lunch|Noun (m)|8",
+      "le dîner|dinner|Noun (m)|8",
+      "le restaurant|restaurant|Noun (m)|8",
+      "le café|coffee / café|Noun (m)|8",
+      "la boulangerie|bakery|Noun (f)|8",
+      "la pâtisserie|pastry shop / pastry|Noun (f)|8",
+      "le marché|market|Noun (m)|8",
+      "le supermarché|supermarket|Noun (m)|8",
+      "le magasin|store / shop|Noun (m)|8",
+      "la boutique|boutique / shop|Noun (f)|8",
+      "l'addition (f)|check / bill|Noun (f)|8",
+      "le menu|set menu|Noun (m)|8",
+      "le serveur / la serveuse|waiter / waitress|Noun (m/f)|8",
+      "le plat|dish / main course|Noun (m)|8",
+      "l'entrée (f) (repas)|starter / appetizer|Noun (f)|8",
+      "le dessert|dessert|Noun (m)|8",
+      "la boisson|drink / beverage|Noun (f)|8",
+      "l'eau (f)|water|Noun (f)|8",
+      "le lait|milk|Noun (m)|8",
+      "le thé|tea|Noun (m)|8",
+      "le jus|juice|Noun (m)|8",
+      "le vin|wine|Noun (m)|8",
+      "la bière|beer|Noun (f)|8",
+      "le pain|bread|Noun (m)|8",
+      "la baguette|baguette|Noun (f)|8",
+      "le croissant|croissant|Noun (m)|8",
+      "le beurre|butter|Noun (m)|8",
+      "le fromage|cheese|Noun (m)|8",
+      "l'œuf (m)|egg|Noun (m)|8",
+      "la viande|meat|Noun (f)|8",
+      "le bœuf|beef|Noun (m)|8",
+      "le poulet|chicken|Noun (m)|8",
+      "le porc|pork|Noun (m)|8",
+      "le jambon|ham|Noun (m)|8",
+      "le poisson|fish|Noun (m)|8",
+      "les fruits de mer (m)|seafood|Noun (m)|8",
+      "le légume|vegetable|Noun (m)|8",
+      "la salade|salad / lettuce|Noun (f)|8",
+      "la tomate|tomato|Noun (f)|8",
+      "la pomme de terre|potato|Noun (f)|8",
+      "la carotte|carrot|Noun (f)|8",
+      "l'oignon (m)|onion|Noun (m)|8",
+      "l'ail (m)|garlic|Noun (m)|8",
+      "le haricot|bean|Noun (m)|8",
+      "le champignon|mushroom|Noun (m)|8",
+      "le riz|rice|Noun (m)|8",
+      "les pâtes (f pl)|pasta|Noun (f)|8",
+      "la soupe|soup|Noun (f)|8",
+      "la sauce|sauce|Noun (f)|8",
+      "l'huile (f)|oil|Noun (f)|8",
+      "le vinaigre|vinegar|Noun (m)|8",
+      "le sel|salt|Noun (m)|8",
+      "le poivre|pepper|Noun (m)|8",
+      "le sucre|sugar|Noun (m)|8",
+      "le miel|honey|Noun (m)|8",
+      "la confiture|jam|Noun (f)|8",
+      "le chocolat|chocolate|Noun (m)|8",
+      "le gâteau|cake|Noun (m)|8",
+      "la tarte|pie / tart|Noun (f)|8",
+      "la glace|ice cream / ice / mirror|Noun (f)|8",
+      "le fruit|fruit|Noun (m)|8",
+      "la pomme|apple|Noun (f)|8",
+      "la banane|banana|Noun (f)|8",
+      "l'orange (f)|orange|Noun (f)|8",
+      "le citron|lemon|Noun (m)|8",
+      "la fraise|strawberry|Noun (f)|8",
+      "le raisin|grape|Noun (m)|8",
+      "la pêche|peach / fishing|Noun (f)|8",
+      "la poire|pear|Noun (f)|8",
+      "la noix|walnut / nut|Noun (f)|8",
+      "la faim|hunger|Noun (f)|8",
+      "la soif|thirst|Noun (f)|8",
+      "le goût|taste / flavor|Noun (m)|8",
+      "délicieux|delicious|Adjective|8",
+      "frais|fresh / cool|Adjective|8",
+      "sucré|sweet (sugary)|Adjective|8",
+      "salé|salty / savory|Adjective|8",
+      "l'argent (m)|money / silver|Noun (m)|8",
+      "l'euro (m)|euro|Noun (m)|8",
+      "le prix|price / prize|Noun (m)|8",
+      "la monnaie|change / currency|Noun (f)|8",
+      "la carte bancaire|bank / credit card|Noun (f)|8",
+      "le ticket|receipt / ticket|Noun (m)|8",
+      "le compte|account / count|Noun (m)|8",
+      "la facture|bill / invoice|Noun (f)|8",
+      "l'impôt (m)|tax|Noun (m)|8",
+      "le cadeau|gift|Noun (m)|8",
+      "le client|customer|Noun (m)|8",
+      "le vendeur|seller / salesperson|Noun (m)|8",
+      "la caisse|checkout / cash register|Noun (f)|8",
+      "les courses (f pl)|grocery shopping / errands|Noun (f)|8",
+      "le choix|choice|Noun (m)|8",
+      "la qualité|quality|Noun (f)|8",
+      "la quantité|quantity|Noun (f)|8",
+      "la taille|size / height / waist|Noun (f)|8",
+      "le poids|weight|Noun (m)|8",
+      "le kilo|kilogram|Noun (m)|8",
+      "le litre|liter|Noun (m)|8",
+
+      // ==================== TIER 9: 801–900 (BODY, HEALTH, NATURE & WEATHER) ====================
+      "le corps|body|Noun (m)|9",
+      "le visage|face|Noun (m)|9",
+      "le front|forehead|Noun (m)|9",
+      "la joue|cheek|Noun (f)|9",
+      "le nez|nose|Noun (m)|9",
+      "la bouche|mouth|Noun (f)|9",
+      "la lèvre|lip|Noun (f)|9",
+      "la dent|tooth|Noun (f)|9",
+      "l'oreille (f)|ear|Noun (f)|9",
+      "les cheveux (m pl)|hair|Noun (m)|9",
+      "la barbe|beard|Noun (f)|9",
+      "le cou|neck|Noun (m)|9",
+      "l'épaule (f)|shoulder|Noun (f)|9",
+      "le bras|arm|Noun (m)|9",
+      "le coude|elbow|Noun (m)|9",
+      "le poignet|wrist|Noun (m)|9",
+      "le doigt|finger|Noun (m)|9",
+      "l'ongle (m)|fingernail|Noun (m)|9",
+      "la poitrine|chest|Noun (f)|9",
+      "le dos|back|Noun (m)|9",
+      "le ventre|stomach / belly|Noun (m)|9",
+      "la jambe|leg|Noun (f)|9",
+      "le genou|knee|Noun (m)|9",
+      "la cheville|ankle|Noun (f)|9",
+      "le pied|foot|Noun (m)|9",
+      "la peau|skin|Noun (f)|9",
+      "le cœur|heart|Noun (m)|9",
+      "le sang|blood|Noun (m)|9",
+      "le cerveau|brain|Noun (m)|9",
+      "l'os (m)|bone|Noun (m)|9",
+      "le muscle|muscle|Noun (m)|9",
+      "la respiration|breathing|Noun (f)|9",
+      "la santé|health|Noun (f)|9",
+      "la maladie|illness / disease|Noun (f)|9",
+      "la douleur|pain|Noun (f)|9",
+      "la fièvre|fever|Noun (f)|9",
+      "le rhume|cold (illness)|Noun (m)|9",
+      "le médecin|doctor / physician|Noun (m)|9",
+      "le docteur|doctor|Noun (m)|9",
+      "l'infirmier (m)|nurse|Noun (m)|9",
+      "le dentiste|dentist|Noun (m)|9",
+      "le médicament|medicine / drug|Noun (m)|9",
+      "le soin|care / treatment|Noun (m)|9",
+      "l'urgence (f)|emergency|Noun (f)|9",
+      "l'accident (m)|accident|Noun (m)|9",
+      "le sommeil|sleep|Noun (m)|9",
+      "le repos|rest|Noun (m)|9",
+      "l'énergie (f)|energy|Noun (f)|9",
+      "la force|strength / force|Noun (f)|9",
+      "la vue|sight / view|Noun (f)|9",
+      "la nature|nature|Noun (f)|9",
+      "le ciel|sky|Noun (m)|9",
+      "le soleil|sun|Noun (m)|9",
+      "la lune|moon|Noun (f)|9",
+      "l'étoile (f)|star|Noun (f)|9",
+      "le nuage|cloud|Noun (m)|9",
+      "la pluie|rain|Noun (f)|9",
+      "la neige|snow|Noun (f)|9",
+      "le vent|wind|Noun (m)|9",
+      "l'orage (m)|storm / thunderstorm|Noun (m)|9",
+      "le brouillard|fog|Noun (m)|9",
+      "la météo|weather forecast|Noun (f)|9",
+      "la température|temperature|Noun (f)|9",
+      "le degré|degree|Noun (m)|9",
+      "la chaleur|heat|Noun (f)|9",
+      "le feu|fire / traffic light|Noun (m)|9",
+      "l'air (m)|air / appearance|Noun (m)|9",
+      "la terre|earth / ground / land|Noun (f)|9",
+      "la pierre|stone / rock|Noun (f)|9",
+      "le sable|sand|Noun (m)|9",
+      "la montagne|mountain|Noun (f)|9",
+      "la colline|hill|Noun (f)|9",
+      "la vallée|valley|Noun (f)|9",
+      "la forêt|forest|Noun (f)|9",
+      "le bois|wood / woods|Noun (m)|9",
+      "l'arbre (m)|tree|Noun (m)|9",
+      "la plante|plant|Noun (f)|9",
+      "la fleur|flower|Noun (f)|9",
+      "l'herbe (f)|grass|Noun (f)|9",
+      "la mer|sea|Noun (f)|9",
+      "l'océan (m)|ocean|Noun (m)|9",
+      "la plage|beach|Noun (f)|9",
+      "la vague|wave|Noun (f)|9",
+      "l'île (f)|island|Noun (f)|9",
+      "le lac|lake|Noun (m)|9",
+      "le fleuve|large river|Noun (m)|9",
+      "la rivière|river|Noun (f)|9",
+      "le champ|field|Noun (m)|9",
+      "la ferme|farm|Noun (f)|9",
+      "l'animal (m)|animal|Noun (m)|9",
+      "le chien|dog|Noun (m)|9",
+      "le chat|cat|Noun (m)|9",
+      "le cheval|horse|Noun (m)|9",
+      "l'oiseau (m)|bird|Noun (m)|9",
+      "la vache|cow|Noun (f)|9",
+      "le mouton|sheep|Noun (m)|9",
+      "le cochon|pig|Noun (m)|9",
+      "l'insecte (m)|insect|Noun (m)|9",
+      "l'environnement (m)|environment|Noun (m)|9",
+      "le climat|climate|Noun (m)|9",
+
+      // ==================== TIER 10: 901–1000 (WORK, EDUCATION, TECH, CULTURE & ACTION VERBS) ====================
+      "le métier|profession / trade|Noun (m)|10",
+      "l'emploi (m)|job / employment|Noun (m)|10",
+      "la carrière|career|Noun (f)|10",
+      "l'entreprise (f)|company / business|Noun (f)|10",
+      "le bureau|office / desk|Noun (m)|10",
+      "l'usine (f)|factory|Noun (f)|10",
+      "le projet|project|Noun (m)|10",
+      "la réunion|meeting|Noun (f)|10",
+      "le dossier|file / folder / case|Noun (m)|10",
+      "le contrat|contract|Noun (m)|10",
+      "le salaire|salary / wage|Noun (m)|10",
+      "le patron|boss / owner|Noun (m)|10",
+      "l'employé (m)|employee|Noun (m)|10",
+      "le professeur|teacher / professor|Noun (m)|10",
+      "l'étudiant (m)|student (university)|Noun (m)|10",
+      "l'élève (m/f)|pupil / student|Noun (m/f)|10",
+      "la classe|class / classroom|Noun (f)|10",
+      "le cours|course / class / lesson|Noun (m)|10",
+      "la leçon|lesson|Noun (f)|10",
+      "l'examen (m)|exam|Noun (m)|10",
+      "la note|grade / note / bill|Noun (f)|10",
+      "le diplôme|diploma / degree|Noun (m)|10",
+      "la science|science|Noun (f)|10",
+      "la recherche|research / search|Noun (f)|10",
+      "l'expérience (f)|experience / experiment|Noun (f)|10",
+      "la connaissance|knowledge|Noun (f)|10",
+      "l'information (f)|information / news|Noun (f)|10",
+      "le journal|newspaper / news|Noun (m)|10",
+      "le magazine|magazine|Noun (m)|10",
+      "l'article (m)|article / item|Noun (m)|10",
+      "le livre|book|Noun (m)|10",
+      "la page|page|Noun (f)|10",
+      "le roman|novel|Noun (m)|10",
+      "l'auteur (m)|author|Noun (m)|10",
+      "l'art (m)|art|Noun (m)|10",
+      "la peinture|painting / paint|Noun (f)|10",
+      "le tableau|painting / board / table|Noun (m)|10",
+      "la photo|photo|Noun (f)|10",
+      "l'image (f)|image / picture|Noun (f)|10",
+      "la couleur|color|Noun (f)|10",
+      "la musique|music|Noun (f)|10",
+      "la chanson|song|Noun (f)|10",
+      "le film|movie / film|Noun (m)|10",
+      "l'acteur (m)|actor|Noun (m)|10",
+      "le spectacle|show / performance|Noun (m)|10",
+      "le sport|sport|Noun (m)|10",
+      "le jeu|game|Noun (m)|10",
+      "le match|match / game|Noun (m)|10",
+      "le ballon|ball|Noun (m)|10",
+      "l'ordinateur (m)|computer|Noun (m)|10",
+      "le téléphone|telephone / phone|Noun (m)|10",
+      "le portable|cell phone / laptop|Noun (m)|10",
+      "l'écran (m)|screen|Noun (m)|10",
+      "le clavier|keyboard|Noun (m)|10",
+      "l'internet (m)|internet|Noun (m)|10",
+      "le site|website / site|Noun (m)|10",
+      "le réseau|network|Noun (m)|10",
+      "le message|message|Noun (m)|10",
+      "le courriel|email|Noun (m)|10",
+      "l'appel (m)|call|Noun (m)|10",
+      "la radio|radio|Noun (f)|10",
+      "la télévision|television|Noun (f)|10",
+      "la caméra|camera|Noun (f)|10",
+      "la batterie|battery / drums|Noun (f)|10",
+      "construire|to build / to construct|Verb|10",
+      "détruire|to destroy|Verb|10",
+      "réparer|to repair / to fix|Verb|10",
+      "nettoyer|to clean|Verb|10",
+      "laver|to wash|Verb|10",
+      "cuisiner|to cook|Verb|10",
+      "couper|to cut|Verb|10",
+      "allumer|to turn on / to light|Verb|10",
+      "éteindre|to turn off / to extinguish|Verb|10",
+      "pousser|to push / to grow|Verb|10",
+      "tirer|to pull / to shoot|Verb|10",
+      "lever|to lift / to raise|Verb|10",
+      "poser|to put down / to ask|Verb|10",
+      "jeter|to throw (away)|Verb|10",
+      "attraper|to catch|Verb|10",
+      "toucher|to touch|Verb|10",
+      "frapper|to hit / to knock|Verb|10",
+      "casser|to break|Verb|10",
+      "cacher|to hide|Verb|10",
+      "montrer|to show / point out|Verb|10",
+      "préparer|to prepare|Verb|10",
+      "organiser|to organize|Verb|10",
+      "vérifier|to check / to verify|Verb|10",
+      "choisir|to choose / select|Verb|10",
+      "gagner|to win / to earn|Verb|10",
+      "réussir|to succeed / pass|Verb|10",
+      "échouer|to fail|Verb|10",
+      "partager|to share|Verb|10",
+      "discuter|to discuss / chat|Verb|10",
+      "raconter|to tell (a story)|Verb|10",
+      "promettre|to promise|Verb|10",
+      "permettre|to allow / permit|Verb|10",
+      "interdire|to forbid / ban|Verb|10",
+      "protéger|to protect|Verb|10",
+      "sauver|to save / rescue|Verb|10",
+      "voyager|to travel|Verb|10"
+    ];
+
+    /**
+     * Generates a natural, authentic French example sentence and English translation
+     * for any of the 1,000 words, respecting part of speech, French articles, and category.
+     */
+    function buildContextualExample(rank, fr, en, pos, catIndex) {
+      if (CUSTOM_EXAMPLES[rank]) {
+        return { exFr: CUSTOM_EXAMPLES[rank][0], exEn: CUSTOM_EXAMPLES[rank][1] };
+      }
+
+      // Clean French display word for embedding in sentences
+      const cleanFr = fr.replace(/\s*\([^)]*\)/g, '').split('/')[0].trim();
+      // Clean English display meaning for natural sentence translation
+      const cleanEn = en.replace(/^to\s+/i, '').split('/')[0].replace(/\s*\([^)]*\)/g, '').trim();
+
+      if (pos === 'Verb') {
+        const templates = [
+          [`Il est important de ${cleanFr} au bon moment.`, `It is important to ${cleanEn} at the right time.`],
+          [`Nous allons ${cleanFr} ensemble cet après-midi.`, `We are going to ${cleanEn} together this afternoon.`],
+          [`J'essaie de ${cleanFr} du mieux possible.`, `I try to ${cleanEn} as best as possible.`],
+          [`Voulez-vous ${cleanFr} avec nous maintenant ?`, `Do you want to ${cleanEn} with us now?`],
+          [`On peut facilement ${cleanFr} ici.`, `One can easily ${cleanEn} here.`]
+        ];
+        const pick = templates[rank % templates.length];
+        return { exFr: pick[0], exEn: pick[1] };
+      }
+
+      if (pos.startsWith('Noun')) {
+        // Check if noun already has article (le, la, l', les)
+        const hasArticle = /^(le |la |l'|les )/i.test(cleanFr);
+        const phraseFr = hasArticle ? cleanFr : `ce ${cleanFr}`;
+        const capFr = phraseFr.charAt(0).toUpperCase() + phraseFr.slice(1);
+
+        if (catIndex === 8) { // Food & Dining
+          const foodTemplates = [
+            [`${capFr} est vraiment excellent dans ce restaurant.`, `The ${cleanEn} is really excellent in this restaurant.`],
+            [`Nous avons commandé ${phraseFr} pour le repas.`, `We ordered the ${cleanEn} for the meal.`],
+            [`J'achète toujours ${phraseFr} au marché du quartier.`, `I always buy the ${cleanEn} at the local market.`]
+          ];
+          const pick = foodTemplates[rank % foodTemplates.length];
+          return { exFr: pick[0], exEn: pick[1] };
+        }
+        if (catIndex === 7) { // Travel & Places
+          const travelTemplates = [
+            [`${capFr} se trouve à cinq minutes d'ici.`, `The ${cleanEn} is located five minutes from here.`],
+            [`Nous cherchons ${phraseFr} sur la carte.`, `We are looking for the ${cleanEn} on the map.`],
+            [`${capFr} est très pratique pour les voyageurs.`, `The ${cleanEn} is very convenient for travelers.`]
+          ];
+          const pick = travelTemplates[rank % travelTemplates.length];
+          return { exFr: pick[0], exEn: pick[1] };
+        }
+        if (catIndex === 5) { // People & Society
+          const peopleTemplates = [
+            [`${capFr} joue un rôle essentiel dans notre vie.`, `The ${cleanEn} plays an essential role in our life.`],
+            [`Tout le monde apprécie beaucoup ${phraseFr}.`, `Everyone really appreciates the ${cleanEn}.`],
+            [`Nous avons parlé de ${phraseFr} hier soir.`, `We talked about the ${cleanEn} last night.`]
+          ];
+          const pick = peopleTemplates[rank % peopleTemplates.length];
+          return { exFr: pick[0], exEn: pick[1] };
+        }
+        if (catIndex === 4) { // Time & Calendar
+          return {
+            exFr: `Nous avons prévu ce rendez-vous pour ${cleanFr}.`,
+            exEn: `We scheduled this appointment for ${cleanEn}.`
+          };
+        }
+
+        const generalNounTemplates = [
+          [`${capFr} est indispensable dans la vie quotidienne.`, `The ${cleanEn} is essential in everyday life.`],
+          [`Tu as vu ${phraseFr} ce matin ?`, `Did you see the ${cleanEn} this morning?`],
+          [`Nous avons besoin de ${phraseFr} aujourd'hui.`, `We need the ${cleanEn} today.`],
+          [`${capFr} attire tout de suite l'attention.`, `The ${cleanEn} immediately catches attention.`]
+        ];
+        const pick = generalNounTemplates[rank % generalNounTemplates.length];
+        return { exFr: pick[0], exEn: pick[1] };
+      }
+
+      if (pos === 'Adjective') {
+        const adjTemplates = [
+          [`C'est vraiment très ${cleanFr} aujourd'hui.`, `It is really very ${cleanEn} today.`],
+          [`Tout le monde trouve cet endroit ${cleanFr}.`, `Everyone finds this place ${cleanEn}.`],
+          [`Ce choix me semble tout à fait ${cleanFr}.`, `This choice seems quite ${cleanEn} to me.`]
+        ];
+        const pick = adjTemplates[rank % adjTemplates.length];
+        return { exFr: pick[0], exEn: pick[1] };
+      }
+
+      if (pos === 'Number') {
+        return {
+          exFr: `Il reste exactement ${cleanFr} places disponibles.`,
+          exEn: `There are exactly ${cleanEn} seats available.`
+        };
+      }
+
+      // Adverbs, Prepositions, Conjunctions, Pronouns, Phrases
+      return {
+        exFr: `En français, on utilise souvent « ${cleanFr} » dans la conversation.`,
+        exEn: `In French, we often use "${cleanFr}" (${cleanEn}) in conversation.`
+      };
+    }
+
+    /**
+     * Build the full 1,000-word structured dataset
+     */
+    const WORDS_DB = RAW_1000_WORDS.map((raw, idx) => {
+      const rank = idx + 1;
+      const parts = raw.split('|');
+      const fr = parts[0];
+      const en = parts[1];
+      const pos = parts[2];
+      const catIndex = parseInt(parts[3], 10);
+      const category = CATEGORIES[catIndex] || "Essential Core";
+      const tier = Math.ceil(rank / 100); // 1 to 10
+      const { exFr, exEn } = buildContextualExample(rank, fr, en, pos, catIndex);
+
+      // Spoken French text (strip gender annotations like "(m)" or "(f)" so TTS speaks naturally)
+      const spokenFr = fr.replace(/\s*\([^)]*\)/g, '').replace('...', '').trim();
+
+      return {
+        rank,
+        fr,
+        spokenFr,
+        en,
+        pos,
+        catIndex,
+        category,
+        tier,
+        exFr,
+        exEn
+      };
+    });
+
+    // ============================================================================
+    // STATE & LOCAL STORAGE PERSISTENCE
+    // ============================================================================
+    const STORAGE_KEY = 'le_mille_fr_app_v1';
+
+    let appState = {
+      statusMap: {}, // { [rank]: 'mastered' | 'learning' }
+      currentTier: 1, // 0 = All 1000, 1 = 1..100, ..., 10 = 901..1000
+      studyStatusFilter: 'all', // 'all' | 'unseen' | 'learning' | 'mastered'
+      studyCategoryFilter: 'all', // 'all' or category index
+      currentCardIdx: 0,
+      autoPlay: false,
+      selectedVoiceURI: '',
+      streak: 1,
+      lastStudyDate: '',
+      quizMode: 'fr-en', // 'fr-en' | 'listen' | 'en-fr'
+      quizTier: 1,
+      quizCorrectCount: 0,
+      quizStreak: 0
+    };
+
+    function loadState() {
+      try {
+        const saved = localStorage.getItem(STORAGE_KEY);
+        if (saved) {
+          const parsed = JSON.parse(saved);
+          appState = { ...appState, ...parsed };
+        }
+        updateDailyStreak();
+      } catch (e) {
+        console.warn('Could not load saved state:', e);
+      }
+    }
+
+    function saveState() {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(appState));
+      } catch (e) {
+        console.warn('Could not save state:', e);
+      }
+    }
+
+    function updateDailyStreak() {
+      const today = new Date().toISOString().slice(0, 10);
+      if (!appState.lastStudyDate) {
+        appState.streak = 1;
+        appState.lastStudyDate = today;
+        saveState();
+      } else if (appState.lastStudyDate !== today) {
+        const prev = new Date(appState.lastStudyDate);
+        const curr = new Date(today);
+        const diffDays = Math.round((curr - prev) / (1000 * 60 * 60 * 24));
+        if (diffDays === 1) {
+          appState.streak += 1;
+        } else if (diffDays > 1) {
+          appState.streak = 1;
+        }
+        appState.lastStudyDate = today;
+        saveState();
+      }
+      document.getElementById('streakBadge').textContent = appState.streak;
+    }
+
+    // ============================================================================
+    // WEB SPEECH API (FRENCH PRONUNCIATION ENGINE)
+    // ============================================================================
+    let frenchVoices = [];
+
+    function initSpeechVoices() {
+      if (!('speechSynthesis' in window)) return;
+
+      const populate = () => {
+        const allVoices = window.speechSynthesis.getVoices() || [];
+        frenchVoices = allVoices.filter(v => v.lang && v.lang.toLowerCase().startsWith('fr'));
+
+        // Sort to prioritize fr-FR and enhanced iOS/macOS voices (Thomas, Amélie, Audrey, Marie)
+        frenchVoices.sort((a, b) => {
+          const score = (v) => {
+            let s = 0;
+            if (v.lang === 'fr-FR' || v.lang === 'fr_FR') s += 10;
+            if (/thomas|amélie|amelie|audrey|marie|premium|enhanced/i.test(v.name)) s += 5;
+            if (v.localService) s += 2;
+            return s;
+          };
+          return score(b) - score(a);
+        });
+
+        const selectEl = document.getElementById('voiceSelect');
+        if (selectEl && frenchVoices.length > 0) {
+          selectEl.innerHTML = frenchVoices.map(v =>
+            `<option value="${v.voiceURI}">${v.name} (${v.lang})</option>`
+          ).join('');
+
+          if (appState.selectedVoiceURI && frenchVoices.some(v => v.voiceURI === appState.selectedVoiceURI)) {
+            selectEl.value = appState.selectedVoiceURI;
+          } else {
+            appState.selectedVoiceURI = frenchVoices[0].voiceURI;
+            selectEl.value = frenchVoices[0].voiceURI;
+          }
+        }
+      };
+
+      populate();
+      if (window.speechSynthesis.onvoiceschanged !== undefined) {
+        window.speechSynthesis.onvoiceschanged = populate;
+      }
+    }
+
+    function saveSelectedVoice(uri) {
+      appState.selectedVoiceURI = uri;
+      saveState();
+      speakText('Voix française sélectionnée', 1.0);
+    }
+
+    function speakText(text, rate = 1.0) {
+      if (!('speechSynthesis' in window)) {
+        showToast('Speech synthesis not supported on this browser');
+        return;
+      }
+      try {
+        window.speechSynthesis.cancel();
+        const utter = new SpeechSynthesisUtterance(text);
+        utter.lang = 'fr-FR';
+        utter.rate = rate;
+        utter.pitch = 1.0;
+
+        if (frenchVoices.length > 0) {
+          const chosen = frenchVoices.find(v => v.voiceURI === appState.selectedVoiceURI) || frenchVoices[0];
+          if (chosen) utter.voice = chosen;
+        }
+        window.speechSynthesis.speak(utter);
+      } catch (e) {
+        console.warn('TTS error:', e);
+      }
+    }
+
+    function speakCurrentWord(rate = 1.0) {
+      const card = studyDeck[appState.currentCardIdx];
+      if (!card) return;
+      speakText(card.spokenFr, rate);
+    }
+
+    function speakCurrentSentence(rate = 1.0) {
+      const card = studyDeck[appState.currentCardIdx];
+      if (!card) return;
+      speakText(card.exFr, rate);
+    }
+
+    function speakWordByRank(rank, rate = 1.0) {
+      const word = WORDS_DB[rank - 1];
+      if (word) speakText(word.spokenFr, rate);
+    }
+
+    // ============================================================================
+    // STUDY FLASHCARD DECK & 3D FLIP LOGIC
+    // ============================================================================
+    let studyDeck = [];
+    let isCardFlipped = false;
+
+    function buildStudyDeck() {
+      studyDeck = WORDS_DB.filter(word => {
+        // Tier filter
+        if (appState.currentTier !== 0 && word.tier !== appState.currentTier) return false;
+        // Category filter
+        if (appState.studyCategoryFilter !== 'all' && word.catIndex !== parseInt(appState.studyCategoryFilter, 10)) return false;
+        // Status filter
+        const st = appState.statusMap[word.rank] || 'unseen';
+        if (appState.studyStatusFilter !== 'all' && st !== appState.studyStatusFilter) return false;
+        return true;
+      });
+
+      if (appState.currentCardIdx >= studyDeck.length) {
+        appState.currentCardIdx = 0;
+      }
+    }
+
+    function renderTierPills() {
+      const bar = document.getElementById('tierPillBar');
+      const tiers = [
+        { id: 0, label: 'All 1000' },
+        { id: 1, label: '1–100' },
+        { id: 2, label: '101–200' },
+        { id: 3, label: '201–300' },
+        { id: 4, label: '301–400' },
+        { id: 5, label: '401–500' },
+        { id: 6, label: '501–600' },
+        { id: 7, label: '601–700' },
+        { id: 8, label: '701–800' },
+        { id: 9, label: '801–900' },
+        { id: 10, label: '901–1000' }
+      ];
+
+      bar.innerHTML = tiers.map(t => {
+        const active = appState.currentTier === t.id;
+        return `<button onclick="selectTier(${t.id})" class="shrink-0 px-3 py-1.5 rounded-xl text-xs font-bold transition ${
+          active
+            ? 'bg-indigo-600 text-white shadow-sm shadow-indigo-500/30'
+            : 'bg-white dark:bg-[#131b2e] text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800'
+        }">${t.label}</button>`;
+      }).join('');
+    }
+
+    function selectTier(tierId) {
+      appState.currentTier = tierId;
+      appState.currentCardIdx = 0;
+      saveState();
+      renderTierPills();
+      buildStudyDeck();
+      renderStudyCard();
+      updateHeaderSubtitle();
+    }
+
+    function updateHeaderSubtitle() {
+      const tierText = appState.currentTier === 0
+        ? 'All 1,000 Words'
+        : `Tier ${appState.currentTier}: ${(appState.currentTier - 1) * 100 + 1}–${appState.currentTier * 100}`;
+      const catText = appState.studyCategoryFilter === 'all'
+        ? 'All Categories'
+        : CATEGORIES[parseInt(appState.studyCategoryFilter, 10)];
+      document.getElementById('headerSubtitle').textContent = `${tierText} • ${catText}`;
+      document.getElementById('activeFilterSummary').textContent =
+        appState.studyCategoryFilter === 'all' ? 'Category: All' : CATEGORIES[parseInt(appState.studyCategoryFilter, 10)];
+    }
+
+    function setStudyStatusFilter(status) {
+      appState.studyStatusFilter = status;
+      appState.currentCardIdx = 0;
+      saveState();
+      updateStatusButtonsUI();
+      buildStudyDeck();
+      renderStudyCard();
+    }
+
+    function updateStatusButtonsUI() {
+      ['all', 'unseen', 'learning', 'mastered'].forEach(st => {
+        const btn = document.getElementById(`statusBtn-${st}`);
+        if (!btn) return;
+        if (appState.studyStatusFilter === st) {
+          btn.className = 'flex-1 py-1.5 rounded-lg text-xs font-bold bg-white dark:bg-[#131b2e] text-indigo-600 dark:text-indigo-400 shadow-sm transition';
+        } else {
+          btn.className = 'flex-1 py-1.5 rounded-lg text-xs font-semibold text-slate-500 dark:text-slate-400 transition';
+        }
+      });
+    }
+
+    function renderStudyCard(animClass = '') {
+      const card3D = document.getElementById('flashcard3D');
+      const emptyState = document.getElementById('emptyDeckState');
+
+      // Reset flip to front
+      isCardFlipped = false;
+      card3D.classList.remove('rotate-y-180');
+
+      if (studyDeck.length === 0) {
+        card3D.classList.add('hidden');
+        emptyState.classList.remove('hidden');
+        emptyState.classList.add('flex');
+        document.getElementById('cardCounterText').textContent = '0 of 0';
+        document.getElementById('studyProgressBar').style.width = '0%';
+        return;
+      }
+
+      card3D.classList.remove('hidden');
+      emptyState.classList.add('hidden');
+      emptyState.classList.remove('flex');
+
+      const word = studyDeck[appState.currentCardIdx];
+      const st = appState.statusMap[word.rank] || 'unseen';
+
+      // Counter & status pill
+      document.getElementById('cardCounterText').textContent = `Card ${appState.currentCardIdx + 1} of ${studyDeck.length}`;
+      const pct = ((appState.currentCardIdx + 1) / studyDeck.length) * 100;
+      document.getElementById('studyProgressBar').style.width = `${pct}%`;
+
+      const badge = document.getElementById('cardStatusBadge');
+      if (st === 'mastered') {
+        badge.textContent = '✓ Mastered';
+        badge.className = 'px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-emerald-500/15 text-emerald-600 dark:text-emerald-400';
+      } else if (st === 'learning') {
+        badge.textContent = '⏳ Learning';
+        badge.className = 'px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-amber-500/15 text-amber-600 dark:text-amber-400';
+      } else {
+        badge.textContent = 'New';
+        badge.className = 'px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-400';
+      }
+
+      // Populate Front
+      document.getElementById('cardRankFront').textContent = `#${word.rank}`;
+      document.getElementById('cardCatFront').textContent = word.category;
+      document.getElementById('cardPosFront').textContent = word.pos;
+      document.getElementById('cardFrenchFront').textContent = word.fr;
+
+      // Gender hint for nouns
+      const genderHintEl = document.getElementById('cardGenderHint');
+      if (word.pos.includes('(m)')) {
+        genderHintEl.textContent = 'Masculine Noun';
+      } else if (word.pos.includes('(f)')) {
+        genderHintEl.textContent = 'Feminine Noun';
+      } else {
+        genderHintEl.textContent = `Frequency Tier ${word.tier} (Top ${word.tier * 100})`;
+      }
+
+      // Populate Back
+      document.getElementById('cardRankBack').textContent = `Rank #${word.rank}`;
+      document.getElementById('cardFrenchBack').textContent = word.fr;
+      document.getElementById('cardEnglishBack').textContent = word.en;
+      document.getElementById('cardPosBack').textContent = `${word.pos} • ${word.category}`;
+      document.getElementById('cardExFr').textContent = word.exFr;
+      document.getElementById('cardExEn').textContent = word.exEn;
+
+      if (animClass) {
+        const stage = document.getElementById('flashcardStage');
+        stage.classList.remove('animate-next', 'animate-prev');
+        void stage.offsetWidth;
+        stage.classList.add(animClass);
+      }
+
+      if (appState.autoPlay) {
+        setTimeout(() => speakCurrentWord(1.0), 180);
+      }
+    }
+
+    function handleCardClick(e) {
+      if (studyDeck.length === 0) return;
+      isCardFlipped = !isCardFlipped;
+      const card3D = document.getElementById('flashcard3D');
+      if (isCardFlipped) {
+        card3D.classList.add('rotate-y-180');
+        if (appState.autoPlay) {
+          setTimeout(() => speakCurrentWord(1.0), 150);
+        }
+      } else {
+        card3D.classList.remove('rotate-y-180');
+      }
+    }
+
+    function nextCard() {
+      if (studyDeck.length === 0) return;
+      appState.currentCardIdx = (appState.currentCardIdx + 1) % studyDeck.length;
+      saveState();
+      renderStudyCard('animate-next');
+    }
+
+    function prevCard() {
+      if (studyDeck.length === 0) return;
+      appState.currentCardIdx = (appState.currentCardIdx - 1 + studyDeck.length) % studyDeck.length;
+      saveState();
+      renderStudyCard('animate-prev');
+    }
+
+    function markCardStatus(newStatus) {
+      if (studyDeck.length === 0) return;
+      const word = studyDeck[appState.currentCardIdx];
+      appState.statusMap[word.rank] = newStatus;
+      saveState();
+
+      showToast(newStatus === 'mastered' ? `✓ #${word.rank} ${word.spokenFr} Mastered!` : `⏳ Marked as Still Learning`);
+
+      if (appState.studyStatusFilter !== 'all' && appState.studyStatusFilter !== newStatus) {
+        buildStudyDeck();
+        renderStudyCard('animate-next');
+      } else {
+        nextCard();
+      }
+    }
+
+    function shuffleDeck() {
+      if (studyDeck.length <= 1) return;
+      for (let i = studyDeck.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [studyDeck[i], studyDeck[j]] = [studyDeck[j], studyDeck[i]];
+      }
+      appState.currentCardIdx = 0;
+      renderStudyCard('animate-next');
+      showToast('🔀 Deck Shuffled');
+    }
+
+    function toggleAutoPlay() {
+      appState.autoPlay = !appState.autoPlay;
+      saveState();
+      updateAutoPlayUI();
+      showToast(appState.autoPlay ? '🔊 Auto-Play Audio Enabled' : '🔇 Auto-Play Audio Off');
+    }
+
+    function updateAutoPlayUI() {
+      const btn = document.getElementById('autoPlayBtn');
+      const toggle = document.getElementById('settingsAutoPlayToggle');
+      const knob = document.getElementById('settingsAutoPlayKnob');
+
+      if (appState.autoPlay) {
+        btn.className = 'flex items-center gap-1 text-[11px] font-bold px-2.5 py-0.5 rounded-md bg-indigo-600 text-white transition';
+        btn.innerHTML = '<span>🔊 Auto: ON</span>';
+        if (toggle) toggle.className = 'w-12 h-6 rounded-full bg-indigo-600 p-0.5 transition-colors relative';
+        if (knob) knob.className = 'w-5 h-5 rounded-full bg-white shadow transform translate-x-6 transition-transform';
+      } else {
+        btn.className = 'flex items-center gap-1 text-[11px] font-semibold px-2.5 py-0.5 rounded-md bg-slate-200/70 dark:bg-slate-800 text-slate-600 dark:text-slate-400 transition';
+        btn.innerHTML = '<span>🔊 Auto: OFF</span>';
+        if (toggle) toggle.className = 'w-12 h-6 rounded-full bg-slate-300 dark:bg-slate-700 p-0.5 transition-colors relative';
+        if (knob) knob.className = 'w-5 h-5 rounded-full bg-white shadow transform translate-x-0 transition-transform';
+      }
+    }
+
+    // Touch Swipe Gestures for iPhone Card Stage
+    function initTouchGestures() {
+      const stage = document.getElementById('flashcardStage');
+      let startX = 0;
+      let startY = 0;
+
+      stage.addEventListener('touchstart', (e) => {
+        if (!e.touches || e.touches.length === 0) return;
+        startX = e.touches[0].clientX;
+        startY = e.touches[0].clientY;
+      }, { passive: true });
+
+      stage.addEventListener('touchend', (e) => {
+        if (!e.changedTouches || e.changedTouches.length === 0) return;
+        const dx = e.changedTouches[0].clientX - startX;
+        const dy = e.changedTouches[0].clientY - startY;
+        if (Math.abs(dx) > 55 && Math.abs(dx) > Math.abs(dy) * 1.4) {
+          if (dx < 0) nextCard();
+          else prevCard();
+        }
+      }, { passive: true });
+    }
+
+    // ============================================================================
+    // QUIZ MODE (MULTIPLE CHOICE & AUDIO LISTENING)
+    // ============================================================================
+    let currentQuizQuestion = null;
+    let quizAnswered = false;
+
+    function setQuizMode(mode) {
+      appState.quizMode = mode;
+      saveState();
+      updateQuizModeUI();
+      generateQuizQuestion();
+    }
+
+    function updateQuizModeUI() {
+      ['fr-en', 'listen', 'en-fr'].forEach(m => {
+        const btn = document.getElementById(`quizMode-${m}`);
+        if (!btn) return;
+        if (appState.quizMode === m) {
+          btn.className = 'flex-1 py-2 rounded-lg text-xs font-bold bg-white dark:bg-[#131b2e] text-indigo-600 dark:text-indigo-400 shadow-sm transition';
+        } else {
+          btn.className = 'flex-1 py-2 rounded-lg text-xs font-semibold text-slate-500 dark:text-slate-400 transition';
+        }
+      });
+    }
+
+    function changeQuizTier(val) {
+      appState.quizTier = parseInt(val, 10);
+      saveState();
+      generateQuizQuestion();
+    }
+
+    function generateQuizQuestion() {
+      quizAnswered = false;
+      document.getElementById('quizFeedbackBox').classList.add('hidden');
+
+      const pool = appState.quizTier === 0
+        ? WORDS_DB
+        : WORDS_DB.filter(w => w.tier === appState.quizTier);
+
+      const target = pool[Math.floor(Math.random() * pool.length)];
+
+      // Pick 3 distractors preferably from same part of speech
+      const samePosPool = WORDS_DB.filter(w => w.rank !== target.rank && w.pos === target.pos);
+      const sourceDistractors = samePosPool.length >= 3 ? samePosPool : WORDS_DB.filter(w => w.rank !== target.rank);
+
+      const distractors = [];
+      const usedRanks = new Set([target.rank]);
+      while (distractors.length < 3) {
+        const cand = sourceDistractors[Math.floor(Math.random() * sourceDistractors.length)];
+        if (!usedRanks.has(cand.rank)) {
+          usedRanks.add(cand.rank);
+          distractors.push(cand);
+        }
+      }
+
+      const options = [target, ...distractors].sort(() => Math.random() - 0.5);
+      currentQuizQuestion = { target, options };
+
+      // Render prompt
+      document.getElementById('quizWordRank').textContent = `#${target.rank} • Tier ${target.tier}`;
+      document.getElementById('quizWordPos').textContent = `${target.pos} • ${target.category}`;
+
+      const promptTextEl = document.getElementById('quizPromptText');
+      const promptSubEl = document.getElementById('quizPromptSub');
+      const audioRow = document.getElementById('quizAudioPromptContainer');
+
+      if (appState.quizMode === 'fr-en') {
+        promptTextEl.textContent = target.fr;
+        promptSubEl.textContent = 'Select the English translation';
+        audioRow.classList.remove('hidden');
+        setTimeout(() => speakText(target.spokenFr, 1.0), 150);
+      } else if (appState.quizMode === 'listen') {
+        promptTextEl.textContent = '🎧 Listen Carefully';
+        promptSubEl.textContent = 'Tap Play to hear the French word and choose its meaning';
+        audioRow.classList.remove('hidden');
+        setTimeout(() => speakText(target.spokenFr, 1.0), 150);
+      } else {
+        promptTextEl.textContent = target.en;
+        promptSubEl.textContent = 'Select the matching French word';
+        audioRow.classList.add('hidden');
+      }
+
+      // Render 4 options
+      const grid = document.getElementById('quizOptionsGrid');
+      grid.innerHTML = options.map((opt, idx) => {
+        const label = appState.quizMode === 'en-fr' ? opt.fr : opt.en;
+        return `
+          <button onclick="submitQuizAnswer(${idx})" id="quizOpt-${idx}" class="w-full p-4 rounded-2xl bg-white dark:bg-[#131b2e] border border-slate-200 dark:border-slate-800 text-left font-bold text-sm text-slate-800 dark:text-slate-100 hover:border-indigo-500 active:scale-[0.99] transition flex items-center justify-between shadow-sm">
+            <span>${label}</span>
+            <span class="w-6 h-6 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-400 text-xs flex items-center justify-center font-bold">${idx + 1}</span>
+          </button>
+        `;
+      }).join('');
+    }
+
+    function speakQuizWord(rate = 1.0) {
+      if (!currentQuizQuestion) return;
+      speakText(currentQuizQuestion.target.spokenFr, rate);
+    }
+
+    function submitQuizAnswer(idx) {
+      if (quizAnswered || !currentQuizQuestion) return;
+      quizAnswered = true;
+
+      const chosen = currentQuizQuestion.options[idx];
+      const target = currentQuizQuestion.target;
+      const isCorrect = chosen.rank === target.rank;
+
+      // Highlight options
+      currentQuizQuestion.options.forEach((opt, i) => {
+        const btn = document.getElementById(`quizOpt-${i}`);
+        if (!btn) return;
+        if (opt.rank === target.rank) {
+          btn.className = 'w-full p-4 rounded-2xl bg-emerald-500/15 border-2 border-emerald-500 text-left font-bold text-sm text-emerald-700 dark:text-emerald-300 flex items-center justify-between';
+        } else if (i === idx && !isCorrect) {
+          btn.className = 'w-full p-4 rounded-2xl bg-rose-500/15 border-2 border-rose-500 text-left font-bold text-sm text-rose-700 dark:text-rose-300 flex items-center justify-between';
+        } else {
+          btn.classList.add('opacity-50');
+        }
+      });
+
+      if (isCorrect) {
+        appState.quizCorrectCount += 1;
+        appState.quizStreak += 1;
+        appState.statusMap[target.rank] = 'mastered';
+      } else {
+        appState.quizStreak = 0;
+        appState.statusMap[target.rank] = 'learning';
+      }
+      saveState();
+
+      document.getElementById('quizScoreCorrect').textContent = appState.quizCorrectCount;
+      document.getElementById('quizCurrentStreak').textContent = appState.quizStreak;
+
+      // Reveal French word if in listening mode
+      if (appState.quizMode === 'listen') {
+        document.getElementById('quizPromptText').textContent = `${target.fr} — ${target.en}`;
+      }
+      speakText(target.spokenFr, 1.0);
+
+      // Show contextual sentence banner
+      const fb = document.getElementById('quizFeedbackBox');
+      document.getElementById('quizFeedbackSentenceFr').textContent = target.exFr;
+      document.getElementById('quizFeedbackSentenceEn').textContent = target.exEn;
+      fb.classList.remove('hidden');
+    }
+
+    function nextQuizQuestion() {
+      generateQuizQuestion();
+    }
+
+    // ============================================================================
+    // TAB 3: 1,000 WORDS SEARCHABLE DIRECTORY
+    // ============================================================================
+    let filteredDirectoryWords = [];
+    let directoryRenderLimit = 60;
+
+    function initDirectoryFilters() {
+      const catSelect = document.getElementById('dirCategorySelect');
+      catSelect.innerHTML = `<option value="all">All Categories</option>` +
+        CATEGORIES.map((c, idx) => `<option value="${idx}">${c}</option>`).join('');
+    }
+
+    function handleDirectorySearch() {
+      const q = document.getElementById('wordSearchInput').value.trim();
+      const clearBtn = document.getElementById('clearSearchBtn');
+      if (q.length > 0) clearBtn.classList.remove('hidden');
+      else clearBtn.classList.add('hidden');
+      resetAndRenderDirectory();
+    }
+
+    function clearDirectorySearch() {
+      document.getElementById('wordSearchInput').value = '';
+      document.getElementById('clearSearchBtn').classList.add('hidden');
+      resetAndRenderDirectory();
+    }
+
+    function resetAndRenderDirectory() {
+      directoryRenderLimit = 60;
+      const query = document.getElementById('wordSearchInput').value.trim().toLowerCase();
+      const tierVal = parseInt(document.getElementById('dirTierSelect').value, 10);
+      const catVal = document.getElementById('dirCategorySelect').value;
+      const statusVal = document.getElementById('dirStatusSelect').value;
+
+      filteredDirectoryWords = WORDS_DB.filter(w => {
+        if (tierVal !== 0 && w.tier !== tierVal) return false;
+        if (catVal !== 'all' && w.catIndex !== parseInt(catVal, 10)) return false;
+        const st = appState.statusMap[w.rank] || 'unseen';
+        if (statusVal !== 'all' && st !== statusVal) return false;
+
+        if (query) {
+          const rankMatch = `#${w.rank}` === query || `${w.rank}` === query;
+          const frMatch = w.fr.toLowerCase().includes(query);
+          const enMatch = w.en.toLowerCase().includes(query);
+          return rankMatch || frMatch || enMatch;
+        }
+        return true;
+      });
+
+      document.getElementById('dirCountLabel').textContent = `Showing ${filteredDirectoryWords.length} of 1,000 words`;
+      renderDirectoryItems();
+    }
+
+    function renderDirectoryItems() {
+      const container = document.getElementById('wordDirectoryList');
+      const loadMoreBtn = document.getElementById('loadMoreWordsBtn');
+      const slice = filteredDirectoryWords.slice(0, directoryRenderLimit);
+
+      if (slice.length === 0) {
+        container.innerHTML = `
+          <div class="p-8 text-center rounded-2xl bg-white dark:bg-[#131b2e] border border-slate-200 dark:border-slate-800">
+            <p class="font-bold text-sm">No matching words found</p>
+            <p class="text-xs text-slate-400 mt-1">Try clearing your search or switching filters.</p>
+          </div>
+        `;
+        loadMoreBtn.classList.add('hidden');
+        return;
+      }
+
+      container.innerHTML = slice.map(w => {
+        const st = appState.statusMap[w.rank] || 'unseen';
+        const statusBadge = st === 'mastered'
+          ? `<span class="px-2 py-0.5 rounded-md bg-emerald-500/15 text-emerald-500 text-[10px] font-bold">✓ Mastered</span>`
+          : st === 'learning'
+          ? `<span class="px-2 py-0.5 rounded-md bg-amber-500/15 text-amber-500 text-[10px] font-bold">⏳ Learning</span>`
+          : `<span class="px-2 py-0.5 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-400 text-[10px] font-semibold">New</span>`;
+
+        return `
+          <div class="rounded-2xl bg-white dark:bg-[#131b2e] border border-slate-200/80 dark:border-slate-800/80 p-3.5 shadow-sm transition">
+            <div class="flex items-center justify-between gap-2">
+              <div class="flex items-center gap-2.5 min-w-0 flex-1 cursor-pointer" onclick="toggleDirectorySentence(${w.rank})">
+                <span class="w-9 h-7 rounded-lg bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 text-[11px] font-extrabold flex items-center justify-center shrink-0">#${w.rank}</span>
+                <div class="min-w-0 flex-1">
+                  <div class="flex items-center gap-2">
+                    <h4 class="font-extrabold text-sm text-slate-900 dark:text-white truncate">${w.fr}</h4>
+                    <span class="text-[10px] text-slate-400 shrink-0">${w.pos}</span>
+                  </div>
+                  <p class="text-xs text-slate-500 dark:text-slate-400 truncate">${w.en}</p>
+                </div>
+              </div>
+
+              <!-- Audio & Mastery Buttons -->
+              <div class="flex items-center gap-1.5 shrink-0">
+                <button onclick="cycleWordStatus(${w.rank})" title="Toggle Mastery">${statusBadge}</button>
+                <button onclick="speakWordByRank(${w.rank}, 1.0)" title="Pronounce" class="p-2 rounded-xl bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 hover:bg-indigo-500/20 active:scale-95 transition">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.536 8.464a5 5 0 010 7.072M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+                  </svg>
+                </button>
+                <button onclick="speakWordByRank(${w.rank}, 0.62)" title="Slow Audio" class="p-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-xs active:scale-95 transition">🐢</button>
+              </div>
+            </div>
+
+            <!-- Expandable Example Sentence -->
+            <div id="dirEx-${w.rank}" class="hidden mt-2.5 pt-2.5 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between gap-2 text-xs">
+              <div>
+                <p class="font-semibold text-slate-800 dark:text-slate-200">${w.exFr}</p>
+                <p class="text-slate-400 mt-0.5">${w.exEn}</p>
+              </div>
+              <button onclick="speakText('${w.exFr.replace(/'/g, "\\'")}', 1.0)" class="px-2.5 py-1.5 rounded-lg bg-indigo-600 text-white text-[11px] font-bold shrink-0">▶ Phrase</button>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      if (filteredDirectoryWords.length > directoryRenderLimit) {
+        loadMoreBtn.classList.remove('hidden');
+        loadMoreBtn.textContent = `Show More (${filteredDirectoryWords.length - directoryRenderLimit} remaining)`;
+      } else {
+        loadMoreBtn.classList.add('hidden');
+      }
+    }
+
+    function toggleDirectorySentence(rank) {
+      const el = document.getElementById(`dirEx-${rank}`);
+      if (el) el.classList.toggle('hidden');
+    }
+
+    function cycleWordStatus(rank) {
+      const current = appState.statusMap[rank] || 'unseen';
+      const next = current === 'unseen' ? 'learning' : current === 'learning' ? 'mastered' : 'unseen';
+      if (next === 'unseen') delete appState.statusMap[rank];
+      else appState.statusMap[rank] = next;
+      saveState();
+      renderDirectoryItems();
+    }
+
+    function loadMoreDirectoryWords() {
+      directoryRenderLimit += 80;
+      renderDirectoryItems();
+    }
+
+    // ============================================================================
+    // TAB 4: PROGRESS DASHBOARD
+    // ============================================================================
+    function renderProgressDashboard() {
+      let mastered = 0;
+      let learning = 0;
+
+      WORDS_DB.forEach(w => {
+        const st = appState.statusMap[w.rank];
+        if (st === 'mastered') mastered++;
+        else if (st === 'learning') learning++;
+      });
+
+      const unseen = 1000 - mastered - learning;
+      const pct = ((mastered / 1000) * 100).toFixed(1);
+
+      document.getElementById('statMasteredCount').textContent = mastered;
+      document.getElementById('statStreakDays').textContent = `${appState.streak} ${appState.streak === 1 ? 'day' : 'days'}`;
+      document.getElementById('statPercentText').textContent = `${pct}% Mastered`;
+
+      document.getElementById('statMasteredBox').textContent = mastered;
+      document.getElementById('statLearningBox').textContent = learning;
+      document.getElementById('statUnseenBox').textContent = unseen;
+
+      document.getElementById('overallMasteredBar').style.width = `${(mastered / 1000) * 100}%`;
+      document.getElementById('overallLearningBar').style.width = `${(learning / 1000) * 100}%`;
+
+      // Render 10 Tier Breakdowns
+      const tierContainer = document.getElementById('tierBreakdownList');
+      let html = '';
+      for (let t = 1; t <= 10; t++) {
+        const startRank = (t - 1) * 100 + 1;
+        const endRank = t * 100;
+        let tMastered = 0;
+        let tLearning = 0;
+        for (let r = startRank; r <= endRank; r++) {
+          if (appState.statusMap[r] === 'mastered') tMastered++;
+          else if (appState.statusMap[r] === 'learning') tLearning++;
+        }
+
+        html += `
+          <div class="space-y-1">
+            <div class="flex items-center justify-between text-xs">
+              <button onclick="jumpToTierStudy(${t})" class="font-bold text-slate-800 dark:text-slate-200 hover:text-indigo-500 flex items-center gap-1.5">
+                <span>Tier ${t}: Words ${startRank}–${endRank}</span>
+                <span class="text-[10px] text-indigo-500 font-semibold">Study →</span>
+              </button>
+              <span class="text-slate-500 dark:text-slate-400 font-semibold">${tMastered}/100 mastered</span>
+            </div>
+            <div class="w-full h-2 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden flex">
+              <div class="h-full bg-emerald-500 transition-all" style="width: ${tMastered}%"></div>
+              <div class="h-full bg-amber-400 transition-all" style="width: ${tLearning}%"></div>
+            </div>
+          </div>
+        `;
+      }
+      tierContainer.innerHTML = html;
+    }
+
+    function jumpToTierStudy(tierId) {
+      selectTier(tierId);
+      switchTab('study');
+    }
+
+    // ============================================================================
+    // NAVIGATION, MODALS & THEME
+    // ============================================================================
+    function switchTab(tabName) {
+      ['study', 'quiz', 'words', 'progress'].forEach(t => {
+        const sec = document.getElementById(`tab-${t}`);
+        const nav = document.getElementById(`navBtn-${t}`);
+        if (t === tabName) {
+          sec.classList.remove('hidden');
+          nav.className = 'flex flex-col items-center justify-center py-1 rounded-xl text-indigo-600 dark:text-indigo-400 transition';
+        } else {
+          sec.classList.add('hidden');
+          nav.className = 'flex flex-col items-center justify-center py-1 rounded-xl text-slate-400 dark:text-slate-500 transition';
+        }
+      });
+
+      if (tabName === 'quiz' && !currentQuizQuestion) {
+        document.getElementById('quizTierSelect').value = appState.quizTier;
+        updateQuizModeUI();
+        generateQuizQuestion();
+      } else if (tabName === 'words') {
+        resetAndRenderDirectory();
+      } else if (tabName === 'progress') {
+        renderProgressDashboard();
+      } else if (tabName === 'study') {
+        buildStudyDeck();
+        renderStudyCard();
+      }
+    }
+
+    function openInstallModal() {
+      const m = document.getElementById('installModal');
+      m.classList.remove('hidden');
+      m.classList.add('flex');
+    }
+
+    function closeInstallModal() {
+      const m = document.getElementById('installModal');
+      m.classList.add('hidden');
+      m.classList.remove('flex');
+    }
+
+    function openFilterDrawer() {
+      const grid = document.getElementById('categoryFilterGrid');
+      const allBtnActive = appState.studyCategoryFilter === 'all';
+      let html = `
+        <button onclick="selectStudyCategory('all')" class="col-span-2 p-2.5 rounded-xl text-xs font-bold border text-left ${
+          allBtnActive
+            ? 'bg-indigo-600 text-white border-indigo-600'
+            : 'bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700'
+        }">All Categories (1,000 Words)</button>
+      `;
+
+      CATEGORIES.forEach((cat, idx) => {
+        const active = appState.studyCategoryFilter === String(idx);
+        html += `
+          <button onclick="selectStudyCategory('${idx}')" class="p-2.5 rounded-xl text-xs font-semibold border text-left truncate ${
+            active
+              ? 'bg-indigo-600 text-white border-indigo-600'
+              : 'bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700'
+          }">${cat}</button>
+        `;
+      });
+
+      grid.innerHTML = html;
+      const m = document.getElementById('filterModal');
+      m.classList.remove('hidden');
+      m.classList.add('flex');
+    }
+
+    function selectStudyCategory(catVal) {
+      appState.studyCategoryFilter = catVal;
+      appState.currentCardIdx = 0;
+      saveState();
+      updateHeaderSubtitle();
+      buildStudyDeck();
+      renderStudyCard();
+      closeFilterDrawer();
+    }
+
+    function closeFilterDrawer() {
+      const m = document.getElementById('filterModal');
+      m.classList.add('hidden');
+      m.classList.remove('flex');
+    }
+
+    function openResetConfirmModal() {
+      const m = document.getElementById('resetModal');
+      m.classList.remove('hidden');
+      m.classList.add('flex');
+    }
+
+    function closeResetConfirmModal() {
+      const m = document.getElementById('resetModal');
+      m.classList.add('hidden');
+      m.classList.remove('flex');
+    }
+
+    function confirmResetProgress() {
+      appState.statusMap = {};
+      appState.quizCorrectCount = 0;
+      appState.quizStreak = 0;
+      appState.currentCardIdx = 0;
+      saveState();
+      closeResetConfirmModal();
+      renderProgressDashboard();
+      buildStudyDeck();
+      showToast('Progress Reset');
+    }
+
+    function toggleTheme() {
+      const html = document.documentElement;
+      html.classList.toggle('dark');
+      const isDark = html.classList.contains('dark');
+      localStorage.setItem('le_mille_theme', isDark ? 'dark' : 'light');
+    }
+
+    let toastTimer = null;
+    function showToast(msg) {
+      const banner = document.getElementById('toastBanner');
+      document.getElementById('toastText').textContent = msg;
+      banner.classList.remove('opacity-0', '-translate-y-2');
+      banner.classList.add('opacity-100', 'translate-y-0');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => {
+        banner.classList.add('opacity-0', '-translate-y-2');
+        banner.classList.remove('opacity-100', 'translate-y-0');
+      }, 1800);
+    }
+
+    // Generate dynamic iPhone Home Screen Apple Touch Icon via Canvas
+    function generateAppleTouchIcon() {
+      try {
+        const canvas = document.createElement('canvas');
+        canvas.width = 180;
+        canvas.height = 180;
+        const ctx = canvas.getContext('2d');
+
+        // Background gradient
+        const grad = ctx.createLinearGradient(0, 0, 180, 180);
+        grad.addColorStop(0, '#1e3a8a');
+        grad.addColorStop(0.5, '#4f46e5');
+        grad.addColorStop(1, '#e11d48');
+        ctx.fillStyle = grad;
+        ctx.fillRect(0, 0, 180, 180);
+
+        // Text
+        ctx.fillStyle = '#ffffff';
+        ctx.font = 'bold 64px -apple-system, BlinkMacSystemFont, sans-serif';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText('FR', 90, 78);
+
+        ctx.font = 'bold 26px -apple-system, BlinkMacSystemFont, sans-serif';
+        ctx.fillStyle = 'rgba(255,255,255,0.9)';
+        ctx.fillText('1000', 90, 132);
+
+        const link = document.createElement('link');
+        link.rel = 'apple-touch-icon';
+        link.href = canvas.toDataURL('image/png');
+        document.head.appendChild(link);
+      } catch (e) {}
+    }
+
+    // Desktop keyboard support for quick testing
+    window.addEventListener('keydown', (e) => {
+      if (document.activeElement && document.activeElement.tagName === 'INPUT') return;
+      if (!document.getElementById('tab-study').classList.contains('hidden')) {
+        if (e.key === 'ArrowRight') nextCard();
+        else if (e.key === 'ArrowLeft') prevCard();
+        else if (e.key === ' ' || e.key === 'Enter') {
+          e.preventDefault();
+          handleCardClick();
+        }
+      }
+    });
+
+    // ============================================================================
+    // INITIALIZE APP ON LOAD
+    // ============================================================================
+    window.onload = function () {
+      const savedTheme = localStorage.getItem('le_mille_theme');
+      if (savedTheme === 'light') {
+        document.documentElement.classList.remove('dark');
+      }
+
+      loadState();
+      generateAppleTouchIcon();
+      initSpeechVoices();
+      initDirectoryFilters();
+      initTouchGestures();
+
+      renderTierPills();
+      updateStatusButtonsUI();
+      updateAutoPlayUI();
+      updateHeaderSubtitle();
+      buildStudyDeck();
+      renderStudyCard();
+    };
+  </script>
+</body>
+</html>
