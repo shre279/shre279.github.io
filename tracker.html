@@ -7,11 +7,11 @@
   <!-- iPhone & iOS Standalone Web App (PWA) Meta Tags -->
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <meta name="apple-mobile-web-app-title" content="Life OS" />
+  <meta name="apple-mobile-web-app-title" content="SHREYANSH" />
   <meta name="mobile-web-app-capable" content="yes" />
-  <meta name="theme-color" content="#0C0E11" />
+  <meta name="theme-color" content="#0B0D10" />
 
-  <title>Life OS — Habits, Plan & Level Status</title>
+  <title>SHREYANSH WILL RULE</title>
 
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -23,19 +23,6 @@
           fontFamily: {
             sans: ['-apple-system', 'BlinkMacSystemFont', 'Inter', 'SF Pro Display', 'Segoe UI', 'Roboto', 'sans-serif'],
             mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'monospace']
-          },
-          colors: {
-            carbon: {
-              bg: '#0C0E11',
-              card: '#15191F',
-              elevated: '#1E242D',
-              border: '#2B313B',
-              steel: '#9AA4B2',
-              amber: '#E87A35',
-              gold: '#F59E0B',
-              emerald: '#26A641',
-              bright: '#39D353'
-            }
           }
         }
       }
@@ -64,11 +51,11 @@
 
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Inter', sans-serif;
-      background-color: #0C0E11;
+      background-color: #0B0D10;
       color: #F3F5F8;
       overscroll-behavior-y: none;
       padding-top: var(--sat);
-      padding-bottom: calc(var(--sab) + 84px);
+      padding-bottom: calc(var(--sab) + 92px);
     }
 
     .tabular-nums {
@@ -88,80 +75,116 @@
       scrollbar-width: none;
     }
 
-    /* Architectural Section Card */
-    .section-block {
-      background-color: #15191F;
-      border: 1.5px solid #2B313B;
-      border-radius: 20px;
+    /* Bold Architectural Section Frame */
+    .section-card {
+      background-color: #13171D;
+      border: 2px solid #28303D;
+      border-radius: 22px;
       overflow: hidden;
-      box-shadow: 0 14px 32px -10px rgba(0, 0, 0, 0.65);
+      box-shadow: 0 18px 38px -12px rgba(0, 0, 0, 0.75);
     }
 
-    /* Distinct Section Header Bar */
-    .section-header-bar {
-      background-color: #1B2028;
-      border-bottom: 1.5px solid #2B313B;
-      padding: 14px 18px;
+    /* Distinct Non-Repeating Section Top Bars & Header Tints */
+    .sec-emerald {
+      border-top: 6px solid #39D353;
+    }
+    .sec-emerald-head {
+      background: linear-gradient(90deg, rgba(57, 211, 83, 0.14) 0%, rgba(19, 23, 29, 0.95) 100%);
+      border-bottom: 2px solid #28303D;
+    }
+
+    .sec-amber {
+      border-top: 6px solid #F0883E;
+    }
+    .sec-amber-head {
+      background: linear-gradient(90deg, rgba(240, 136, 62, 0.15) 0%, rgba(19, 23, 29, 0.95) 100%);
+      border-bottom: 2px solid #28303D;
+    }
+
+    .sec-cyan {
+      border-top: 6px solid #38BDF8;
+    }
+    .sec-cyan-head {
+      background: linear-gradient(90deg, rgba(56, 189, 248, 0.15) 0%, rgba(19, 23, 29, 0.95) 100%);
+      border-bottom: 2px solid #28303D;
+    }
+
+    .sec-coral {
+      border-top: 6px solid #F85149;
+    }
+    .sec-coral-head {
+      background: linear-gradient(90deg, rgba(248, 81, 73, 0.15) 0%, rgba(19, 23, 29, 0.95) 100%);
+      border-bottom: 2px solid #28303D;
+    }
+
+    .sec-gold {
+      border-top: 6px solid #E3B341;
+    }
+    .sec-gold-head {
+      background: linear-gradient(90deg, rgba(227, 179, 65, 0.16) 0%, rgba(19, 23, 29, 0.95) 100%);
+      border-bottom: 2px solid #28303D;
     }
 
     /* Check Pop Animation */
     @keyframes popCheck {
-      0% { transform: scale(0.86); }
-      50% { transform: scale(1.1); }
+      0% { transform: scale(0.85); }
+      50% { transform: scale(1.12); }
       100% { transform: scale(1); }
     }
     .animate-pop {
       animation: popCheck 0.22s cubic-bezier(0.16, 1, 0.3, 1);
     }
-
-    /* GitHub Heatmap 7-row Matrix */
-    .gh-grid {
-      display: grid;
-      grid-template-rows: repeat(7, minmax(0, 1fr));
-      grid-auto-flow: column;
-      gap: 4px;
-    }
   </style>
 </head>
-<body class="bg-[#0C0E11] text-[#F3F5F8] min-h-screen selection:bg-[#E87A35] selection:text-black">
+<body class="bg-[#0B0D10] text-[#F3F5F8] min-h-screen selection:bg-[#E3B341] selection:text-black">
 
   <!-- =====================================================================
-       STICKY TOP STATUS BAR
+       STICKY TOP HEADER: "SHREYANSH WILL RULE" + SUMMARY STRIP
        ===================================================================== -->
-  <header class="sticky top-0 z-40 ios-glass bg-[#0C0E11]/90 border-b-[1.5px] border-[#2B313B] px-4 py-3">
-    <div class="max-w-lg mx-auto flex items-center justify-between gap-3">
+  <header class="sticky top-0 z-40 ios-glass bg-[#0B0D10]/95 border-b-2 border-[#28303D] px-3.5 pt-3 pb-2.5">
+    <div class="max-w-lg mx-auto space-y-2.5">
       
-      <!-- Left: Level Badge + XP Progress -->
-      <button onclick="scrollToSection('sec-level')" class="flex items-center gap-3 text-left active:opacity-80 transition">
-        <div class="px-3 py-1.5 rounded-xl bg-[#1E242D] border-[1.5px] border-[#E87A35] flex items-center gap-1.5">
-          <span class="text-xs font-extrabold uppercase tracking-wider text-[#E87A35]">LVL</span>
-          <span id="topLevelNum" class="text-xl font-black text-white tabular-nums leading-none">1</span>
+      <!-- Top Row: Title + Backup + Settings -->
+      <div class="flex items-center justify-between gap-2">
+        <div class="flex items-center gap-2 min-w-0">
+          <span class="w-2.5 h-6 rounded-sm bg-[#E3B341] shrink-0"></span>
+          <h1 class="text-[20px] sm:text-[22px] font-black tracking-tight uppercase text-white truncate">
+            SHREYANSH WILL RULE
+          </h1>
         </div>
-        <div>
-          <div class="flex items-center gap-2">
-            <span id="topRankTitle" class="text-sm font-extrabold uppercase tracking-wide text-[#F3F5F8]">I. Initiate</span>
-          </div>
-          <div class="flex items-center gap-2 mt-1">
-            <div class="w-24 h-2 bg-[#1E242D] rounded-full overflow-hidden border border-[#2B313B]">
-              <div id="topXpBar" class="h-full bg-[#E87A35] transition-all duration-300" style="width: 0%"></div>
-            </div>
-            <span id="topXpText" class="text-xs font-mono font-bold text-[#9AA4B2] tabular-nums">0 / 350 XP</span>
-          </div>
-        </div>
-      </button>
 
-      <!-- Right: Streak Flame + Settings -->
-      <div class="flex items-center gap-2">
-        <button onclick="scrollToSection('sec-habits')" class="px-3 py-1.5 rounded-xl bg-[#1E242D] border-[1.5px] border-[#2B313B] flex items-center gap-1.5 active:scale-95 transition">
-          <span class="text-base">🔥</span>
-          <span id="topStreakNum" class="text-lg font-black text-[#F59E0B] tabular-nums leading-none">0d</span>
+        <div class="flex items-center gap-1.5 shrink-0">
+          <!-- Vault Backup Button -->
+          <button onclick="openBackupModal()" class="px-3 py-1.5 rounded-xl bg-[#1A2029] hover:bg-[#242C38] border border-[#28303D] flex items-center gap-1.5 active:scale-95 transition">
+            <span id="vaultDot" class="w-2 h-2 rounded-full bg-[#39D353]"></span>
+            <span class="text-xs font-extrabold uppercase tracking-wider text-white">Backup</span>
+          </button>
+
+          <!-- Settings Button -->
+          <button onclick="openSettingsModal()" title="Settings" class="p-2 rounded-xl bg-[#1A2029] hover:bg-[#242C38] border border-[#28303D] text-[#9AA4B2] hover:text-white active:scale-95 transition">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- High-Contrast Summary Strip: LVL | STREAK | TODAY (X/Y) -->
+      <div class="grid grid-cols-3 gap-2">
+        <button onclick="scrollToSection('sec-level')" class="rounded-xl bg-[#13171D] border border-[#28303D] px-3 py-2 flex items-center justify-between active:scale-95 transition">
+          <span class="text-[11px] font-black uppercase tracking-wider text-[#E3B341]">LVL</span>
+          <span id="hdrLevelVal" class="text-xl font-black text-white tabular-nums leading-none">1</span>
         </button>
 
-        <button onclick="openSettingsModal()" title="Settings & Backup" class="p-2.5 rounded-xl bg-[#1E242D] border-[1.5px] border-[#2B313B] text-[#9AA4B2] hover:text-white active:scale-95 transition">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-            <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-          </svg>
+        <button onclick="scrollToSection('sec-calendar')" class="rounded-xl bg-[#13171D] border border-[#28303D] px-3 py-2 flex items-center justify-between active:scale-95 transition">
+          <span class="text-[11px] font-black uppercase tracking-wider text-[#F0883E]">STREAK</span>
+          <span id="hdrStreakVal" class="text-xl font-black text-[#F0883E] tabular-nums leading-none">0d</span>
+        </button>
+
+        <button onclick="scrollToSection('sec-habits')" class="rounded-xl bg-[#13171D] border border-[#28303D] px-3 py-2 flex items-center justify-between active:scale-95 transition">
+          <span class="text-[11px] font-black uppercase tracking-wider text-[#39D353]">TODAY</span>
+          <span id="hdrTodayVal" class="text-xl font-black text-[#39D353] tabular-nums leading-none">0/3</span>
         </button>
       </div>
 
@@ -169,32 +192,35 @@
   </header>
 
   <!-- =====================================================================
-       MAIN CONTENT CONTAINER
+       MAIN CONTENT CONTAINER (5 DISTINCT COLOR-CODED SECTIONS)
        ===================================================================== -->
   <main class="max-w-lg mx-auto px-3.5 pt-5 space-y-8">
 
     <!-- ===================================================================
-         TOP BLOCK: DAILY CHECKLIST & HEATMAP
+         SECTION 00 // CORE HABITS (BOTANICAL EMERALD #39D353)
          =================================================================== -->
-    <section id="sec-habits" class="scroll-mt-20 section-block border-t-4 border-t-[#39D353]">
+    <section id="sec-habits" class="scroll-mt-32 section-card sec-emerald">
       
-      <!-- Section Header Bar -->
-      <div class="section-header-bar flex items-center justify-between">
+      <!-- Section Header -->
+      <div class="sec-emerald-head px-4 py-3.5 flex items-center justify-between gap-2">
         <div class="flex items-center gap-2.5">
-          <span class="w-3 h-3 rounded-sm bg-[#39D353] inline-block"></span>
-          <h2 class="text-[19px] font-black uppercase tracking-wider text-white">Daily Checklist</h2>
+          <span class="w-3.5 h-3.5 rounded-sm bg-[#39D353] shrink-0"></span>
+          <h2 class="text-[20px] font-black uppercase tracking-wider text-white">Core Habits</h2>
         </div>
+
         <div class="flex items-center gap-2">
-          <span id="perfectBadge" class="hidden px-2.5 py-1 rounded-lg bg-[#0E4429] border border-[#39D353] text-xs font-black text-[#39D353] tracking-wider">★ +120 XP</span>
-          <span id="dailyCountText" class="text-xl font-black text-[#39D353] tabular-nums">0/3</span>
+          <span id="habitHeaderRatio" class="text-xl font-black text-[#39D353] tabular-nums">0/3</span>
+          <button onclick="toggleEditHabitsMode()" id="editHabitsBtn" class="px-3 py-1.5 rounded-xl bg-[#1A2029] border border-[#39D353]/50 text-xs font-extrabold uppercase tracking-wider text-[#39D353] active:scale-95 transition">
+            + Add / Edit
+          </button>
         </div>
       </div>
 
       <div class="p-4 space-y-4">
         
-        <!-- Date Selector Bar -->
-        <div class="flex items-center justify-between bg-[#0C0E11] border-[1.5px] border-[#2B313B] rounded-xl px-3 py-2.5">
-          <button onclick="shiftSelectedDate(-1)" class="p-2 rounded-lg bg-[#1E242D] text-white active:scale-90 transition" aria-label="Previous Day">
+        <!-- Active Day Selector Strip -->
+        <div class="flex items-center justify-between bg-[#0B0D10] border-2 border-[#28303D] rounded-xl px-3 py-2.5">
+          <button onclick="shiftSelectedDate(-1)" class="p-2 rounded-lg bg-[#1A2029] text-white active:scale-90 transition" aria-label="Previous Day">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.6" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
             </svg>
@@ -202,280 +228,193 @@
 
           <div class="text-center">
             <div class="flex items-center justify-center gap-2">
-              <span id="activeDateTitle" class="text-lg font-extrabold text-white">Today</span>
-              <button id="resetTodayBtn" onclick="selectToday()" class="hidden px-2 py-0.5 rounded bg-[#E87A35] text-black text-xs font-black uppercase">
+              <span id="activeDateTitle" class="text-lg font-black text-white">Today</span>
+              <button id="resetTodayBtn" onclick="selectToday()" class="hidden px-2 py-0.5 rounded bg-[#39D353] text-black text-xs font-black uppercase">
                 Today
               </button>
             </div>
-            <p id="activeDateFormatted" class="text-sm font-semibold text-[#9AA4B2]">Tuesday, Oct 27</p>
+            <p id="activeDateFormatted" class="text-sm font-bold text-[#9AA4B2]">Tuesday, Oct 27</p>
           </div>
 
-          <button onclick="shiftSelectedDate(1)" class="p-2 rounded-lg bg-[#1E242D] text-white active:scale-90 transition" aria-label="Next Day">
+          <button onclick="shiftSelectedDate(1)" class="p-2 rounded-lg bg-[#1A2029] text-white active:scale-90 transition" aria-label="Next Day">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.6" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
             </svg>
           </button>
         </div>
 
-        <!-- THE 3 DAILY HABITS (BIG 20PX TEXT, MINIMAL SUBTEXT) -->
-        <div class="space-y-3">
-          
-          <!-- 1. FRENCH DAILY -->
-          <div id="habitRow-french" class="rounded-2xl bg-[#0C0E11] border-[1.5px] border-[#2B313B] p-4 flex items-center justify-between gap-3 transition-all">
-            <div onclick="toggleHabit('french')" class="flex items-center gap-3.5 flex-1 cursor-pointer">
-              <button id="habitBox-french" class="w-9 h-9 rounded-xl border-2 border-[#9AA4B2] flex items-center justify-center shrink-0 transition-all">
-                <svg class="w-6 h-6 text-black hidden" fill="none" stroke="currentColor" stroke-width="3.5" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-                </svg>
-              </button>
-              <span id="habitLabel-french" class="text-[20px] font-extrabold text-white leading-tight">1. French Daily</span>
-            </div>
-
-            <a id="frenchAppBtn" href="index.html" class="shrink-0 px-3.5 py-2 rounded-xl bg-[#1E242D] hover:bg-[#2B313B] border border-[#2B313B] text-sm font-bold text-[#F3F5F8] flex items-center gap-1.5 active:scale-95 transition">
-              <span>Cards</span>
-              <span>↗</span>
-            </a>
+        <!-- Add / Edit Core Habits Panel (Toggled via + Add / Edit) -->
+        <div id="habitManagerPanel" class="hidden rounded-2xl bg-[#0B0D10] border-2 border-[#39D353] p-3.5 space-y-3">
+          <div class="flex items-center justify-between">
+            <span class="text-sm font-black uppercase tracking-wider text-[#39D353]">Add or Manage Core Habits</span>
+            <button onclick="toggleEditHabitsMode()" class="text-xs font-extrabold uppercase text-[#9AA4B2] px-2 py-1 rounded bg-[#1A2029]">Done</button>
           </div>
-
-          <!-- 2. GYM / YOGA / WALK -->
-          <div id="habitRow-movement" class="rounded-2xl bg-[#0C0E11] border-[1.5px] border-[#2B313B] p-4 flex flex-col gap-3 transition-all">
-            <div class="flex items-center justify-between gap-3">
-              <div onclick="toggleHabit('movement')" class="flex items-center gap-3.5 flex-1 cursor-pointer">
-                <button id="habitBox-movement" class="w-9 h-9 rounded-xl border-2 border-[#9AA4B2] flex items-center justify-center shrink-0 transition-all">
-                  <svg class="w-6 h-6 text-black hidden" fill="none" stroke="currentColor" stroke-width="3.5" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-                  </svg>
-                </button>
-                <span id="habitLabel-movement" class="text-[20px] font-extrabold text-white leading-tight">2. Gym / Yoga / Walk</span>
-              </div>
-            </div>
-
-            <!-- Big Activity Selector Pills -->
-            <div class="grid grid-cols-3 gap-2 pl-12">
-              <button onclick="toggleMoveTag('Gym')" id="tagBtn-Gym" class="py-1.5 rounded-xl text-sm font-bold border border-[#2B313B] bg-[#15191F] text-[#9AA4B2] transition">Gym</button>
-              <button onclick="toggleMoveTag('Yoga')" id="tagBtn-Yoga" class="py-1.5 rounded-xl text-sm font-bold border border-[#2B313B] bg-[#15191F] text-[#9AA4B2] transition">Yoga</button>
-              <button onclick="toggleMoveTag('Walk')" id="tagBtn-Walk" class="py-1.5 rounded-xl text-sm font-bold border border-[#2B313B] bg-[#15191F] text-[#9AA4B2] transition">Walk</button>
-            </div>
-          </div>
-
-          <!-- 3. NO SELF HARM -->
-          <div id="habitRow-clean" class="rounded-2xl bg-[#0C0E11] border-[1.5px] border-[#2B313B] p-4 flex items-center justify-between gap-3 transition-all">
-            <div onclick="toggleHabit('clean')" class="flex items-center gap-3.5 flex-1 cursor-pointer">
-              <button id="habitBox-clean" class="w-9 h-9 rounded-xl border-2 border-[#9AA4B2] flex items-center justify-center shrink-0 transition-all">
-                <svg class="w-6 h-6 text-black hidden" fill="none" stroke="currentColor" stroke-width="3.5" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-                </svg>
-              </button>
-              <span id="habitLabel-clean" class="text-[20px] font-extrabold text-white leading-tight">3. No Self Harm</span>
-            </div>
-
-            <div class="shrink-0 px-3 py-1.5 rounded-xl bg-[#15191F] border border-[#2B313B] text-right">
-              <span id="cleanStreakPill" class="text-base font-black text-[#39D353] tabular-nums">0d</span>
-            </div>
-          </div>
-
+          <form onsubmit="addNewCoreHabit(event)" class="flex gap-2">
+            <input
+              id="newHabitInput"
+              type="text"
+              placeholder="+ Add Core Habit (e.g. Read 20m)..."
+              class="flex-1 bg-[#13171D] border-2 border-[#28303D] rounded-xl px-3.5 py-2.5 text-[17px] font-bold text-white placeholder-[#9AA4B2]/60 focus:outline-none focus:border-[#39D353]"
+            />
+            <button type="submit" class="px-4 py-2.5 rounded-xl bg-[#39D353] text-black font-black text-base shrink-0 active:scale-95 transition">
+              + Add
+            </button>
+          </form>
         </div>
 
-        <!-- GITHUB CONTRIBUTIONS HEATMAP -->
-        <div class="pt-3 border-t-[1.5px] border-[#2B313B]">
-          <div class="flex items-center justify-between mb-3">
-            <span class="text-sm font-extrabold uppercase tracking-wider text-[#9AA4B2]">Consistency Heatmap</span>
-            <div class="flex items-center bg-[#0C0E11] p-1 rounded-xl border border-[#2B313B] text-xs font-bold">
-              <button onclick="setHeatmapMode('github')" id="hmTab-github" class="px-3 py-1 rounded-lg bg-[#1E242D] text-white transition">18 Weeks</button>
-              <button onclick="setHeatmapMode('month')" id="hmTab-month" class="px-3 py-1 rounded-lg text-[#9AA4B2] transition">Month</button>
-            </div>
-          </div>
-
-          <!-- View 1: GitHub 18-Week Matrix -->
-          <div id="hmGithubView" class="overflow-x-auto no-scrollbar pb-1">
-            <div class="min-w-max">
-              <div id="ghMonthsRow" class="flex text-xs font-mono font-bold text-[#9AA4B2] mb-1.5 pl-8"></div>
-              <div class="flex items-start gap-2">
-                <div class="grid grid-rows-7 gap-[4px] text-[10px] font-mono font-bold text-[#9AA4B2] pr-1 leading-[14px]">
-                  <span>M</span><span></span><span>W</span><span></span><span>F</span><span></span><span>S</span>
-                </div>
-                <div id="ghGridCells" class="gh-grid"></div>
-              </div>
-            </div>
-          </div>
-
-          <!-- View 2: Monthly Heatmap Squares -->
-          <div id="hmMonthView" class="hidden">
-            <div class="flex items-center justify-between mb-2.5">
-              <button onclick="shiftHmMonth(-1)" class="px-3 py-1.5 rounded-xl bg-[#0C0E11] border border-[#2B313B] text-sm font-bold">‹ Prev</button>
-              <span id="hmMonthLabel" class="text-base font-extrabold text-white">October 2026</span>
-              <button onclick="shiftHmMonth(1)" class="px-3 py-1.5 rounded-xl bg-[#0C0E11] border border-[#2B313B] text-sm font-bold">Next ›</button>
-            </div>
-            <div class="grid grid-cols-7 gap-1.5 text-center text-xs font-bold text-[#9AA4B2] mb-1.5">
-              <span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span><span>S</span>
-            </div>
-            <div id="hmMonthCells" class="grid grid-cols-7 gap-1.5"></div>
-          </div>
-
-          <!-- Legend -->
-          <div class="flex items-center justify-between text-xs font-semibold text-[#9AA4B2] mt-3 pt-2.5 border-t border-[#2B313B]/60">
-            <span id="hmSelectedStat">Tap any square to log date</span>
-            <div class="flex items-center gap-1.5">
-              <span>0</span>
-              <span class="w-3.5 h-3.5 rounded-[3px] bg-[#0C0E11] border border-[#2B313B] inline-block"></span>
-              <span class="w-3.5 h-3.5 rounded-[3px] bg-[#0E4429] inline-block"></span>
-              <span class="w-3.5 h-3.5 rounded-[3px] bg-[#006D32] inline-block"></span>
-              <span class="w-3.5 h-3.5 rounded-[3px] bg-[#39D353] inline-block"></span>
-              <span>3/3</span>
-            </div>
-          </div>
-        </div>
+        <!-- Dynamic Core Habits List -->
+        <div id="coreHabitsContainer" class="space-y-3"></div>
 
       </div>
     </section>
 
     <!-- ===================================================================
-         SECTION 01 // RUNNING TASKS
+         SECTION 01 // RUNNING TASKS (BURNISHED AMBER #F0883E)
          =================================================================== -->
-    <section id="sec-tasks" class="scroll-mt-20 section-block border-t-4 border-t-[#E87A35]">
+    <section id="sec-tasks" class="scroll-mt-32 section-card sec-amber">
       
-      <!-- Architectural Header -->
-      <div class="section-header-bar flex items-center justify-between">
+      <!-- Section Header -->
+      <div class="sec-amber-head px-4 py-3.5 flex items-center justify-between gap-2">
         <div class="flex items-center gap-2.5">
-          <span class="px-2 py-0.5 rounded bg-[#E87A35] text-black font-mono text-xs font-black">01</span>
-          <h2 class="text-[19px] font-black uppercase tracking-wider text-white">Running Tasks</h2>
+          <span class="px-2 py-0.5 rounded bg-[#F0883E] text-black font-mono text-xs font-black">01</span>
+          <h2 class="text-[20px] font-black uppercase tracking-wider text-white">Running Tasks</h2>
         </div>
-        <span id="tasksCountPill" class="text-base font-extrabold text-[#9AA4B2] tabular-nums">0 Open</span>
+
+        <div class="flex items-center gap-1 bg-[#0B0D10] p-1 rounded-xl border border-[#28303D]">
+          <button onclick="setTaskFilter('active')" id="tf-active" class="px-2.5 py-1 rounded-lg text-xs font-black transition">Active</button>
+          <button onclick="setTaskFilter('done')" id="tf-done" class="px-2.5 py-1 rounded-lg text-xs font-black transition">Done</button>
+          <button onclick="setTaskFilter('all')" id="tf-all" class="px-2.5 py-1 rounded-lg text-xs font-black transition">All</button>
+        </div>
       </div>
 
       <div class="p-4 space-y-4">
-        <!-- Add Task Form (17px input) -->
+        <!-- Add Task Input -->
         <form onsubmit="addRunningTask(event)" class="flex gap-2">
           <input
             id="taskInput"
             type="text"
-            placeholder="New task..."
-            class="flex-1 bg-[#0C0E11] border-[1.5px] border-[#2B313B] rounded-xl px-4 py-3 text-[17px] font-medium text-white placeholder-[#9AA4B2]/60 focus:outline-none focus:border-[#E87A35]"
+            placeholder="Add task..."
+            class="flex-1 bg-[#0B0D10] border-2 border-[#28303D] rounded-xl px-4 py-3 text-[18px] font-semibold text-white placeholder-[#9AA4B2]/60 focus:outline-none focus:border-[#F0883E]"
           />
-          <button type="submit" class="px-5 py-3 rounded-xl bg-[#E87A35] hover:bg-[#f08844] text-black font-black text-base active:scale-95 transition shrink-0">
+          <button type="submit" class="px-5 py-3 rounded-xl bg-[#F0883E] text-black font-black text-base active:scale-95 transition shrink-0">
             Add
           </button>
         </form>
 
-        <!-- Active Tasks List -->
-        <div id="activeTasksList" class="space-y-2.5"></div>
+        <!-- Tasks List -->
+        <div id="runningTasksList" class="space-y-2.5"></div>
 
-        <!-- Collapsible Completed Drawer -->
-        <div id="completedTasksWrap" class="hidden pt-2 border-t border-[#2B313B]">
-          <div class="flex items-center justify-between mb-2">
-            <button onclick="toggleCompletedDrawer()" class="text-sm font-bold text-[#9AA4B2] flex items-center gap-1.5 py-1">
-              <span id="completedArrow">▸</span>
-              <span id="completedCountLabel">Completed (0)</span>
-            </button>
-            <button onclick="clearCompletedTasks()" class="text-xs font-bold uppercase tracking-wider text-[#E87A35] px-2 py-1 rounded hover:bg-[#1E242D]">
-              Clear Done
-            </button>
-          </div>
-          <div id="completedTasksList" class="hidden space-y-2"></div>
+        <!-- Footer Bar: Open Counter & Clear Done -->
+        <div class="flex items-center justify-between pt-2 border-t border-[#28303D] text-sm font-bold text-[#9AA4B2]">
+          <span id="tasksFooterCount">0 Active Tasks</span>
+          <button onclick="clearCompletedTasks()" class="text-xs font-black uppercase tracking-wider text-[#F0883E] px-2.5 py-1 rounded-lg bg-[#1A2029] hover:bg-[#242C38]">
+            Clear Done
+          </button>
         </div>
       </div>
     </section>
 
     <!-- ===================================================================
-         SECTION 02 // WEEKLY PLAN (4-SQUARE MATRIX)
+         SECTION 02 // WEEKLY PLAN — TRUE 2x2 QUADRANT (ICE CYAN #38BDF8)
          =================================================================== -->
-    <section id="sec-weekly" class="scroll-mt-20 section-block border-t-4 border-t-[#F59E0B]">
+    <section id="sec-weekly" class="scroll-mt-32 section-card sec-cyan">
       
-      <!-- Architectural Header -->
-      <div class="section-header-bar flex items-center justify-between">
+      <!-- Section Header -->
+      <div class="sec-cyan-head px-4 py-3.5 flex items-center justify-between gap-2">
         <div class="flex items-center gap-2.5">
-          <span class="px-2 py-0.5 rounded bg-[#F59E0B] text-black font-mono text-xs font-black">02</span>
-          <h2 class="text-[19px] font-black uppercase tracking-wider text-white">Weekly Plan</h2>
+          <span class="px-2 py-0.5 rounded bg-[#38BDF8] text-black font-mono text-xs font-black">02</span>
+          <h2 class="text-[20px] font-black uppercase tracking-wider text-white">Weekly Plan</h2>
         </div>
-        <button onclick="clearDoneWeekly()" class="px-3 py-1.5 rounded-xl bg-[#0C0E11] border border-[#2B313B] text-xs font-extrabold uppercase tracking-wider text-[#9AA4B2] active:scale-95 transition">
+
+        <button onclick="clearDoneWeekly()" class="px-3 py-1.5 rounded-xl bg-[#0B0D10] border border-[#28303D] text-xs font-extrabold uppercase tracking-wider text-[#38BDF8] active:scale-95 transition">
           Clear Done
         </button>
       </div>
 
-      <!-- 4-SQUARE MATRIX WITH HIGH-CONTRAST BORDERS -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 divide-y-[2px] sm:divide-y-0 sm:gap-[2px] bg-[#2B313B]">
+      <!-- TRUE 2x2 QUADRANT MATRIX (ALWAYS 2 COLUMNS WITH CROSSHAIR BORDERS) -->
+      <div class="grid grid-cols-2 gap-[2px] bg-[#28303D]">
         
-        <!-- SQUARE 1: CAREER -->
-        <div class="bg-[#15191F] p-4 flex flex-col justify-between min-h-[220px]">
+        <!-- TOP-LEFT SQUARE: CAREER -->
+        <div class="bg-[#13171D] p-3 flex flex-col justify-between min-h-[215px]">
           <div>
-            <div class="flex items-center justify-between pb-2.5 mb-3 border-b-[1.5px] border-[#2B313B]">
-              <h3 class="text-[17px] font-black uppercase tracking-wider text-[#E87A35]">01. Career</h3>
-              <span id="qCount-career" class="text-sm font-mono font-bold text-[#9AA4B2] tabular-nums">0/0</span>
+            <div class="flex items-center justify-between pb-2 mb-2.5 border-b border-[#28303D]">
+              <h3 class="text-[15px] font-black uppercase tracking-wider text-[#38BDF8] truncate">Career</h3>
+              <span id="qCount-career" class="text-xs font-mono font-black text-[#9AA4B2] tabular-nums">0/0</span>
             </div>
-            <div id="qList-career" class="space-y-2.5"></div>
+            <div id="qList-career" class="space-y-2"></div>
           </div>
 
-          <form onsubmit="addQuadItem(event, 'career')" class="mt-4 pt-2.5 border-t border-[#2B313B] flex gap-2">
+          <form onsubmit="addQuadItem(event, 'career')" class="mt-3 pt-2 border-t border-[#28303D] flex gap-1.5">
             <input
               id="qInput-career"
               type="text"
-              placeholder="+ Add Career..."
-              class="flex-1 bg-[#0C0E11] border border-[#2B313B] rounded-xl px-3 py-2 text-[16px] text-white placeholder-[#9AA4B2]/60 focus:outline-none focus:border-[#E87A35]"
+              placeholder="+ Career"
+              class="w-full min-w-0 bg-[#0B0D10] border border-[#28303D] rounded-lg px-2.5 py-1.5 text-[15px] font-medium text-white placeholder-[#9AA4B2]/60 focus:outline-none focus:border-[#38BDF8]"
             />
-            <button type="submit" class="px-3.5 py-2 rounded-xl bg-[#1E242D] border border-[#2B313B] text-white font-black text-base">+</button>
+            <button type="submit" class="px-2.5 py-1.5 rounded-lg bg-[#38BDF8] text-black font-black text-sm shrink-0">+</button>
           </form>
         </div>
 
-        <!-- SQUARE 2: HEALTH -->
-        <div class="bg-[#15191F] p-4 flex flex-col justify-between min-h-[220px]">
+        <!-- TOP-RIGHT SQUARE: HEALTH -->
+        <div class="bg-[#13171D] p-3 flex flex-col justify-between min-h-[215px]">
           <div>
-            <div class="flex items-center justify-between pb-2.5 mb-3 border-b-[1.5px] border-[#2B313B]">
-              <h3 class="text-[17px] font-black uppercase tracking-wider text-[#39D353]">02. Health</h3>
-              <span id="qCount-health" class="text-sm font-mono font-bold text-[#9AA4B2] tabular-nums">0/0</span>
+            <div class="flex items-center justify-between pb-2 mb-2.5 border-b border-[#28303D]">
+              <h3 class="text-[15px] font-black uppercase tracking-wider text-[#38BDF8] truncate">Health</h3>
+              <span id="qCount-health" class="text-xs font-mono font-black text-[#9AA4B2] tabular-nums">0/0</span>
             </div>
-            <div id="qList-health" class="space-y-2.5"></div>
+            <div id="qList-health" class="space-y-2"></div>
           </div>
 
-          <form onsubmit="addQuadItem(event, 'health')" class="mt-4 pt-2.5 border-t border-[#2B313B] flex gap-2">
+          <form onsubmit="addQuadItem(event, 'health')" class="mt-3 pt-2 border-t border-[#28303D] flex gap-1.5">
             <input
               id="qInput-health"
               type="text"
-              placeholder="+ Add Health..."
-              class="flex-1 bg-[#0C0E11] border border-[#2B313B] rounded-xl px-3 py-2 text-[16px] text-white placeholder-[#9AA4B2]/60 focus:outline-none focus:border-[#39D353]"
+              placeholder="+ Health"
+              class="w-full min-w-0 bg-[#0B0D10] border border-[#28303D] rounded-lg px-2.5 py-1.5 text-[15px] font-medium text-white placeholder-[#9AA4B2]/60 focus:outline-none focus:border-[#38BDF8]"
             />
-            <button type="submit" class="px-3.5 py-2 rounded-xl bg-[#1E242D] border border-[#2B313B] text-white font-black text-base">+</button>
+            <button type="submit" class="px-2.5 py-1.5 rounded-lg bg-[#38BDF8] text-black font-black text-sm shrink-0">+</button>
           </form>
         </div>
 
-        <!-- SQUARE 3: HOUSE STUFFS -->
-        <div class="bg-[#15191F] p-4 flex flex-col justify-between min-h-[220px]">
+        <!-- BOTTOM-LEFT SQUARE: HOUSE STUFFS -->
+        <div class="bg-[#13171D] p-3 flex flex-col justify-between min-h-[215px]">
           <div>
-            <div class="flex items-center justify-between pb-2.5 mb-3 border-b-[1.5px] border-[#2B313B]">
-              <h3 class="text-[17px] font-black uppercase tracking-wider text-[#F59E0B]">03. House Stuffs</h3>
-              <span id="qCount-house" class="text-sm font-mono font-bold text-[#9AA4B2] tabular-nums">0/0</span>
+            <div class="flex items-center justify-between pb-2 mb-2.5 border-b border-[#28303D]">
+              <h3 class="text-[15px] font-black uppercase tracking-wider text-[#38BDF8] truncate">House Stuffs</h3>
+              <span id="qCount-house" class="text-xs font-mono font-black text-[#9AA4B2] tabular-nums">0/0</span>
             </div>
-            <div id="qList-house" class="space-y-2.5"></div>
+            <div id="qList-house" class="space-y-2"></div>
           </div>
 
-          <form onsubmit="addQuadItem(event, 'house')" class="mt-4 pt-2.5 border-t border-[#2B313B] flex gap-2">
+          <form onsubmit="addQuadItem(event, 'house')" class="mt-3 pt-2 border-t border-[#28303D] flex gap-1.5">
             <input
               id="qInput-house"
               type="text"
-              placeholder="+ Add House..."
-              class="flex-1 bg-[#0C0E11] border border-[#2B313B] rounded-xl px-3 py-2 text-[16px] text-white placeholder-[#9AA4B2]/60 focus:outline-none focus:border-[#F59E0B]"
+              placeholder="+ House"
+              class="w-full min-w-0 bg-[#0B0D10] border border-[#28303D] rounded-lg px-2.5 py-1.5 text-[15px] font-medium text-white placeholder-[#9AA4B2]/60 focus:outline-none focus:border-[#38BDF8]"
             />
-            <button type="submit" class="px-3.5 py-2 rounded-xl bg-[#1E242D] border border-[#2B313B] text-white font-black text-base">+</button>
+            <button type="submit" class="px-2.5 py-1.5 rounded-lg bg-[#38BDF8] text-black font-black text-sm shrink-0">+</button>
           </form>
         </div>
 
-        <!-- SQUARE 4: FUN / RANDOM -->
-        <div class="bg-[#15191F] p-4 flex flex-col justify-between min-h-[220px]">
+        <!-- BOTTOM-RIGHT SQUARE: FUN / RANDOM -->
+        <div class="bg-[#13171D] p-3 flex flex-col justify-between min-h-[215px]">
           <div>
-            <div class="flex items-center justify-between pb-2.5 mb-3 border-b-[1.5px] border-[#2B313B]">
-              <h3 class="text-[17px] font-black uppercase tracking-wider text-[#F3F5F8]">04. Fun / Random</h3>
-              <span id="qCount-fun" class="text-sm font-mono font-bold text-[#9AA4B2] tabular-nums">0/0</span>
+            <div class="flex items-center justify-between pb-2 mb-2.5 border-b border-[#28303D]">
+              <h3 class="text-[15px] font-black uppercase tracking-wider text-[#38BDF8] truncate">Fun / Random</h3>
+              <span id="qCount-fun" class="text-xs font-mono font-black text-[#9AA4B2] tabular-nums">0/0</span>
             </div>
-            <div id="qList-fun" class="space-y-2.5"></div>
+            <div id="qList-fun" class="space-y-2"></div>
           </div>
 
-          <form onsubmit="addQuadItem(event, 'fun')" class="mt-4 pt-2.5 border-t border-[#2B313B] flex gap-2">
+          <form onsubmit="addQuadItem(event, 'fun')" class="mt-3 pt-2 border-t border-[#28303D] flex gap-1.5">
             <input
               id="qInput-fun"
               type="text"
-              placeholder="+ Add Fun..."
-              class="flex-1 bg-[#0C0E11] border border-[#2B313B] rounded-xl px-3 py-2 text-[16px] text-white placeholder-[#9AA4B2]/60 focus:outline-none focus:border-white"
+              placeholder="+ Fun"
+              class="w-full min-w-0 bg-[#0B0D10] border border-[#28303D] rounded-lg px-2.5 py-1.5 text-[15px] font-medium text-white placeholder-[#9AA4B2]/60 focus:outline-none focus:border-[#38BDF8]"
             />
-            <button type="submit" class="px-3.5 py-2 rounded-xl bg-[#1E242D] border border-[#2B313B] text-white font-black text-base">+</button>
+            <button type="submit" class="px-2.5 py-1.5 rounded-lg bg-[#38BDF8] text-black font-black text-sm shrink-0">+</button>
           </form>
         </div>
 
@@ -483,118 +422,172 @@
     </section>
 
     <!-- ===================================================================
-         SECTION 03 // MONTH CALENDAR
+         SECTION 03 // HEATMAP CALENDAR & DAILY JOURNAL (CRIMSON CORAL #F85149)
          =================================================================== -->
-    <section id="sec-calendar" class="scroll-mt-20 section-block border-t-4 border-t-[#9AA4B2]">
+    <section id="sec-calendar" class="scroll-mt-32 section-card sec-coral">
       
-      <!-- Architectural Header -->
-      <div class="section-header-bar flex items-center justify-between">
+      <!-- Section Header -->
+      <div class="sec-coral-head px-4 py-3.5 flex items-center justify-between gap-2">
         <div class="flex items-center gap-2.5">
-          <span class="px-2 py-0.5 rounded bg-[#9AA4B2] text-black font-mono text-xs font-black">03</span>
-          <h2 id="calMonthHeader" class="text-[19px] font-black uppercase tracking-wider text-white">October 2026</h2>
+          <span class="px-2 py-0.5 rounded bg-[#F85149] text-black font-mono text-xs font-black">03</span>
+          <h2 id="calMonthHeader" class="text-[20px] font-black uppercase tracking-wider text-white">October 2026</h2>
         </div>
 
         <div class="flex items-center gap-1.5">
-          <button onclick="shiftCalMonth(-1)" class="px-3 py-1.5 rounded-xl bg-[#0C0E11] border border-[#2B313B] text-white font-bold active:scale-95">‹</button>
-          <button onclick="jumpCalToday()" class="px-3 py-1.5 rounded-xl bg-[#0C0E11] border border-[#2B313B] text-xs font-extrabold uppercase text-[#E87A35] active:scale-95">Today</button>
-          <button onclick="shiftCalMonth(1)" class="px-3 py-1.5 rounded-xl bg-[#0C0E11] border border-[#2B313B] text-white font-bold active:scale-95">›</button>
+          <button onclick="shiftCalMonth(-1)" class="px-3 py-1.5 rounded-xl bg-[#0B0D10] border border-[#28303D] text-white font-black active:scale-95">‹</button>
+          <button onclick="jumpCalToday()" class="px-3 py-1.5 rounded-xl bg-[#0B0D10] border border-[#28303D] text-xs font-black uppercase text-[#F85149] active:scale-95">Today</button>
+          <button onclick="shiftCalMonth(1)" class="px-3 py-1.5 rounded-xl bg-[#0B0D10] border border-[#28303D] text-white font-black active:scale-95">›</button>
         </div>
       </div>
 
       <div class="p-4 space-y-4">
-        <!-- Weekday Headers -->
-        <div class="grid grid-cols-7 text-center text-xs font-extrabold text-[#9AA4B2] pb-2 border-b border-[#2B313B]">
+        
+        <!-- Weekday Labels -->
+        <div class="grid grid-cols-7 text-center text-xs font-black text-[#9AA4B2] pb-1.5 border-b border-[#28303D]">
           <span>MON</span><span>TUE</span><span>WED</span><span>THU</span><span>FRI</span><span>SAT</span><span>SUN</span>
         </div>
 
-        <!-- Calendar Grid -->
+        <!-- Month Heatmap Calendar Grid -->
         <div id="calGrid" class="grid grid-cols-7 gap-1.5"></div>
 
-        <!-- Selected Date Inspector & Day Note -->
-        <div class="rounded-2xl bg-[#0C0E11] border-[1.5px] border-[#2B313B] p-4 space-y-3">
-          <div class="flex items-center justify-between gap-2">
-            <h4 id="calSelectedLabel" class="text-[17px] font-extrabold text-white">Tuesday, Oct 27</h4>
-            <div class="flex items-center gap-1.5">
-              <button onclick="toggleHabit('french')" id="calQuick-french" class="px-2.5 py-1.5 rounded-lg text-xs font-extrabold border transition">1. FR</button>
-              <button onclick="toggleHabit('movement')" id="calQuick-movement" class="px-2.5 py-1.5 rounded-lg text-xs font-extrabold border transition">2. GYM</button>
-              <button onclick="toggleHabit('clean')" id="calQuick-clean" class="px-2.5 py-1.5 rounded-lg text-xs font-extrabold border transition">3. CLEAN</button>
+        <!-- Heatmap Legend Row -->
+        <div class="flex items-center justify-between text-xs font-bold text-[#9AA4B2] pt-1 pb-2 border-b border-[#28303D]">
+          <div class="flex items-center gap-2">
+            <span class="inline-flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-[#E3B341]"></span> Note/Event</span>
+          </div>
+          <div class="flex items-center gap-1.5">
+            <span>0%</span>
+            <span class="w-4 h-4 rounded bg-[#1A2029] border border-[#28303D] inline-block"></span>
+            <span class="w-4 h-4 rounded bg-[#0E4429] border border-[#196c3e] inline-block"></span>
+            <span class="w-4 h-4 rounded bg-[#26A641] border border-[#39D353] inline-block"></span>
+            <span class="w-4 h-4 rounded bg-[#39D353] border border-white/40 inline-block"></span>
+            <span>100%</span>
+          </div>
+        </div>
+
+        <!-- SELECTED DAY INSPECTOR: HABITS + EVENTS + DAILY JOURNAL -->
+        <div class="rounded-2xl bg-[#0B0D10] border-2 border-[#28303D] p-4 space-y-4">
+          
+          <!-- Selected Date Title & Habit Ratio Badge -->
+          <div class="flex items-center justify-between gap-2 pb-3 border-b border-[#28303D]">
+            <div>
+              <span class="text-[11px] font-black uppercase tracking-wider text-[#F85149] block">Selected Day</span>
+              <h3 id="inspectorDateTitle" class="text-[19px] font-black text-white">Tuesday, Oct 27, 2026</h3>
             </div>
+            <span id="inspectorHabitBadge" class="px-3 py-1.5 rounded-xl bg-[#13171D] border border-[#28303D] text-base font-black text-[#39D353] tabular-nums">
+              0/3 Habits
+            </span>
           </div>
 
-          <div id="calEventsList" class="space-y-2"></div>
+          <!-- Quick Habit Toggles for Selected Day -->
+          <div>
+            <span class="text-xs font-black uppercase tracking-wider text-[#9AA4B2] block mb-2">Toggle Day's Habits</span>
+            <div id="inspectorHabitsBar" class="flex flex-wrap gap-2"></div>
+          </div>
 
-          <form onsubmit="addCalEvent(event)" class="flex gap-2">
-            <input
-              id="calEventInput"
-              type="text"
-              placeholder="Add note for this date..."
-              class="flex-1 bg-[#15191F] border border-[#2B313B] rounded-xl px-3.5 py-2.5 text-[16px] text-white placeholder-[#9AA4B2]/60 focus:outline-none focus:border-[#E87A35]"
-            />
-            <button type="submit" class="px-4 py-2.5 rounded-xl bg-[#1E242D] border border-[#2B313B] text-white font-bold text-sm shrink-0">
-              + Note
+          <!-- Events for Selected Day -->
+          <div class="pt-3 border-t border-[#28303D] space-y-2.5">
+            <span class="text-xs font-black uppercase tracking-wider text-[#9AA4B2] block">Day Events & Milestones</span>
+            <div id="calEventsList" class="space-y-2"></div>
+            <form onsubmit="addCalEvent(event)" class="flex gap-2">
+              <input
+                id="calEventInput"
+                type="text"
+                placeholder="Add event (e.g. Exam, Flight, PR)..."
+                class="flex-1 bg-[#13171D] border border-[#28303D] rounded-xl px-3.5 py-2.5 text-[16px] font-semibold text-white placeholder-[#9AA4B2]/60 focus:outline-none focus:border-[#F85149]"
+              />
+              <button type="submit" class="px-4 py-2.5 rounded-xl bg-[#F85149] text-black font-black text-sm shrink-0 active:scale-95 transition">
+                + Event
+              </button>
+            </form>
+          </div>
+
+          <!-- Daily Journal / Note for Selected Day -->
+          <div class="pt-3 border-t border-[#28303D] space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-black uppercase tracking-wider text-[#E3B341]">Daily Journal / Note (+15 XP)</span>
+              <span id="journalSaveStatus" class="text-xs font-mono font-bold text-[#39D353]">Saved ✓</span>
+            </div>
+            <textarea
+              id="dailyJournalInput"
+              rows="4"
+              oninput="handleJournalInput(this.value)"
+              placeholder="Write your thoughts, wins, or reflections for this day..."
+              class="w-full bg-[#13171D] border-2 border-[#28303D] rounded-xl p-3.5 text-[17px] font-medium text-white placeholder-[#9AA4B2]/50 focus:outline-none focus:border-[#F85149] leading-relaxed"
+            ></textarea>
+          </div>
+
+          <!-- Collapsible Recent Journal Entries Viewer -->
+          <div class="pt-2 border-t border-[#28303D]">
+            <button onclick="toggleRecentJournals()" class="w-full flex items-center justify-between py-1.5 text-left text-xs font-black uppercase tracking-wider text-[#9AA4B2] hover:text-white">
+              <span id="recentJournalsLabel">Recent Journal Entries (0)</span>
+              <span id="recentJournalsArrow">▸</span>
             </button>
-          </form>
+            <div id="recentJournalsList" class="hidden mt-2.5 space-y-2 max-h-60 overflow-y-auto pr-1"></div>
+          </div>
+
         </div>
+
       </div>
     </section>
 
     <!-- ===================================================================
-         SECTION 04 // LEVEL STATUS (PROGRESSIVE RPG CURVE & MILESTONES)
+         SECTION 04 // LEVEL STATUS (METALLIC GOLD #E3B341)
          =================================================================== -->
-    <section id="sec-level" class="scroll-mt-20 section-block border-t-4 border-t-[#39D353]">
+    <section id="sec-level" class="scroll-mt-32 section-card sec-gold">
       
-      <!-- Architectural Header -->
-      <div class="section-header-bar flex items-center justify-between">
+      <!-- Section Header -->
+      <div class="sec-gold-head px-4 py-3.5 flex items-center justify-between gap-2">
         <div class="flex items-center gap-2.5">
-          <span class="px-2 py-0.5 rounded bg-[#39D353] text-black font-mono text-xs font-black">04</span>
-          <h2 class="text-[19px] font-black uppercase tracking-wider text-white">Level Status</h2>
+          <span class="px-2 py-0.5 rounded bg-[#E3B341] text-black font-mono text-xs font-black">04</span>
+          <h2 class="text-[20px] font-black uppercase tracking-wider text-white">Level Status</h2>
         </div>
-        <span id="totalXpHeaderBadge" class="font-mono text-base font-black text-[#E87A35] tabular-nums">0 XP</span>
+        <span id="totalXpHeaderBadge" class="font-mono text-base font-black text-[#E3B341] tabular-nums">0 XP</span>
       </div>
 
       <div class="p-4 space-y-5">
         
-        <!-- Big Level & Rank Card -->
-        <div class="rounded-2xl bg-[#0C0E11] border-[1.5px] border-[#2B313B] p-5">
+        <!-- Main Level & Rank Card -->
+        <div class="rounded-2xl bg-[#0B0D10] border-2 border-[#28303D] p-5">
           <div class="flex items-center justify-between gap-4 mb-4">
             <div>
-              <span class="text-xs font-extrabold uppercase tracking-widest text-[#9AA4B2]">Current Rank</span>
+              <span class="text-xs font-black uppercase tracking-widest text-[#9AA4B2]">Current Rank</span>
               <h3 id="levelRankName" class="text-2xl font-black text-white mt-0.5">I. Initiate</h3>
-              <p id="levelNextNeeded" class="text-sm font-bold text-[#E87A35] mt-1 tabular-nums">350 XP to Level 2</p>
+              <p id="levelNextNeeded" class="text-sm font-extrabold text-[#E3B341] mt-1 tabular-nums">400 XP to Level 2</p>
             </div>
-            <div class="px-4 py-3 rounded-2xl bg-[#15191F] border-2 border-[#E87A35] text-center min-w-[84px]">
-              <span class="text-[10px] font-black uppercase tracking-widest text-[#9AA4B2] block">LEVEL</span>
+            <div class="px-4 py-3 rounded-2xl bg-[#13171D] border-2 border-[#E3B341] text-center min-w-[88px]">
+              <span class="text-[10px] font-black uppercase tracking-widest text-[#E3B341] block">LEVEL</span>
               <span id="levelBigNumber" class="text-4xl font-black text-white tabular-nums leading-none">1</span>
             </div>
           </div>
 
           <!-- Progressive XP Bar -->
-          <div class="w-full h-4 bg-[#15191F] rounded-full overflow-hidden border border-[#2B313B] p-0.5">
-            <div id="levelProgressBar" class="h-full rounded-full bg-gradient-to-r from-[#E87A35] to-[#F59E0B] transition-all duration-500" style="width: 2%"></div>
+          <div class="w-full h-4 bg-[#13171D] rounded-full overflow-hidden border border-[#28303D] p-0.5">
+            <div id="levelProgressBar" class="h-full rounded-full bg-[#E3B341] transition-all duration-500" style="width: 3%"></div>
           </div>
-          <div class="flex items-center justify-between text-xs font-mono font-bold text-[#9AA4B2] mt-2 tabular-nums">
-            <span id="levelStepProgressText">0 / 350 XP</span>
-            <span>+30 Habit • +30 Perfect • +25 Weekly • +15 Task</span>
+          <div class="flex flex-wrap items-center justify-between gap-1 text-xs font-mono font-bold text-[#9AA4B2] mt-2.5 tabular-nums">
+            <span id="levelStepProgressText">0 / 400 XP</span>
+            <span>+25 Habit • +45 Perfect • +20 Quad • +15 Task/Note</span>
           </div>
         </div>
 
         <!-- 4 Core Discipline Metrics (Big 32px Numerals) -->
         <div class="grid grid-cols-2 gap-3">
-          <div class="rounded-2xl bg-[#0C0E11] border-[1.5px] border-[#2B313B] p-4">
-            <span class="text-xs font-extrabold uppercase tracking-wider text-[#9AA4B2]">Current Streak</span>
-            <p id="metricCurrentStreak" class="text-3xl font-black text-[#F59E0B] tabular-nums mt-1">0d</p>
+          <div class="rounded-2xl bg-[#0B0D10] border-2 border-[#28303D] p-4">
+            <span class="text-xs font-black uppercase tracking-wider text-[#9AA4B2]">Current Streak</span>
+            <p id="metricCurrentStreak" class="text-3xl font-black text-[#F0883E] tabular-nums mt-1">0d</p>
           </div>
-          <div class="rounded-2xl bg-[#0C0E11] border-[1.5px] border-[#2B313B] p-4">
-            <span class="text-xs font-extrabold uppercase tracking-wider text-[#9AA4B2]">Best Streak</span>
+          <div class="rounded-2xl bg-[#0B0D10] border-2 border-[#28303D] p-4">
+            <span class="text-xs font-black uppercase tracking-wider text-[#9AA4B2]">Best Streak</span>
             <p id="metricBestStreak" class="text-3xl font-black text-white tabular-nums mt-1">0d</p>
           </div>
-          <div class="rounded-2xl bg-[#0C0E11] border-[1.5px] border-[#2B313B] p-4">
-            <span class="text-xs font-extrabold uppercase tracking-wider text-[#9AA4B2]">Perfect Days (3/3)</span>
+          <div class="rounded-2xl bg-[#0B0D10] border-2 border-[#28303D] p-4">
+            <span class="text-xs font-black uppercase tracking-wider text-[#9AA4B2]">Perfect Days</span>
             <p id="metricPerfectDays" class="text-3xl font-black text-[#39D353] tabular-nums mt-1">0</p>
           </div>
-          <div class="rounded-2xl bg-[#0C0E11] border-[1.5px] border-[#2B313B] p-4">
-            <span class="text-xs font-extrabold uppercase tracking-wider text-[#9AA4B2]">30-Day Rate</span>
-            <p id="metric30DayRate" class="text-3xl font-black text-white tabular-nums mt-1">0%</p>
+          <div class="rounded-2xl bg-[#0B0D10] border-2 border-[#28303D] p-4">
+            <span class="text-xs font-black uppercase tracking-wider text-[#9AA4B2]">Journal Entries</span>
+            <p id="metricJournalCount" class="text-3xl font-black text-[#E3B341] tabular-nums mt-1">0</p>
           </div>
         </div>
 
@@ -604,98 +597,161 @@
           <div id="milestonesGrid" class="grid grid-cols-2 sm:grid-cols-4 gap-2.5"></div>
         </div>
 
+        <!-- Bottom Vault Quick Backup Bar -->
+        <div class="rounded-2xl bg-[#0B0D10] border-2 border-[#28303D] p-4 flex items-center justify-between gap-3">
+          <div>
+            <span class="text-xs font-black uppercase tracking-wider text-[#39D353] block">Dual-Vault Auto-Save Active</span>
+            <p id="footerBackupStatus" class="text-xs font-semibold text-[#9AA4B2] mt-0.5">Saved to LocalStorage + IndexedDB</p>
+          </div>
+          <button onclick="openBackupModal()" class="px-4 py-2.5 rounded-xl bg-[#E3B341] text-black font-black text-xs uppercase tracking-wider shrink-0 active:scale-95 transition">
+            Backup / Restore
+          </button>
+        </div>
+
       </div>
     </section>
 
   </main>
 
   <!-- =====================================================================
-       STICKY BOTTOM NAVIGATION BAR
+       STICKY BOTTOM NAVIGATION BAR (COLOR-MATCHED TO EACH SECTION)
        ===================================================================== -->
-  <nav class="fixed bottom-0 inset-x-0 z-40 ios-glass bg-[#0C0E11]/95 border-t-[1.5px] border-[#2B313B] pb-[env(safe-area-inset-bottom,0px)]">
+  <nav class="fixed bottom-0 inset-x-0 z-40 ios-glass bg-[#0B0D10]/95 border-t-2 border-[#28303D] pb-[env(safe-area-inset-bottom,0px)]">
     <div class="max-w-lg mx-auto grid grid-cols-5 px-2 py-2">
-      <button onclick="scrollToSection('sec-habits')" class="flex flex-col items-center justify-center py-1 text-[#F3F5F8] active:scale-95 transition">
+      <button onclick="scrollToSection('sec-habits')" class="flex flex-col items-center justify-center py-1 text-white active:scale-95 transition">
         <span class="text-xs font-mono font-black text-[#39D353]">TOP</span>
         <span class="text-xs font-extrabold mt-0.5">Habits</span>
       </button>
       <button onclick="scrollToSection('sec-tasks')" class="flex flex-col items-center justify-center py-1 text-[#9AA4B2] hover:text-white active:scale-95 transition">
-        <span class="text-xs font-mono font-black text-[#E87A35]">01</span>
+        <span class="text-xs font-mono font-black text-[#F0883E]">01</span>
         <span class="text-xs font-extrabold mt-0.5">Tasks</span>
       </button>
       <button onclick="scrollToSection('sec-weekly')" class="flex flex-col items-center justify-center py-1 text-[#9AA4B2] hover:text-white active:scale-95 transition">
-        <span class="text-xs font-mono font-black text-[#F59E0B]">02</span>
-        <span class="text-xs font-extrabold mt-0.5">Weekly</span>
+        <span class="text-xs font-mono font-black text-[#38BDF8]">02</span>
+        <span class="text-xs font-extrabold mt-0.5">2×2 Plan</span>
       </button>
       <button onclick="scrollToSection('sec-calendar')" class="flex flex-col items-center justify-center py-1 text-[#9AA4B2] hover:text-white active:scale-95 transition">
-        <span class="text-xs font-mono font-black text-[#9AA4B2]">03</span>
+        <span class="text-xs font-mono font-black text-[#F85149]">03</span>
         <span class="text-xs font-extrabold mt-0.5">Calendar</span>
       </button>
       <button onclick="scrollToSection('sec-level')" class="flex flex-col items-center justify-center py-1 text-[#9AA4B2] hover:text-white active:scale-95 transition">
-        <span class="text-xs font-mono font-black text-[#39D353]">04</span>
+        <span class="text-xs font-mono font-black text-[#E3B341]">04</span>
         <span class="text-xs font-extrabold mt-0.5">Level</span>
       </button>
     </div>
   </nav>
 
   <!-- =====================================================================
-       SETTINGS & DATA BACKUP MODAL
+       MODAL 1: MULTI-LAYER BACKUP & RESTORE VAULT
        ===================================================================== -->
-  <div id="settingsModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/80 backdrop-blur-sm p-4">
-    <div class="w-full max-w-sm rounded-2xl bg-[#15191F] border-[1.5px] border-[#2B313B] p-5 shadow-2xl space-y-4">
-      <div class="flex items-center justify-between border-b border-[#2B313B] pb-3">
-        <h3 class="text-lg font-black uppercase tracking-wider text-white">Settings & Backup</h3>
-        <button onclick="closeSettingsModal()" class="px-2.5 py-1 rounded-lg bg-[#1E242D] text-[#9AA4B2] font-bold">✕</button>
+  <div id="backupModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/80 backdrop-blur-sm p-4">
+    <div class="w-full max-w-md rounded-2xl bg-[#13171D] border-2 border-[#28303D] p-5 shadow-2xl space-y-4 max-h-[90vh] overflow-y-auto">
+      <div class="flex items-center justify-between border-b border-[#28303D] pb-3">
+        <div>
+          <h3 class="text-lg font-black uppercase tracking-wider text-white">Data Vault & Backup</h3>
+          <p id="modalVaultStatus" class="text-xs font-bold text-[#39D353] mt-0.5">Auto-saved to LocalStorage + IndexedDB</p>
+        </div>
+        <button onclick="closeBackupModal()" class="px-3 py-1 rounded-xl bg-[#1A2029] text-[#9AA4B2] font-black">✕</button>
       </div>
 
-      <div>
-        <label class="block text-sm font-bold text-white mb-1.5">French Flashcards Link:</label>
-        <div class="flex gap-2">
-          <input
-            id="frenchUrlInput"
-            type="text"
-            placeholder="index.html"
-            class="flex-1 bg-[#0C0E11] border border-[#2B313B] rounded-xl px-3.5 py-2.5 text-base text-white"
-          />
-          <button onclick="saveFrenchUrl()" class="px-4 py-2.5 rounded-xl bg-[#E87A35] text-black font-black text-sm">Save</button>
+      <!-- 1. Download / Upload JSON File (iPhone Files / iCloud Drive) -->
+      <div class="rounded-xl bg-[#0B0D10] border border-[#28303D] p-3.5 space-y-2.5">
+        <span class="text-xs font-black uppercase tracking-wider text-[#E3B341] block">Option 1: Save or Load Backup File (.json)</span>
+        <div class="grid grid-cols-2 gap-2">
+          <button onclick="downloadBackupFile()" class="py-3 px-3 rounded-xl bg-[#E3B341] text-black font-black text-xs uppercase tracking-wider active:scale-95 transition">
+            ⬇ Download .JSON
+          </button>
+          <label class="py-3 px-3 rounded-xl bg-[#1A2029] border border-[#28303D] text-white font-black text-xs uppercase tracking-wider text-center cursor-pointer active:scale-95 transition">
+            ⬆ Restore File
+            <input type="file" accept=".json,application/json" onchange="restoreFromFileInput(event)" class="hidden" />
+          </label>
         </div>
       </div>
 
-      <div class="space-y-2 pt-2 border-t border-[#2B313B]">
-        <label class="block text-sm font-bold text-white">Backup / Restore Data (JSON):</label>
+      <!-- 2. Copy / Paste Backup Code -->
+      <div class="rounded-xl bg-[#0B0D10] border border-[#28303D] p-3.5 space-y-2.5">
+        <span class="text-xs font-black uppercase tracking-wider text-[#38BDF8] block">Option 2: Copy or Paste Backup Code</span>
         <div class="grid grid-cols-2 gap-2">
-          <button onclick="exportBackupJson()" class="py-2.5 rounded-xl bg-[#1E242D] border border-[#2B313B] text-white text-sm font-bold active:scale-95">
-            Copy Backup
+          <button onclick="exportBackupJson()" class="py-2.5 rounded-xl bg-[#1A2029] border border-[#28303D] text-white text-xs font-black uppercase active:scale-95">
+            Copy Code
           </button>
-          <button onclick="importBackupJson()" class="py-2.5 rounded-xl bg-[#E87A35] text-black text-sm font-black active:scale-95">
-            Restore JSON
+          <button onclick="importBackupJson()" class="py-2.5 rounded-xl bg-[#38BDF8] text-black text-xs font-black uppercase active:scale-95">
+            Restore Code
           </button>
         </div>
         <textarea
           id="backupTextarea"
           rows="3"
-          placeholder="Backup JSON..."
-          class="w-full bg-[#0C0E11] border border-[#2B313B] rounded-xl p-3 text-xs font-mono text-[#9AA4B2]"
+          placeholder="Paste backup JSON code here to restore..."
+          class="w-full bg-[#13171D] border border-[#28303D] rounded-xl p-3 text-xs font-mono text-[#9AA4B2] focus:outline-none focus:border-[#38BDF8]"
         ></textarea>
       </div>
 
-      <button onclick="closeSettingsModal()" class="w-full py-3 rounded-xl bg-[#1E242D] text-white text-sm font-extrabold uppercase tracking-wider">
+      <button onclick="closeBackupModal()" class="w-full py-3 rounded-xl bg-[#1A2029] text-white text-sm font-black uppercase tracking-wider">
+        Done
+      </button>
+    </div>
+  </div>
+
+  <!-- =====================================================================
+       MODAL 2: SETTINGS (FRENCH FLASHCARD LINK)
+       ===================================================================== -->
+  <div id="settingsModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/80 backdrop-blur-sm p-4">
+    <div class="w-full max-w-sm rounded-2xl bg-[#13171D] border-2 border-[#28303D] p-5 shadow-2xl space-y-4">
+      <div class="flex items-center justify-between border-b border-[#28303D] pb-3">
+        <h3 class="text-lg font-black uppercase tracking-wider text-white">App Settings</h3>
+        <button onclick="closeSettingsModal()" class="px-2.5 py-1 rounded-lg bg-[#1A2029] text-[#9AA4B2] font-bold">✕</button>
+      </div>
+
+      <div>
+        <label class="block text-sm font-bold text-white mb-1.5">French Flashcards App Link:</label>
+        <div class="flex gap-2">
+          <input
+            id="frenchUrlInput"
+            type="text"
+            placeholder="index.html"
+            class="flex-1 bg-[#0B0D10] border border-[#28303D] rounded-xl px-3.5 py-2.5 text-base font-semibold text-white"
+          />
+          <button onclick="saveFrenchUrl()" class="px-4 py-2.5 rounded-xl bg-[#39D353] text-black font-black text-sm">Save</button>
+        </div>
+      </div>
+
+      <button onclick="closeSettingsModal()" class="w-full py-3 rounded-xl bg-[#1A2029] text-white text-sm font-extrabold uppercase tracking-wider">
         Close
       </button>
     </div>
   </div>
 
+  <!-- =====================================================================
+       MODAL 3: DELETE HABIT CONFIRMATION (NO NATIVE CONFIRM)
+       ===================================================================== -->
+  <div id="deleteHabitModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/80 backdrop-blur-sm p-4">
+    <div class="w-full max-w-xs rounded-2xl bg-[#13171D] border-2 border-[#F85149] p-5 text-center shadow-2xl space-y-4">
+      <h3 class="text-lg font-black uppercase text-white">Delete Core Habit?</h3>
+      <p id="deleteHabitNameText" class="text-base font-bold text-[#F85149]"></p>
+      <div class="grid grid-cols-2 gap-2.5 pt-1">
+        <button onclick="closeDeleteHabitModal()" class="py-2.5 rounded-xl bg-[#1A2029] text-white font-bold text-sm">Cancel</button>
+        <button onclick="confirmDeleteHabit()" class="py-2.5 rounded-xl bg-[#F85149] text-black font-black text-sm">Delete</button>
+      </div>
+    </div>
+  </div>
+
   <!-- FLOATING TOAST -->
   <div id="toastBanner" class="fixed top-20 left-1/2 -translate-x-1/2 z-50 pointer-events-none opacity-0 transition-all duration-200 transform -translate-y-2">
-    <div class="px-4 py-2 rounded-xl bg-[#E87A35] text-black text-sm font-black shadow-xl">
-      <span id="toastText">+30 XP</span>
+    <div class="px-4 py-2 rounded-xl bg-[#E3B341] text-black text-sm font-black shadow-xl">
+      <span id="toastText">+25 XP</span>
     </div>
   </div>
 
   <!-- =====================================================================
-       APPLICATION LOGIC
+       APPLICATION JAVASCRIPT & DUAL-VAULT STORAGE ENGINE
        ===================================================================== -->
   <script>
-    const STORAGE_KEY = 'life_os_tracker_v1';
+    const STORAGE_KEY = 'shreyansh_rule_v3';
+    const LEGACY_KEYS = ['life_os_tracker_v1', 'life_os_v2', 'lifeOS_v1'];
+    const IDB_NAME = 'ShreyanshRuleVault';
+    const IDB_STORE = 'app_state_store';
+    const IDB_KEY = 'main_state';
 
     function toDateKey(d) {
       const y = d.getFullYear();
@@ -709,62 +765,165 @@
       return new Date(y, m - 1, d);
     }
 
+    const DEFAULT_HABITS = [
+      { id: 'french', name: 'French Daily', hasStudyLink: true, hasMoveTags: false },
+      { id: 'movement', name: 'Gym / Yoga / Walk', hasStudyLink: false, hasMoveTags: true },
+      { id: 'clean', name: 'No Self Harm', hasStudyLink: false, hasMoveTags: false }
+    ];
+
     let state = {
       selectedDate: toDateKey(new Date()),
-      heatmapMode: 'github',
       frenchAppUrl: 'index.html',
-      completedDrawerOpen: false,
+      editHabitsMode: false,
+      taskFilter: 'active',
+      recentJournalsOpen: false,
       bankedXp: 0,
-      logs: {},
+      lastSavedAt: null,
+      habits: JSON.parse(JSON.stringify(DEFAULT_HABITS)),
+      logs: {}, // { 'YYYY-MM-DD': { french: true, movement: false, clean: true, moveTags: ['Gym'] } }
+      journals: {}, // { 'YYYY-MM-DD': 'Daily reflection...' }
+      calendarEvents: {}, // { 'YYYY-MM-DD': [{ id, text }] }
       runningTasks: [
         { id: 't1', text: 'Complete 20 French flashcards', done: false, pinned: true },
-        { id: 't2', text: '30 min walk or yoga session', done: false, pinned: false }
+        { id: 't2', text: '30 min walk, gym or yoga session', done: false, pinned: false }
       ],
       quadrants: {
         career: [{ id: 'q1', text: 'Deep work block (2 hrs)', done: false }],
         health: [{ id: 'q2', text: '3x Gym / Yoga sessions', done: false }],
         house: [{ id: 'q3', text: 'Groceries & room reset', done: false }],
         fun: [{ id: 'q4', text: 'French film or music', done: false }]
-      },
-      calendarEvents: {}
+      }
     };
 
     let calYear = new Date().getFullYear();
     let calMonth = new Date().getMonth();
-    let hmYear = new Date().getFullYear();
-    let hmMonth = new Date().getMonth();
+    let pendingDeleteHabitId = null;
 
-    function loadState() {
+    // =====================================================================
+    // MULTI-LAYER PERSISTENCE: LOCALSTORAGE + INDEXEDDB + MIGRATION
+    // =====================================================================
+    function openVaultDB() {
+      return new Promise((resolve, reject) => {
+        if (!('indexedDB' in window)) return reject(new Error('No IndexedDB'));
+        const req = indexedDB.open(IDB_NAME, 1);
+        req.onupgradeneeded = (e) => {
+          const db = e.target.result;
+          if (!db.objectStoreNames.contains(IDB_STORE)) {
+            db.createObjectStore(IDB_STORE);
+          }
+        };
+        req.onsuccess = () => resolve(req.result);
+        req.onerror = () => reject(req.error);
+      });
+    }
+
+    async function saveToIndexedDB(snapshot) {
       try {
-        const raw = localStorage.getItem(STORAGE_KEY) || localStorage.getItem('lifeOS_v1');
-        if (raw) {
-          const parsed = JSON.parse(raw);
-          state = {
-            ...state,
-            ...parsed,
-            quadrants: { ...state.quadrants, ...(parsed.quadrants || {}) },
-            logs: parsed.logs || {},
-            calendarEvents: parsed.calendarEvents || {},
-            bankedXp: (parsed.bankedXp || 0) + (parsed.bonusXp || 0)
-          };
-        }
-        state.selectedDate = toDateKey(new Date());
+        const db = await openVaultDB();
+        const tx = db.transaction(IDB_STORE, 'readwrite');
+        tx.objectStore(IDB_STORE).put(snapshot, IDB_KEY);
       } catch (e) {
-        console.warn('Load state error:', e);
+        console.warn('IndexedDB save warning:', e);
       }
+    }
+
+    async function readFromIndexedDB() {
+      try {
+        const db = await openVaultDB();
+        return await new Promise((resolve, reject) => {
+          const tx = db.transaction(IDB_STORE, 'readonly');
+          const req = tx.objectStore(IDB_STORE).get(IDB_KEY);
+          req.onsuccess = () => resolve(req.result || null);
+          req.onerror = () => reject(req.error);
+        });
+      } catch (e) {
+        return null;
+      }
+    }
+
+    function normalizeAndMergeLoadedState(parsed) {
+      if (!parsed || typeof parsed !== 'object') return;
+      state = {
+        ...state,
+        ...parsed,
+        habits: Array.isArray(parsed.habits) && parsed.habits.length > 0
+          ? parsed.habits
+          : JSON.parse(JSON.stringify(DEFAULT_HABITS)),
+        quadrants: { ...state.quadrants, ...(parsed.quadrants || {}) },
+        logs: parsed.logs || {},
+        journals: parsed.journals || {},
+        calendarEvents: parsed.calendarEvents || {},
+        runningTasks: Array.isArray(parsed.runningTasks) ? parsed.runningTasks : state.runningTasks,
+        bankedXp: (parsed.bankedXp || 0) + (parsed.bonusXp || 0)
+      };
+    }
+
+    async function initStorageAndLoad() {
+      if (navigator.storage && navigator.storage.persist) {
+        try { navigator.storage.persist(); } catch (e) {}
+      }
+
+      let raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) {
+        for (const legacyKey of LEGACY_KEYS) {
+          const legacyVal = localStorage.getItem(legacyKey);
+          if (legacyVal) {
+            raw = legacyVal;
+            break;
+          }
+        }
+      }
+
+      if (raw) {
+        try {
+          normalizeAndMergeLoadedState(JSON.parse(raw));
+        } catch (e) {}
+      } else {
+        // Fallback: Restore automatically from IndexedDB if LocalStorage was cleared
+        const idbData = await readFromIndexedDB();
+        if (idbData) {
+          normalizeAndMergeLoadedState(idbData);
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+          showToast('Restored from Vault Backup ✓');
+        }
+      }
+
+      if (!state.selectedDate) {
+        state.selectedDate = toDateKey(new Date());
+      }
+      const selObj = parseDateKey(state.selectedDate);
+      calYear = selObj.getFullYear();
+      calMonth = selObj.getMonth();
+
+      saveState();
+      renderAll();
     }
 
     function saveState() {
+      state.lastSavedAt = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
       try {
         localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-      } catch (e) {
-        console.warn('Save state error:', e);
-      }
+      } catch (e) {}
+      saveToIndexedDB(JSON.parse(JSON.stringify(state)));
+      updateVaultStatusUI();
     }
 
+    function updateVaultStatusUI() {
+      const fEl = document.getElementById('footerBackupStatus');
+      const mEl = document.getElementById('modalVaultStatus');
+      const label = state.lastSavedAt
+        ? `Auto-saved (${state.lastSavedAt}) • LocalStorage + IndexedDB`
+        : 'Auto-saved • LocalStorage + IndexedDB';
+      if (fEl) fEl.textContent = label;
+      if (mEl) mEl.textContent = label;
+    }
+
+    // =====================================================================
+    // HABIT HELPERS & STREAK CALCULATIONS
+    // =====================================================================
     function getDayLog(dateKey) {
       if (!state.logs[dateKey]) {
-        state.logs[dateKey] = { french: false, movement: false, clean: false, moveTags: [] };
+        state.logs[dateKey] = { moveTags: [] };
       }
       if (!Array.isArray(state.logs[dateKey].moveTags)) {
         state.logs[dateKey].moveTags = [];
@@ -772,64 +931,32 @@
       return state.logs[dateKey];
     }
 
-    function getHabitCount(dateKey) {
-      const l = state.logs[dateKey];
-      if (!l) return 0;
-      return (l.french ? 1 : 0) + (l.movement ? 1 : 0) + (l.clean ? 1 : 0);
+    function getDayCompletionStats(dateKey) {
+      const total = state.habits.length;
+      if (total === 0) return { done: 0, total: 0, ratio: 0 };
+      const log = state.logs[dateKey] || {};
+      let done = 0;
+      state.habits.forEach(h => {
+        if (log[h.id]) done++;
+      });
+      return { done, total, ratio: done / total };
     }
 
-    // =====================================================================
-    // PROGRESSIVE LEVELING ENGINE (HARD & EARNED)
-    // =====================================================================
-    const RANKS = [
-      { minLv: 1, title: 'I. Initiate' },
-      { minLv: 2, title: 'II. Grounded' },
-      { minLv: 4, title: 'III. Disciplined' },
-      { minLv: 6, title: 'IV. Relentless' },
-      { minLv: 9, title: 'V. Vanguard' },
-      { minLv: 12, title: 'VI. Ironclad' },
-      { minLv: 16, title: 'VII. Sovereign' },
-      { minLv: 20, title: 'VIII. Apex' }
-    ];
-
-    // XP required to advance from `level` to `level + 1`
-    // Lv 1->2: 350 XP (~3 perfect days)
-    // Lv 2->3: 482 XP (~4 perfect days)
-    // Lv 5->6: 848 XP (~1 week)
-    // Lv 10->11: 1,245 XP (~10+ days)
-    function xpRequiredForLevelStep(level) {
-      return Math.round(350 * Math.pow(level, 0.55));
-    }
-
-    function calculateLevelData(totalXp) {
-      let level = 1;
-      let remaining = totalXp;
-      let stepReq = xpRequiredForLevelStep(level);
-
-      while (remaining >= stepReq) {
-        remaining -= stepReq;
-        level++;
-        stepReq = xpRequiredForLevelStep(level);
+    function getSingleHabitStreak(habitId) {
+      let streak = 0;
+      const cur = new Date();
+      if (!state.logs[toDateKey(cur)]?.[habitId]) {
+        cur.setDate(cur.getDate() - 1);
       }
-
-      let rankTitle = RANKS[0].title;
-      for (const r of RANKS) {
-        if (level >= r.minLv) rankTitle = r.title;
+      while (state.logs[toDateKey(cur)]?.[habitId]) {
+        streak++;
+        cur.setDate(cur.getDate() - 1);
       }
-
-      const pct = Math.min(100, Math.round((remaining / stepReq) * 100));
-      return {
-        level,
-        rankTitle,
-        xpInLevel: remaining,
-        stepReq,
-        xpNeeded: stepReq - remaining,
-        pct
-      };
+      return streak;
     }
 
     // =====================================================================
-    // DAILY CHECKLIST & HABITS
+    // CORE HABITS: TOGGLE, ADD, RENAME, REORDER & DELETE
     // =====================================================================
     function shiftSelectedDate(days) {
       const d = parseDateKey(state.selectedDate);
@@ -850,25 +977,25 @@
       renderAll();
     }
 
-    function toggleHabit(key) {
+    function toggleHabit(habitId) {
       const log = getDayLog(state.selectedDate);
-      const prev = getHabitCount(state.selectedDate);
-      log[key] = !log[key];
-      const next = getHabitCount(state.selectedDate);
+      const prev = getDayCompletionStats(state.selectedDate);
+      log[habitId] = !log[habitId];
+      const next = getDayCompletionStats(state.selectedDate);
       saveState();
 
-      const box = document.getElementById(`habitBox-${key}`);
+      const box = document.getElementById(`habitBox-${habitId}`);
       if (box) {
         box.classList.remove('animate-pop');
         void box.offsetWidth;
         box.classList.add('animate-pop');
       }
 
-      if (log[key]) {
-        if (next === 3 && prev < 3) {
-          showToast('★ 3/3 PERFECT DAY! +60 XP');
+      if (log[habitId]) {
+        if (next.total > 0 && next.done === next.total && prev.done < prev.total) {
+          showToast('★ 100% PERFECT DAY! +70 XP');
         } else {
-          showToast('+30 XP');
+          showToast('+25 XP');
         }
       }
       renderAll();
@@ -879,15 +1006,76 @@
       const idx = log.moveTags.indexOf(tag);
       if (idx === -1) {
         log.moveTags.push(tag);
-        if (!log.movement) {
+        const hasMoveHabit = state.habits.some(h => h.id === 'movement');
+        if (hasMoveHabit && !log.movement) {
           log.movement = true;
-          showToast(`${tag} +30 XP`);
+          showToast(`${tag} +25 XP`);
         }
       } else {
         log.moveTags.splice(idx, 1);
       }
       saveState();
       renderAll();
+    }
+
+    function toggleEditHabitsMode() {
+      state.editHabitsMode = !state.editHabitsMode;
+      renderHabits();
+    }
+
+    function addNewCoreHabit(e) {
+      e.preventDefault();
+      const input = document.getElementById('newHabitInput');
+      const name = input.value.trim();
+      if (!name) return;
+
+      const id = 'h_' + Date.now();
+      state.habits.push({
+        id,
+        name,
+        hasStudyLink: false,
+        hasMoveTags: false
+      });
+      input.value = '';
+      saveState();
+      renderAll();
+      showToast('Added Core Habit');
+    }
+
+    function moveHabitOrder(index, direction) {
+      const targetIdx = index + direction;
+      if (targetIdx < 0 || targetIdx >= state.habits.length) return;
+      const temp = state.habits[index];
+      state.habits[index] = state.habits[targetIdx];
+      state.habits[targetIdx] = temp;
+      saveState();
+      renderAll();
+    }
+
+    function promptDeleteHabit(habitId) {
+      const h = state.habits.find(item => item.id === habitId);
+      if (!h) return;
+      pendingDeleteHabitId = habitId;
+      document.getElementById('deleteHabitNameText').textContent = `"${h.name}"`;
+      const m = document.getElementById('deleteHabitModal');
+      m.classList.remove('hidden');
+      m.classList.add('flex');
+    }
+
+    function closeDeleteHabitModal() {
+      pendingDeleteHabitId = null;
+      const m = document.getElementById('deleteHabitModal');
+      m.classList.add('hidden');
+      m.classList.remove('flex');
+    }
+
+    function confirmDeleteHabit() {
+      if (!pendingDeleteHabitId) return;
+      state.habits = state.habits.filter(h => h.id !== pendingDeleteHabitId);
+      closeDeleteHabitModal();
+      saveState();
+      renderAll();
+      showToast('Habit Deleted');
     }
 
     function renderHabits() {
@@ -906,228 +1094,109 @@
         day: 'numeric'
       });
 
-      const log = getDayLog(state.selectedDate);
-      const count = getHabitCount(state.selectedDate);
-
-      document.getElementById('dailyCountText').textContent = `${count}/3`;
-      const pBadge = document.getElementById('perfectBadge');
-      if (count === 3) pBadge.classList.remove('hidden');
-      else pBadge.classList.add('hidden');
-
-      ['french', 'movement', 'clean'].forEach(key => {
-        const done = !!log[key];
-        const row = document.getElementById(`habitRow-${key}`);
-        const box = document.getElementById(`habitBox-${key}`);
-        const label = document.getElementById(`habitLabel-${key}`);
-        const svg = box.querySelector('svg');
-
-        if (done) {
-          row.className = key === 'movement'
-            ? 'rounded-2xl bg-[#0E4429]/40 border-[1.5px] border-[#39D353] p-4 flex flex-col gap-3 transition-all'
-            : 'rounded-2xl bg-[#0E4429]/40 border-[1.5px] border-[#39D353] p-4 flex items-center justify-between gap-3 transition-all';
-          box.className = 'w-9 h-9 rounded-xl border-2 border-[#39D353] bg-[#39D353] flex items-center justify-center shrink-0 transition-all';
-          svg.classList.remove('hidden');
-          label.className = 'text-[20px] font-extrabold text-[#39D353] line-through leading-tight';
-        } else {
-          row.className = key === 'movement'
-            ? 'rounded-2xl bg-[#0C0E11] border-[1.5px] border-[#2B313B] p-4 flex flex-col gap-3 transition-all'
-            : 'rounded-2xl bg-[#0C0E11] border-[1.5px] border-[#2B313B] p-4 flex items-center justify-between gap-3 transition-all';
-          box.className = 'w-9 h-9 rounded-xl border-2 border-[#9AA4B2] flex items-center justify-center shrink-0 transition-all';
-          svg.classList.add('hidden');
-          label.className = 'text-[20px] font-extrabold text-white leading-tight';
-        }
-      });
-
-      ['Gym', 'Yoga', 'Walk'].forEach(tag => {
-        const btn = document.getElementById(`tagBtn-${tag}`);
-        const active = log.moveTags.includes(tag);
-        if (active) {
-          btn.className = 'py-1.5 rounded-xl text-sm font-black border border-[#E87A35] bg-[#E87A35] text-black transition';
-        } else {
-          btn.className = 'py-1.5 rounded-xl text-sm font-bold border border-[#2B313B] bg-[#15191F] text-[#9AA4B2] transition';
-        }
-      });
-
-      document.getElementById('frenchAppBtn').href = state.frenchAppUrl || 'index.html';
-    }
-
-    // =====================================================================
-    // STATS & GITHUB HEATMAP
-    // =====================================================================
-    function computeStats() {
-      const today = new Date();
-      let currentStreak = 0;
-      let cleanStreak = 0;
-
-      let cur = new Date(today);
-      if (getHabitCount(toDateKey(cur)) === 0) cur.setDate(cur.getDate() - 1);
-      while (getHabitCount(toDateKey(cur)) > 0) {
-        currentStreak++;
-        cur.setDate(cur.getDate() - 1);
-      }
-
-      let cCur = new Date(today);
-      if (!state.logs[toDateKey(cCur)]?.clean) cCur.setDate(cCur.getDate() - 1);
-      while (state.logs[toDateKey(cCur)]?.clean) {
-        cleanStreak++;
-        cCur.setDate(cCur.getDate() - 1);
-      }
-
-      const keys = Object.keys(state.logs).sort();
-      let bestStreak = currentStreak;
-      let running = 0;
-      let prevDate = null;
-      let perfectDays = 0;
-      let totalHabitsLogged = 0;
-
-      keys.forEach(k => {
-        const c = getHabitCount(k);
-        totalHabitsLogged += c;
-        if (c > 0) {
-          if (c === 3) perfectDays++;
-          const d = parseDateKey(k);
-          if (prevDate && Math.round((d - prevDate) / 86400000) === 1) {
-            running++;
-          } else {
-            running = 1;
-          }
-          if (running > bestStreak) bestStreak = running;
-          prevDate = d;
-        } else {
-          running = 0;
-          prevDate = null;
-        }
-      });
-
-      let done30 = 0;
-      const d30 = new Date(today);
-      for (let i = 0; i < 30; i++) {
-        done30 += getHabitCount(toDateKey(d30));
-        d30.setDate(d30.getDate() - 1);
-      }
-      const rate30 = Math.round((done30 / 90) * 100);
-
-      return {
-        currentStreak,
-        cleanStreak,
-        bestStreak,
-        perfectDays,
-        totalHabitsLogged,
-        rate30
-      };
-    }
-
-    function ghColorClass(count) {
-      if (count === 1) return 'bg-[#0E4429] border-[#155d38]';
-      if (count === 2) return 'bg-[#006D32] border-[#26A641]';
-      if (count >= 3) return 'bg-[#39D353] border-[#6fdd8b]';
-      return 'bg-[#0C0E11] border-[#2B313B]';
-    }
-
-    function setHeatmapMode(mode) {
-      state.heatmapMode = mode;
-      saveState();
-      renderHeatmap();
-    }
-
-    function shiftHmMonth(delta) {
-      hmMonth += delta;
-      if (hmMonth > 11) { hmMonth = 0; hmYear++; }
-      if (hmMonth < 0) { hmMonth = 11; hmYear--; }
-      renderHeatmap();
-    }
-
-    function renderHeatmap() {
-      const ghTab = document.getElementById('hmTab-github');
-      const moTab = document.getElementById('hmTab-month');
-      const ghView = document.getElementById('hmGithubView');
-      const moView = document.getElementById('hmMonthView');
-
-      const selCount = getHabitCount(state.selectedDate);
-      document.getElementById('hmSelectedStat').textContent = `${state.selectedDate}: ${selCount}/3 completed`;
-
-      if (state.heatmapMode === 'github') {
-        ghTab.className = 'px-3 py-1 rounded-lg bg-[#1E242D] text-white transition';
-        moTab.className = 'px-3 py-1 rounded-lg text-[#9AA4B2] transition';
-        ghView.classList.remove('hidden');
-        moView.classList.add('hidden');
-
-        const weeks = 18;
-        const today = new Date();
-        const dowMon0 = (today.getDay() + 6) % 7;
-        const endWeek = new Date(today);
-        endWeek.setDate(today.getDate() + (6 - dowMon0));
-
-        const startDate = new Date(endWeek);
-        startDate.setDate(endWeek.getDate() - (weeks * 7) + 1);
-
-        let cells = '';
-        let months = '';
-        let lastM = -1;
-        const todayKey = toDateKey(today);
-        const cur = new Date(startDate);
-
-        for (let w = 0; w < weeks; w++) {
-          const m = cur.getMonth();
-          if (m !== lastM) {
-            months += `<span style="width:18px" class="inline-block overflow-visible">${cur.toLocaleDateString('en-US', { month: 'short' })}</span>`;
-            lastM = m;
-          } else {
-            months += `<span style="width:18px" class="inline-block"></span>`;
-          }
-
-          for (let d = 0; d < 7; d++) {
-            const k = toDateKey(cur);
-            const c = getHabitCount(k);
-            const isFuture = k > todayKey;
-            const isSel = k === state.selectedDate;
-            const cls = isFuture ? 'bg-[#0C0E11]/40 border-[#2B313B]/40 opacity-35' : ghColorClass(c);
-            const ring = isSel ? 'ring-2 ring-[#E87A35] scale-110 z-10' : '';
-
-            cells += `<button onclick="selectDateKey('${k}')" class="w-[14px] h-[14px] rounded-[3px] border ${cls} ${ring}"></button>`;
-            cur.setDate(cur.getDate() + 1);
-          }
-        }
-
-        document.getElementById('ghMonthsRow').innerHTML = months;
-        document.getElementById('ghGridCells').innerHTML = cells;
-        ghView.scrollLeft = ghView.scrollWidth;
+      const panel = document.getElementById('habitManagerPanel');
+      const editBtn = document.getElementById('editHabitsBtn');
+      if (state.editHabitsMode) {
+        panel.classList.remove('hidden');
+        editBtn.textContent = 'Done';
+        editBtn.className = 'px-3 py-1.5 rounded-xl bg-[#39D353] text-black text-xs font-black uppercase tracking-wider active:scale-95 transition';
       } else {
-        moTab.className = 'px-3 py-1 rounded-lg bg-[#1E242D] text-white transition';
-        ghTab.className = 'px-3 py-1 rounded-lg text-[#9AA4B2] transition';
-        moView.classList.remove('hidden');
-        ghView.classList.add('hidden');
-
-        const first = new Date(hmYear, hmMonth, 1);
-        const days = new Date(hmYear, hmMonth + 1, 0).getDate();
-        const offset = (first.getDay() + 6) % 7;
-
-        document.getElementById('hmMonthLabel').textContent = first.toLocaleDateString('en-US', {
-          month: 'long',
-          year: 'numeric'
-        });
-
-        let html = '';
-        for (let i = 0; i < offset; i++) html += `<div class="h-10"></div>`;
-        for (let day = 1; day <= days; day++) {
-          const k = toDateKey(new Date(hmYear, hmMonth, day));
-          const c = getHabitCount(k);
-          const isSel = k === state.selectedDate;
-          const cls = ghColorClass(c);
-          const ring = isSel ? 'ring-2 ring-[#E87A35]' : '';
-          html += `
-            <button onclick="selectDateKey('${k}')" class="h-10 rounded-xl border ${cls} ${ring} font-mono text-sm font-bold flex items-center justify-center">
-              ${day}
-            </button>
-          `;
-        }
-        document.getElementById('hmMonthCells').innerHTML = html;
+        panel.classList.add('hidden');
+        editBtn.textContent = '+ Add / Edit';
+        editBtn.className = 'px-3 py-1.5 rounded-xl bg-[#1A2029] border border-[#39D353]/50 text-xs font-extrabold uppercase tracking-wider text-[#39D353] active:scale-95 transition';
       }
+
+      const log = getDayLog(state.selectedDate);
+      const { done, total } = getDayCompletionStats(state.selectedDate);
+      document.getElementById('habitHeaderRatio').textContent = `${done}/${total}`;
+
+      const todayStats = getDayCompletionStats(todayKey);
+      document.getElementById('hdrTodayVal').textContent = `${todayStats.done}/${todayStats.total}`;
+
+      const container = document.getElementById('coreHabitsContainer');
+      if (state.habits.length === 0) {
+        container.innerHTML = `
+          <div class="p-6 text-center rounded-2xl bg-[#0B0D10] border-2 border-dashed border-[#28303D]">
+            <p class="text-base font-bold text-[#9AA4B2]">No core habits configured.</p>
+            <button onclick="toggleEditHabitsMode()" class="mt-2 px-4 py-2 rounded-xl bg-[#39D353] text-black font-black text-xs uppercase">+ Add Core Habit</button>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = state.habits.map((h, idx) => {
+        const isDone = !!log[h.id];
+        const hStreak = getSingleHabitStreak(h.id);
+        const rowCls = isDone
+          ? 'rounded-2xl bg-[#0E4429]/45 border-2 border-[#39D353] p-4 transition-all'
+          : 'rounded-2xl bg-[#0B0D10] border-2 border-[#28303D] p-4 transition-all';
+        const boxCls = isDone
+          ? 'w-9 h-9 rounded-xl border-2 border-[#39D353] bg-[#39D353] flex items-center justify-center shrink-0 transition-all'
+          : 'w-9 h-9 rounded-xl border-2 border-[#9AA4B2] flex items-center justify-center shrink-0 transition-all';
+        const titleCls = isDone
+          ? 'text-[20px] font-black text-[#39D353] line-through leading-tight break-words'
+          : 'text-[20px] font-extrabold text-white leading-tight break-words';
+
+        const moveTagsHtml = h.hasMoveTags ? `
+          <div class="grid grid-cols-3 gap-2 pt-3 pl-12">
+            ${['Gym', 'Yoga', 'Walk'].map(tag => {
+              const active = log.moveTags.includes(tag);
+              return `<button onclick="toggleMoveTag('${tag}')" class="py-1.5 rounded-xl text-sm font-black border transition ${
+                active
+                  ? 'border-[#39D353] bg-[#39D353] text-black'
+                  : 'border-[#28303D] bg-[#13171D] text-[#9AA4B2]'
+              }">${tag}</button>`;
+            }).join('')}
+          </div>
+        ` : '';
+
+        const editControlsHtml = state.editHabitsMode ? `
+          <div class="flex items-center gap-1 shrink-0">
+            <button onclick="moveHabitOrder(${idx}, -1)" class="px-2 py-1.5 rounded-lg bg-[#1A2029] text-white text-xs font-black">↑</button>
+            <button onclick="moveHabitOrder(${idx}, 1)" class="px-2 py-1.5 rounded-lg bg-[#1A2029] text-white text-xs font-black">↓</button>
+            <button onclick="promptDeleteHabit('${h.id}')" class="px-2.5 py-1.5 rounded-lg bg-[#F85149] text-black text-xs font-black">✕</button>
+          </div>
+        ` : `
+          <div class="flex items-center gap-2 shrink-0">
+            ${h.hasStudyLink ? `
+              <a href="${escapeHtml(state.frenchAppUrl || 'index.html')}" class="px-3 py-1.5 rounded-xl bg-[#1A2029] border border-[#28303D] text-xs font-black text-white flex items-center gap-1 active:scale-95">
+                <span>Study</span><span>↗</span>
+              </a>
+            ` : ''}
+            <span class="px-2.5 py-1 rounded-xl bg-[#13171D] border border-[#28303D] text-sm font-mono font-black ${hStreak > 0 ? 'text-[#39D353]' : 'text-[#9AA4B2]'} tabular-nums">
+              ${hStreak}d
+            </span>
+          </div>
+        `;
+
+        return `
+          <div class="${rowCls}">
+            <div class="flex items-center justify-between gap-3">
+              <div onclick="toggleHabit('${h.id}')" class="flex items-center gap-3.5 flex-1 cursor-pointer min-w-0">
+                <button id="habitBox-${h.id}" class="${boxCls}">
+                  <svg class="w-6 h-6 text-black ${isDone ? '' : 'hidden'}" fill="none" stroke="currentColor" stroke-width="3.5" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                  </svg>
+                </button>
+                <span class="${titleCls}">${idx + 1}. ${escapeHtml(h.name)}</span>
+              </div>
+              ${editControlsHtml}
+            </div>
+            ${moveTagsHtml}
+          </div>
+        `;
+      }).join('');
     }
 
     // =====================================================================
-    // SECTION 01 // RUNNING TASKS
+    // SECTION 01 // RUNNING TASKS (AMBER #F0883E)
     // =====================================================================
+    function setTaskFilter(filter) {
+      state.taskFilter = filter;
+      saveState();
+      renderTasks();
+    }
+
     function addRunningTask(e) {
       e.preventDefault();
       const input = document.getElementById('taskInput');
@@ -1171,11 +1240,6 @@
       renderLevelSection();
     }
 
-    function toggleCompletedDrawer() {
-      state.completedDrawerOpen = !state.completedDrawerOpen;
-      renderTasks();
-    }
-
     function clearCompletedTasks() {
       const doneCount = state.runningTasks.filter(t => t.done).length;
       if (doneCount === 0) return;
@@ -1184,62 +1248,63 @@
       saveState();
       renderTasks();
       renderLevelSection();
-      showToast(`Cleared ${doneCount} tasks (XP Saved)`);
+      showToast(`Cleared ${doneCount} tasks (XP Banked)`);
     }
 
     function renderTasks() {
-      const active = state.runningTasks
-        .filter(t => !t.done)
-        .sort((a, b) => (a.pinned === b.pinned ? 0 : a.pinned ? -1 : 1));
-      const completed = state.runningTasks.filter(t => t.done);
-
-      document.getElementById('tasksCountPill').textContent = `${active.length} Open`;
-
-      const activeEl = document.getElementById('activeTasksList');
-      if (active.length === 0) {
-        activeEl.innerHTML = `<div class="py-6 text-center text-base font-semibold text-[#9AA4B2] border border-dashed border-[#2B313B] rounded-xl">No open tasks</div>`;
-      } else {
-        activeEl.innerHTML = active.map(t => `
-          <div class="flex items-center justify-between gap-3 p-3.5 rounded-xl bg-[#0C0E11] border-[1.5px] ${t.pinned ? 'border-[#E87A35]' : 'border-[#2B313B]'}">
-            <div onclick="toggleTask('${t.id}')" class="flex items-center gap-3 flex-1 cursor-pointer min-w-0">
-              <button class="w-7 h-7 rounded-lg border-2 border-[#9AA4B2] shrink-0"></button>
-              <span class="text-[18px] font-semibold text-white break-words leading-snug">${escapeHtml(t.text)}</span>
-            </div>
-            <div class="flex items-center gap-1 shrink-0">
-              <button onclick="togglePinTask('${t.id}')" class="px-2 py-1 rounded-lg text-sm font-black ${t.pinned ? 'text-[#E87A35]' : 'text-[#9AA4B2]/50'}">★</button>
-              <button onclick="deleteTask('${t.id}')" class="px-2 py-1 rounded-lg text-sm font-bold text-[#9AA4B2] hover:text-white">✕</button>
-            </div>
-          </div>
-        `).join('');
-      }
-
-      const compWrap = document.getElementById('completedTasksWrap');
-      const compList = document.getElementById('completedTasksList');
-      if (completed.length === 0) {
-        compWrap.classList.add('hidden');
-      } else {
-        compWrap.classList.remove('hidden');
-        document.getElementById('completedCountLabel').textContent = `Completed (${completed.length})`;
-        document.getElementById('completedArrow').textContent = state.completedDrawerOpen ? '▾' : '▸';
-        if (state.completedDrawerOpen) {
-          compList.classList.remove('hidden');
-          compList.innerHTML = completed.map(t => `
-            <div class="flex items-center justify-between gap-3 p-3 rounded-xl bg-[#0C0E11]/60 border border-[#2B313B]">
-              <div onclick="toggleTask('${t.id}')" class="flex items-center gap-3 flex-1 cursor-pointer min-w-0">
-                <button class="w-6 h-6 rounded-lg bg-[#39D353] text-black font-black text-xs flex items-center justify-center shrink-0">✓</button>
-                <span class="text-[17px] font-medium text-[#9AA4B2] line-through break-words">${escapeHtml(t.text)}</span>
-              </div>
-              <button onclick="deleteTask('${t.id}')" class="px-2 py-1 text-sm text-[#9AA4B2]">✕</button>
-            </div>
-          `).join('');
+      ['active', 'done', 'all'].forEach(f => {
+        const btn = document.getElementById(`tf-${f}`);
+        if (state.taskFilter === f) {
+          btn.className = 'px-2.5 py-1 rounded-lg text-xs font-black bg-[#F0883E] text-black transition';
         } else {
-          compList.classList.add('hidden');
+          btn.className = 'px-2.5 py-1 rounded-lg text-xs font-bold text-[#9AA4B2] transition';
         }
+      });
+
+      const activeCount = state.runningTasks.filter(t => !t.done).length;
+      document.getElementById('tasksFooterCount').textContent = `${activeCount} Active ${activeCount === 1 ? 'Task' : 'Tasks'}`;
+
+      let list = [...state.runningTasks];
+      if (state.taskFilter === 'active') list = list.filter(t => !t.done);
+      else if (state.taskFilter === 'done') list = list.filter(t => t.done);
+
+      list.sort((a, b) => {
+        if (a.done !== b.done) return a.done ? 1 : -1;
+        return a.pinned === b.pinned ? 0 : a.pinned ? -1 : 1;
+      });
+
+      const container = document.getElementById('runningTasksList');
+      if (list.length === 0) {
+        container.innerHTML = `<div class="py-6 text-center text-base font-bold text-[#9AA4B2] border-2 border-dashed border-[#28303D] rounded-xl">No tasks in this view</div>`;
+        return;
       }
+
+      container.innerHTML = list.map(t => `
+        <div class="flex items-center justify-between gap-3 p-3.5 rounded-xl bg-[#0B0D10] border-2 ${
+          t.done ? 'border-[#28303D] opacity-65' : t.pinned ? 'border-[#F0883E]' : 'border-[#28303D]'
+        }">
+          <div onclick="toggleTask('${t.id}')" class="flex items-center gap-3 flex-1 cursor-pointer min-w-0">
+            <button class="w-7 h-7 rounded-lg border-2 ${
+              t.done ? 'bg-[#F0883E] border-[#F0883E] text-black' : 'border-[#9AA4B2]'
+            } flex items-center justify-center font-black text-sm shrink-0">
+              ${t.done ? '✓' : ''}
+            </button>
+            <span class="text-[18px] font-bold ${t.done ? 'line-through text-[#9AA4B2]' : 'text-white'} break-words leading-snug">
+              ${escapeHtml(t.text)}
+            </span>
+          </div>
+          <div class="flex items-center gap-1 shrink-0">
+            <button onclick="togglePinTask('${t.id}')" title="Priority" class="px-2.5 py-1 rounded-lg text-sm font-black ${
+              t.pinned ? 'bg-[#F0883E]/20 text-[#F0883E]' : 'text-[#9AA4B2]/50'
+            }">!</button>
+            <button onclick="deleteTask('${t.id}')" class="px-2 py-1 rounded-lg text-sm font-black text-[#9AA4B2] hover:text-white">✕</button>
+          </div>
+        </div>
+      `).join('');
     }
 
     // =====================================================================
-    // SECTION 02 // WEEKLY PLAN (4-SQUARE)
+    // SECTION 02 // WEEKLY PLAN (TRUE 2x2 QUADRANT MATRIX — CYAN #38BDF8)
     // =====================================================================
     function addQuadItem(e, quad) {
       e.preventDefault();
@@ -1263,7 +1328,7 @@
       const item = list.find(i => i.id === id);
       if (!item) return;
       item.done = !item.done;
-      if (item.done) showToast('Weekly Goal • +25 XP');
+      if (item.done) showToast('Weekly Quadrant • +20 XP');
       saveState();
       renderWeekly();
       renderLevelSection();
@@ -1284,11 +1349,11 @@
         state.quadrants[q] = (state.quadrants[q] || []).filter(i => !i.done);
       });
       if (cleared > 0) {
-        state.bankedXp = (state.bankedXp || 0) + cleared * 25;
+        state.bankedXp = (state.bankedXp || 0) + cleared * 20;
         saveState();
         renderWeekly();
         renderLevelSection();
-        showToast(`Cleared ${cleared} weekly items (XP Saved)`);
+        showToast(`Cleared ${cleared} items (XP Banked)`);
       }
     }
 
@@ -1300,26 +1365,30 @@
 
         const listEl = document.getElementById(`qList-${q}`);
         if (items.length === 0) {
-          listEl.innerHTML = `<p class="text-sm font-medium text-[#9AA4B2]/50 py-2">Empty</p>`;
+          listEl.innerHTML = `<p class="text-xs font-bold text-[#9AA4B2]/40 py-2">No items</p>`;
           return;
         }
 
         listEl.innerHTML = items.map(item => `
-          <div class="flex items-start justify-between gap-2.5 py-1">
-            <div onclick="toggleQuadItem('${q}', '${item.id}')" class="flex items-start gap-2.5 flex-1 cursor-pointer min-w-0">
-              <button class="w-6 h-6 mt-0.5 rounded-lg border-2 ${item.done ? 'bg-[#39D353] border-[#39D353] text-black' : 'border-[#9AA4B2]'} flex items-center justify-center shrink-0 text-xs font-black">
+          <div class="flex items-start justify-between gap-1.5 py-0.5">
+            <div onclick="toggleQuadItem('${q}', '${item.id}')" class="flex items-start gap-2 flex-1 cursor-pointer min-w-0">
+              <button class="w-5 h-5 mt-0.5 rounded-md border-2 ${
+                item.done ? 'bg-[#38BDF8] border-[#38BDF8] text-black' : 'border-[#9AA4B2]'
+              } flex items-center justify-center shrink-0 text-[11px] font-black">
                 ${item.done ? '✓' : ''}
               </button>
-              <span class="text-[17px] font-semibold leading-snug break-words ${item.done ? 'line-through text-[#9AA4B2]' : 'text-white'}">${escapeHtml(item.text)}</span>
+              <span class="text-[15px] font-bold leading-snug break-words ${
+                item.done ? 'line-through text-[#9AA4B2]' : 'text-white'
+              }">${escapeHtml(item.text)}</span>
             </div>
-            <button onclick="deleteQuadItem('${q}', '${item.id}')" class="text-sm font-bold text-[#9AA4B2] px-1.5">✕</button>
+            <button onclick="deleteQuadItem('${q}', '${item.id}')" class="text-xs font-black text-[#9AA4B2] px-1">✕</button>
           </div>
         `).join('');
       });
     }
 
     // =====================================================================
-    // SECTION 03 // MONTH CALENDAR
+    // SECTION 03 // HEATMAP MONTH CALENDAR + SELECTED DAY JOURNAL & EVENTS
     // =====================================================================
     function shiftCalMonth(delta) {
       calMonth += delta;
@@ -1333,6 +1402,19 @@
       calYear = now.getFullYear();
       calMonth = now.getMonth();
       selectDateKey(toDateKey(now));
+    }
+
+    function getHeatmapCellStyle(ratio) {
+      if (ratio <= 0) {
+        return 'bg-[#1A2029] border-[#28303D] text-white';
+      }
+      if (ratio < 0.5) {
+        return 'bg-[#0E4429] border-[#196c3e] text-white';
+      }
+      if (ratio < 1.0) {
+        return 'bg-[#26A641] border-[#39D353] text-white';
+      }
+      return 'bg-[#39D353] border-white/60 text-black font-black';
     }
 
     function addCalEvent(e) {
@@ -1351,16 +1433,74 @@
       input.value = '';
       saveState();
       renderCalendar();
+      showToast('Event Added');
     }
 
     function deleteCalEvent(dateKey, id) {
       if (!state.calendarEvents[dateKey]) return;
-      state.calendarEvents[dateKey] = state.calendarEvents[dateKey].filter(e => e.id !== id);
+      state.calendarEvents[dateKey] = state.calendarEvents[dateKey].filter(ev => ev.id !== id);
       saveState();
       renderCalendar();
     }
 
-    function renderCalendar() {
+    let journalDebounce = null;
+    function handleJournalInput(val) {
+      const badge = document.getElementById('journalSaveStatus');
+      if (badge) badge.textContent = 'Saving...';
+
+      if ( val.trim().length > 0 ) {
+        state.journals[state.selectedDate] = val;
+      } else {
+        delete state.journals[state.selectedDate];
+      }
+
+      clearTimeout(journalDebounce);
+      journalDebounce = setTimeout(() => {
+        saveState();
+        if (badge) badge.textContent = 'Saved ✓';
+        renderCalendarGridOnly();
+        renderRecentJournalsList();
+        renderLevelSection();
+      }, 300);
+    }
+
+    function toggleRecentJournals() {
+      state.recentJournalsOpen = !state.recentJournalsOpen;
+      renderRecentJournalsList();
+    }
+
+    function renderRecentJournalsList() {
+      const entries = Object.entries(state.journals)
+        .filter(([, text]) => text && text.trim().length > 0)
+        .sort((a, b) => b[0].localeCompare(a[0]));
+
+      document.getElementById('recentJournalsLabel').textContent = `Recent Journal Entries (${entries.length})`;
+      document.getElementById('recentJournalsArrow').textContent = state.recentJournalsOpen ? '▾' : '▸';
+
+      const listEl = document.getElementById('recentJournalsList');
+      if (!state.recentJournalsOpen) {
+        listEl.classList.add('hidden');
+        return;
+      }
+      listEl.classList.remove('hidden');
+
+      if (entries.length === 0) {
+        listEl.innerHTML = `<p class="text-xs font-bold text-[#9AA4B2]/50 py-2">No journal entries yet.</p>`;
+        return;
+      }
+
+      listEl.innerHTML = entries.map(([dateKey, text]) => `
+        <button onclick="selectDateKey('${dateKey}')" class="w-full text-left p-3 rounded-xl bg-[#13171D] border border-[#28303D] hover:border-[#F85149] transition block">
+          <div class="flex items-center justify-between text-xs font-mono font-black text-[#E3B341] mb-1">
+            <span>${dateKey}</span>
+            <span>View ↗</span>
+          </div>
+          <p class="text-sm font-semibold text-white line-clamp-2 break-words">${escapeHtml(text)}</p>
+        </button>
+      `).join('');
+    }
+
+    function renderCalendarGridOnly() {
       const first = new Date(calYear, calMonth, 1);
       const days = new Date(calYear, calMonth + 1, 0).getDate();
       const offset = (first.getDay() + 6) % 7;
@@ -1372,58 +1512,63 @@
       });
 
       let html = '';
-      for (let i = 0; i < offset; i++) html += `<div class="h-14"></div>`;
+      for (let i = 0; i < offset; i++) html += `<div class="h-12"></div>`;
 
       for (let day = 1; day <= days; day++) {
         const k = toDateKey(new Date(calYear, calMonth, day));
-        const log = state.logs[k] || {};
-        const count = getHabitCount(k);
-        const evs = state.calendarEvents[k] || [];
+        const { done, total, ratio } = getDayCompletionStats(k);
+        const hasJournal = !!(state.journals[k] && state.journals[k].trim().length > 0);
+        const hasEvents = (state.calendarEvents[k] || []).length > 0;
         const isToday = k === todayKey;
         const isSel = k === state.selectedDate;
 
-        const cellCls = isSel
-          ? 'bg-[#1E242D] border-2 border-[#E87A35]'
-          : count === 3
-          ? 'bg-[#0E4429]/50 border border-[#39D353]/60'
-          : 'bg-[#0C0E11] border border-[#2B313B]';
-
-        const numCls = isToday
-          ? 'bg-[#E87A35] text-black px-2 py-0.5 rounded-md font-black'
-          : 'text-white font-bold';
+        const heatCls = getHeatmapCellStyle(ratio);
+        const selRing = isSel ? 'ring-2 ring-[#F85149] scale-105 z-10' : '';
+        const todayUnderline = isToday ? 'underline decoration-2' : '';
 
         html += `
-          <button onclick="selectDateKey('${k}')" class="h-14 rounded-xl ${cellCls} flex flex-col items-center justify-between py-2 active:scale-95 transition">
-            <span class="text-sm tabular-nums leading-none ${numCls}">${day}</span>
+          <button onclick="selectDateKey('${k}')" class="h-12 rounded-xl border ${heatCls} ${selRing} flex flex-col items-center justify-between py-1.5 active:scale-95 transition relative">
+            <span class="text-sm font-extrabold tabular-nums leading-none ${todayUnderline}">${day}</span>
             <div class="flex items-center gap-1 h-2">
-              ${log.french ? '<span class="w-2 h-2 rounded-full bg-[#39D353]"></span>' : ''}
-              ${log.movement ? '<span class="w-2 h-2 rounded-full bg-[#39D353]"></span>' : ''}
-              ${log.clean ? '<span class="w-2 h-2 rounded-full bg-[#39D353]"></span>' : ''}
-              ${evs.length > 0 ? '<span class="w-2 h-2 rounded-full bg-[#F59E0B]"></span>' : ''}
+              ${hasJournal ? `<span class="w-2 h-2 rounded-full ${ratio === 1 ? 'bg-black' : 'bg-[#E3B341]'}"></span>` : ''}
+              ${hasEvents ? `<span class="w-2 h-2 rounded-full ${ratio === 1 ? 'bg-black' : 'bg-[#F85149]'}"></span>` : ''}
+              ${!hasJournal && !hasEvents && done > 0 ? `<span class="text-[9px] font-mono font-black leading-none opacity-85">${done}/${total}</span>` : ''}
             </div>
           </button>
         `;
       }
 
       document.getElementById('calGrid').innerHTML = html;
+    }
+
+    function renderCalendar() {
+      renderCalendarGridOnly();
 
       const selObj = parseDateKey(state.selectedDate);
-      document.getElementById('calSelectedLabel').textContent = selObj.toLocaleDateString('en-US', {
-        weekday: 'short',
+      document.getElementById('inspectorDateTitle').textContent = selObj.toLocaleDateString('en-US', {
+        weekday: 'long',
         month: 'short',
         day: 'numeric',
         year: 'numeric'
       });
 
-      const sLog = getDayLog(state.selectedDate);
-      ['french', 'movement', 'clean'].forEach(k => {
-        const btn = document.getElementById(`calQuick-${k}`);
-        if (sLog[k]) {
-          btn.className = 'px-2.5 py-1.5 rounded-lg text-xs font-black bg-[#39D353] border-[#39D353] text-black transition';
-        } else {
-          btn.className = 'px-2.5 py-1.5 rounded-lg text-xs font-bold bg-[#15191F] border-[#2B313B] text-[#9AA4B2] transition';
-        }
-      });
+      const { done, total } = getDayCompletionStats(state.selectedDate);
+      document.getElementById('inspectorHabitBadge').textContent = `${done}/${total} Habits`;
+
+      const log = getDayLog(state.selectedDate);
+      const habitsBar = document.getElementById('inspectorHabitsBar');
+      habitsBar.innerHTML = state.habits.map(h => {
+        const isDone = !!log[h.id];
+        return `
+          <button onclick="toggleHabit('${h.id}')" class="px-3 py-2 rounded-xl text-sm font-black border transition ${
+            isDone
+              ? 'bg-[#39D353] border-[#39D353] text-black'
+              : 'bg-[#13171D] border-[#28303D] text-[#9AA4B2]'
+          }">
+            ${isDone ? '✓ ' : ''}${escapeHtml(h.name)}
+          </button>
+        `;
+      }).join('');
 
       const events = state.calendarEvents[state.selectedDate] || [];
       const evContainer = document.getElementById('calEventsList');
@@ -1431,47 +1576,146 @@
         evContainer.innerHTML = '';
       } else {
         evContainer.innerHTML = events.map(ev => `
-          <div class="flex items-center justify-between px-3 py-2 rounded-xl bg-[#15191F] border border-[#2B313B]">
-            <span class="text-[16px] font-semibold text-white">${escapeHtml(ev.text)}</span>
-            <button onclick="deleteCalEvent('${state.selectedDate}', '${ev.id}')" class="text-sm font-bold text-[#9AA4B2] px-2">✕</button>
+          <div class="flex items-center justify-between px-3.5 py-2.5 rounded-xl bg-[#13171D] border border-[#28303D]">
+            <span class="text-[16px] font-bold text-white break-words">${escapeHtml(ev.text)}</span>
+            <button onclick="deleteCalEvent('${state.selectedDate}', '${ev.id}')" class="text-sm font-black text-[#9AA4B2] px-2">✕</button>
           </div>
         `).join('');
       }
+
+      const journalTextarea = document.getElementById('dailyJournalInput');
+      const currentNote = state.journals[state.selectedDate] || '';
+      if (journalTextarea.value !== currentNote) {
+        journalTextarea.value = currentNote;
+      }
+
+      renderRecentJournalsList();
     }
 
     // =====================================================================
-    // SECTION 04 // LEVEL STATUS & MILESTONES
+    // SECTION 04 // LEVEL STATUS (METALLIC GOLD #E3B341)
     // =====================================================================
-    function renderLevelSection() {
-      const stats = computeStats();
+    const RANKS = [
+      { minLv: 1, title: 'I. Initiate' },
+      { minLv: 2, title: 'II. Grounded' },
+      { minLv: 4, title: 'III. Disciplined' },
+      { minLv: 6, title: 'IV. Relentless' },
+      { minLv: 9, title: 'V. Vanguard' },
+      { minLv: 12, title: 'VI. Commander' },
+      { minLv: 16, title: 'VII. Sovereign' },
+      { minLv: 20, title: 'VIII. Ruler' }
+    ];
 
-      // XP Calculation:
-      // +30 XP per habit + 30 XP Perfect Day bonus (120 XP per 3/3 day)
-      // +15 XP per completed task
-      // +25 XP per completed weekly item
-      const habitXp = stats.totalHabitsLogged * 30;
-      const perfectBonusXp = stats.perfectDays * 30;
+    function xpRequiredForLevelStep(level) {
+      return Math.round(400 * Math.pow(level, 0.65));
+    }
+
+    function calculateLevelData(totalXp) {
+      let level = 1;
+      let remaining = totalXp;
+      let stepReq = xpRequiredForLevelStep(level);
+
+      while (remaining >= stepReq) {
+        remaining -= stepReq;
+        level++;
+        stepReq = xpRequiredForLevelStep(level);
+      }
+
+      let rankTitle = RANKS[0].title;
+      for (const r of RANKS) {
+        if (level >= r.minLv) rankTitle = r.title;
+      }
+
+      const pct = Math.min(100, Math.round((remaining / stepReq) * 100));
+      return {
+        level,
+        rankTitle,
+        xpInLevel: remaining,
+        stepReq,
+        xpNeeded: stepReq - remaining,
+        pct
+      };
+    }
+
+    function computeGlobalStats() {
+      const today = new Date();
+      let currentStreak = 0;
+
+      let cur = new Date(today);
+      if (getDayCompletionStats(toDateKey(cur)).done === 0) {
+        cur.setDate(cur.getDate() - 1);
+      }
+      while (getDayCompletionStats(toDateKey(cur)).done > 0) {
+        currentStreak++;
+        cur.setDate(cur.getDate() - 1);
+      }
+
+      const keys = Object.keys(state.logs).sort();
+      let bestStreak = currentStreak;
+      let running = 0;
+      let prevDate = null;
+      let perfectDays = 0;
+      let totalHabitsCompleted = 0;
+
+      keys.forEach(k => {
+        const { done, total } = getDayCompletionStats(k);
+        totalHabitsCompleted += done;
+        if (done > 0) {
+          if (total > 0 && done === total) perfectDays++;
+          const d = parseDateKey(k);
+          if (prevDate && Math.round((d - prevDate) / 86400000) === 1) {
+            running++;
+          } else {
+            running = 1;
+          }
+          if (running > bestStreak) bestStreak = running;
+          prevDate = d;
+        } else {
+          running = 0;
+          prevDate = null;
+        }
+      });
+
+      const journalCount = Object.values(state.journals).filter(txt => txt && txt.trim().length > 0).length;
+
+      return {
+        currentStreak,
+        bestStreak,
+        perfectDays,
+        totalHabitsCompleted,
+        journalCount
+      };
+    }
+
+    function renderLevelSection() {
+      const stats = computeGlobalStats();
+
+      // Progressive XP Formula:
+      // +25 XP per completed habit
+      // +45 XP bonus per 100% Perfect Day
+      // +15 XP per completed running task
+      // +20 XP per completed weekly quadrant item
+      // +15 XP per daily journal entry
+      const habitXp = stats.totalHabitsCompleted * 25;
+      const perfectBonusXp = stats.perfectDays * 45;
       const tasksDone = state.runningTasks.filter(t => t.done).length;
       let weeklyDone = 0;
       ['career', 'health', 'house', 'fun'].forEach(q => {
         weeklyDone += (state.quadrants[q] || []).filter(i => i.done).length;
       });
+      const journalXp = stats.journalCount * 15;
 
-      const totalXp = habitXp + perfectBonusXp + (tasksDone * 15) + (weeklyDone * 25) + (state.bankedXp || 0);
+      const totalXp = habitXp + perfectBonusXp + (tasksDone * 15) + (weeklyDone * 20) + journalXp + (state.bankedXp || 0);
       const lvData = calculateLevelData(totalXp);
 
-      // Update Sticky Header
-      document.getElementById('topLevelNum').textContent = lvData.level;
-      document.getElementById('topRankTitle').textContent = lvData.rankTitle;
-      document.getElementById('topXpBar').style.width = `${lvData.pct}%`;
-      document.getElementById('topXpText').textContent = `${lvData.xpInLevel} / ${lvData.stepReq} XP`;
-      document.getElementById('topStreakNum').textContent = `${stats.currentStreak}d`;
-      document.getElementById('cleanStreakPill').textContent = `${stats.cleanStreak}d`;
+      // Update Top Summary Strip
+      document.getElementById('hdrLevelVal').textContent = lvData.level;
+      document.getElementById('hdrStreakVal').textContent = `${stats.currentStreak}d`;
 
       // Update Section 04
       document.getElementById('totalXpHeaderBadge').textContent = `${totalXp} XP TOTAL`;
       document.getElementById('levelRankName').textContent = lvData.rankTitle;
-      document.getElementById('levelNextNeeded').textContent = `${lvData.xpNeeded} XP needed for Level ${lvData.level + 1}`;
+      document.getElementById('levelNextNeeded').textContent = `${lvData.xpNeeded} XP to Level ${lvData.level + 1}`;
       document.getElementById('levelBigNumber').textContent = lvData.level;
       document.getElementById('levelProgressBar').style.width = `${Math.max(3, lvData.pct)}%`;
       document.getElementById('levelStepProgressText').textContent = `${lvData.xpInLevel} / ${lvData.stepReq} XP (${lvData.pct}%)`;
@@ -1479,43 +1723,114 @@
       document.getElementById('metricCurrentStreak').textContent = `${stats.currentStreak}d`;
       document.getElementById('metricBestStreak').textContent = `${stats.bestStreak}d`;
       document.getElementById('metricPerfectDays').textContent = stats.perfectDays;
-      document.getElementById('metric30DayRate').textContent = `${stats.rate30}%`;
-
-      const totalCompletedItems = tasksDone + weeklyDone + Math.floor((state.bankedXp || 0) / 20);
+      document.getElementById('metricJournalCount').textContent = stats.journalCount;
 
       const milestones = [
-        { title: 'First 3/3 Day', req: '1 Perfect Day', done: stats.perfectDays >= 1 },
+        { title: 'First Perfect Day', req: '100% Habits', done: stats.perfectDays >= 1 },
         { title: '7-Day Streak', req: '7d Consistency', done: stats.bestStreak >= 7 },
         { title: '14-Day Streak', req: '2 Weeks Solid', done: stats.bestStreak >= 14 },
-        { title: '30-Day Streak', req: 'Iron Discipline', done: stats.bestStreak >= 30 },
-        { title: '10 Tasks Done', req: 'Execution', done: totalCompletedItems >= 10 },
-        { title: '25 Perfect Days', req: '25x 3/3 Days', done: stats.perfectDays >= 25 },
+        { title: '30-Day Streak', req: 'Unbreakable', done: stats.bestStreak >= 30 },
+        { title: '7 Journal Logs', req: '7 Reflections', done: stats.journalCount >= 7 },
+        { title: '25 Perfect Days', req: '25x 100% Days', done: stats.perfectDays >= 25 },
         { title: 'Level 5', req: 'Rank IV+', done: lvData.level >= 5 },
-        { title: 'Level 10', req: 'Rank V+', done: lvData.level >= 10 }
+        { title: 'Level 10', req: 'Shreyansh Rules', done: lvData.level >= 10 }
       ];
 
       document.getElementById('milestonesGrid').innerHTML = milestones.map(m => `
-        <div class="rounded-xl p-3 border-[1.5px] ${
+        <div class="rounded-xl p-3 border-2 ${
           m.done
-            ? 'bg-[#0E4429]/40 border-[#39D353] text-white'
-            : 'bg-[#0C0E11] border-[#2B313B] text-[#9AA4B2]/40'
+            ? 'bg-[#E3B341]/15 border-[#E3B341] text-white'
+            : 'bg-[#0B0D10] border-[#28303D] text-[#9AA4B2]/40'
         }">
           <div class="flex items-center justify-between mb-1">
-            <span class="text-xs font-mono font-black uppercase ${m.done ? 'text-[#39D353]' : 'text-[#9AA4B2]/40'}">${m.done ? 'UNLOCKED' : 'LOCKED'}</span>
-            <span>${m.done ? '✓' : '•'}</span>
+            <span class="text-[11px] font-mono font-black uppercase ${m.done ? 'text-[#E3B341]' : 'text-[#9AA4B2]/40'}">${m.done ? 'EARNED' : 'LOCKED'}</span>
+            <span class="font-black">${m.done ? '★' : '•'}</span>
           </div>
-          <p class="text-[15px] font-extrabold leading-tight">${m.title}</p>
-          <p class="text-xs font-semibold opacity-75 mt-0.5">${m.req}</p>
+          <p class="text-[15px] font-black leading-tight">${m.title}</p>
+          <p class="text-xs font-bold opacity-75 mt-0.5">${m.req}</p>
         </div>
       `).join('');
     }
 
     // =====================================================================
-    // NAVIGATION & SETTINGS MODAL
+    // BACKUP, RESTORE & SETTINGS MODALS
     // =====================================================================
     function scrollToSection(id) {
       const el = document.getElementById(id);
       if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function openBackupModal() {
+      document.getElementById('backupTextarea').value = JSON.stringify(state);
+      const m = document.getElementById('backupModal');
+      m.classList.remove('hidden');
+      m.classList.add('flex');
+    }
+
+    function closeBackupModal() {
+      const m = document.getElementById('backupModal');
+      m.classList.add('hidden');
+      m.classList.remove('flex');
+    }
+
+    function downloadBackupFile() {
+      const dataStr = JSON.stringify(state, null, 2);
+      const blob = new Blob([dataStr], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `shreyansh-backup-${toDateKey(new Date())}.json`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      showToast('Backup File Downloaded ✓');
+    }
+
+    function restoreFromFileInput(event) {
+      const file = event.target.files?.[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        try {
+          const parsed = JSON.parse(e.target.result);
+          normalizeAndMergeLoadedState(parsed);
+          saveState();
+          renderAll();
+          closeBackupModal();
+          showToast('File Restored Successfully ✓');
+        } catch (err) {
+          showToast('Invalid JSON Backup File');
+        }
+      };
+      reader.readAsText(file);
+    }
+
+    function exportBackupJson() {
+      const area = document.getElementById('backupTextarea');
+      area.value = JSON.stringify(state);
+      area.select();
+      try {
+        document.execCommand('copy');
+        showToast('Backup Code Copied ✓');
+      } catch (e) {
+        showToast('Select & Copy Code Below');
+      }
+    }
+
+    function importBackupJson() {
+      const raw = document.getElementById('backupTextarea').value.trim();
+      if (!raw) return;
+      try {
+        const parsed = JSON.parse(raw);
+        normalizeAndMergeLoadedState(parsed);
+        saveState();
+        renderAll();
+        closeBackupModal();
+        showToast('Backup Restored ✓');
+      } catch (e) {
+        showToast('Invalid Backup Code');
+      }
     }
 
     function openSettingsModal() {
@@ -1535,36 +1850,8 @@
       state.frenchAppUrl = document.getElementById('frenchUrlInput').value.trim() || 'index.html';
       saveState();
       renderHabits();
-      showToast('Saved Link');
-    }
-
-    function exportBackupJson() {
-      const area = document.getElementById('backupTextarea');
-      area.value = JSON.stringify(state);
-      area.select();
-      try {
-        document.execCommand('copy');
-        showToast('Backup Copied');
-      } catch (e) {
-        showToast('Copy JSON below');
-      }
-    }
-
-    function importBackupJson() {
-      const raw = document.getElementById('backupTextarea').value.trim();
-      if (!raw) return;
-      try {
-        const parsed = JSON.parse(raw);
-        if (parsed && typeof parsed === 'object') {
-          state = { ...state, ...parsed };
-          saveState();
-          renderAll();
-          closeSettingsModal();
-          showToast('Data Restored');
-        }
-      } catch (e) {
-        showToast('Invalid JSON');
-      }
+      closeSettingsModal();
+      showToast('French Link Saved');
     }
 
     let toastTimer = null;
@@ -1577,7 +1864,7 @@
       toastTimer = setTimeout(() => {
         banner.classList.add('opacity-0', '-translate-y-2');
         banner.classList.remove('opacity-100', 'translate-y-0');
-      }, 1700);
+      }, 1800);
     }
 
     function escapeHtml(str) {
@@ -1590,7 +1877,6 @@
 
     function renderAll() {
       renderHabits();
-      renderHeatmap();
       renderTasks();
       renderWeekly();
       renderCalendar();
@@ -1598,8 +1884,7 @@
     }
 
     window.onload = function () {
-      loadState();
-      renderAll();
+      initStorageAndLoad();
     };
   </script>
 </body>
