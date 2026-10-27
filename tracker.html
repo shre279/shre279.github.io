@@ -9,9 +9,9 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="Life OS" />
   <meta name="mobile-web-app-capable" content="yes" />
-  <meta name="theme-color" content="#090d16" />
+  <meta name="theme-color" content="#0C0E11" />
 
-  <title>Life OS — Daily Habits, Weekly Plan & Level Up</title>
+  <title>Life OS — Habits, Plan & Level Status</title>
 
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -21,16 +21,20 @@
       theme: {
         extend: {
           fontFamily: {
-            sans: ['-apple-system', 'BlinkMacSystemFont', 'Inter', 'SF Pro Text', 'Segoe UI', 'Roboto', 'sans-serif'],
+            sans: ['-apple-system', 'BlinkMacSystemFont', 'Inter', 'SF Pro Display', 'Segoe UI', 'Roboto', 'sans-serif'],
             mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'monospace']
           },
           colors: {
-            gh: {
-              empty: '#161b22',
-              l1: '#0e4429',
-              l2: '#006d32',
-              l3: '#26a641',
-              l4: '#39d353'
+            carbon: {
+              bg: '#0C0E11',
+              card: '#15191F',
+              elevated: '#1E242D',
+              border: '#2B313B',
+              steel: '#9AA4B2',
+              amber: '#E87A35',
+              gold: '#F59E0B',
+              emerald: '#26A641',
+              bright: '#39D353'
             }
           }
         }
@@ -38,10 +42,10 @@
     };
   </script>
 
-  <!-- Inter Font Fallback -->
+  <!-- Inter Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800;900&display=swap" rel="stylesheet">
 
   <style>
     :root {
@@ -60,11 +64,15 @@
 
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Inter', sans-serif;
-      background-color: #090d16;
-      color: #f1f5f9;
+      background-color: #0C0E11;
+      color: #F3F5F8;
       overscroll-behavior-y: none;
       padding-top: var(--sat);
-      padding-bottom: calc(var(--sab) + 76px);
+      padding-bottom: calc(var(--sab) + 84px);
+    }
+
+    .tabular-nums {
+      font-variant-numeric: tabular-nums;
     }
 
     .ios-glass {
@@ -72,7 +80,6 @@
       -webkit-backdrop-filter: blur(20px);
     }
 
-    /* Hide scrollbars on horizontal pill bars & heatmap */
     .no-scrollbar::-webkit-scrollbar {
       display: none;
     }
@@ -81,25 +88,33 @@
       scrollbar-width: none;
     }
 
-    /* Subtle pulse & pop animations */
+    /* Architectural Section Card */
+    .section-block {
+      background-color: #15191F;
+      border: 1.5px solid #2B313B;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 14px 32px -10px rgba(0, 0, 0, 0.65);
+    }
+
+    /* Distinct Section Header Bar */
+    .section-header-bar {
+      background-color: #1B2028;
+      border-bottom: 1.5px solid #2B313B;
+      padding: 14px 18px;
+    }
+
+    /* Check Pop Animation */
     @keyframes popCheck {
-      0% { transform: scale(0.85); }
-      50% { transform: scale(1.12); }
+      0% { transform: scale(0.86); }
+      50% { transform: scale(1.1); }
       100% { transform: scale(1); }
     }
     .animate-pop {
-      animation: popCheck 0.26s cubic-bezier(0.16, 1, 0.3, 1);
+      animation: popCheck 0.22s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    @keyframes floatUp {
-      0% { opacity: 1; transform: translateY(0) scale(0.95); }
-      100% { opacity: 0; transform: translateY(-22px) scale(1.05); }
-    }
-    .xp-float {
-      animation: floatUp 0.9s ease-out forwards;
-    }
-
-    /* GitHub Heatmap Grid Layout (7 rows for Mon-Sun) */
+    /* GitHub Heatmap 7-row Matrix */
     .gh-grid {
       display: grid;
       grid-template-rows: repeat(7, minmax(0, 1fr));
@@ -108,457 +123,359 @@
     }
   </style>
 </head>
-<body class="bg-[#090d16] text-slate-100 min-h-screen selection:bg-emerald-500 selection:text-slate-950">
+<body class="bg-[#0C0E11] text-[#F3F5F8] min-h-screen selection:bg-[#E87A35] selection:text-black">
 
   <!-- =====================================================================
-       STICKY TOP HEADER BAR (RPG LEVEL PILL + STREAK + BACKUP)
+       STICKY TOP STATUS BAR
        ===================================================================== -->
-  <header class="sticky top-0 z-40 ios-glass bg-[#090d16]/85 border-b border-slate-800/80 px-4 py-2.5">
-    <div class="max-w-lg mx-auto flex items-center justify-between gap-2">
-      <!-- Brand + Quick Level Badge -->
-      <div class="flex items-center gap-2.5">
-        <button onclick="scrollToSection('sec-levelup')" class="w-9 h-9 rounded-xl bg-gradient-to-br from-emerald-500 via-teal-500 to-indigo-600 p-0.5 shadow-lg shadow-emerald-500/15 active:scale-95 transition">
-          <div class="w-full h-full bg-[#090d16] rounded-[10px] flex flex-col items-center justify-center leading-none">
-            <span class="text-[8px] font-bold uppercase text-emerald-400 tracking-wider">LVL</span>
-            <span id="headerLevelNum" class="text-xs font-black text-white">1</span>
-          </div>
-        </button>
+  <header class="sticky top-0 z-40 ios-glass bg-[#0C0E11]/90 border-b-[1.5px] border-[#2B313B] px-4 py-3">
+    <div class="max-w-lg mx-auto flex items-center justify-between gap-3">
+      
+      <!-- Left: Level Badge + XP Progress -->
+      <button onclick="scrollToSection('sec-level')" class="flex items-center gap-3 text-left active:opacity-80 transition">
+        <div class="px-3 py-1.5 rounded-xl bg-[#1E242D] border-[1.5px] border-[#E87A35] flex items-center gap-1.5">
+          <span class="text-xs font-extrabold uppercase tracking-wider text-[#E87A35]">LVL</span>
+          <span id="topLevelNum" class="text-xl font-black text-white tabular-nums leading-none">1</span>
+        </div>
         <div>
-          <div class="flex items-center gap-1.5">
-            <h1 class="font-extrabold text-base tracking-tight leading-none">Life OS</h1>
-            <span id="headerRankBadge" class="text-[10px] font-bold px-1.5 py-0.5 rounded-md bg-emerald-500/15 text-emerald-400 border border-emerald-500/25">Initiate</span>
+          <div class="flex items-center gap-2">
+            <span id="topRankTitle" class="text-sm font-extrabold uppercase tracking-wide text-[#F3F5F8]">I. Initiate</span>
           </div>
-          <!-- Mini XP Bar -->
-          <div class="flex items-center gap-1.5 mt-1">
-            <div class="w-24 h-1.5 bg-slate-800 rounded-full overflow-hidden">
-              <div id="headerXpBar" class="h-full bg-gradient-to-r from-emerald-400 to-teal-400 transition-all duration-300" style="width: 10%"></div>
+          <div class="flex items-center gap-2 mt-1">
+            <div class="w-24 h-2 bg-[#1E242D] rounded-full overflow-hidden border border-[#2B313B]">
+              <div id="topXpBar" class="h-full bg-[#E87A35] transition-all duration-300" style="width: 0%"></div>
             </div>
-            <span id="headerXpText" class="text-[10px] font-mono text-slate-400">0 XP</span>
+            <span id="topXpText" class="text-xs font-mono font-bold text-[#9AA4B2] tabular-nums">0 / 350 XP</span>
           </div>
         </div>
-      </div>
+      </button>
 
-      <!-- Right Controls: Streak Pill, French App Link, Backup/Settings -->
-      <div class="flex items-center gap-1.5">
-        <!-- Current Streak Pill -->
-        <button onclick="scrollToSection('sec-habits')" class="flex items-center gap-1 px-2.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-extrabold active:scale-95 transition">
-          <span>🔥</span>
-          <span id="headerStreakCount">0</span>
-          <span class="text-[10px] font-semibold text-emerald-300/80">d</span>
+      <!-- Right: Streak Flame + Settings -->
+      <div class="flex items-center gap-2">
+        <button onclick="scrollToSection('sec-habits')" class="px-3 py-1.5 rounded-xl bg-[#1E242D] border-[1.5px] border-[#2B313B] flex items-center gap-1.5 active:scale-95 transition">
+          <span class="text-base">🔥</span>
+          <span id="topStreakNum" class="text-lg font-black text-[#F59E0B] tabular-nums leading-none">0d</span>
         </button>
 
-        <!-- Quick Link to French Flashcard App -->
-        <a id="headerFrenchLink" href="index.html" title="Open French 1000 Words App" class="px-2.5 py-1.5 rounded-full bg-indigo-500/15 border border-indigo-500/30 text-indigo-300 text-xs font-bold flex items-center gap-1 hover:bg-indigo-500/25 active:scale-95 transition">
-          <span>🇫🇷</span>
-          <span class="hidden sm:inline text-[11px]">Le Mille</span>
-        </a>
-
-        <!-- Data Backup / Settings Button -->
-        <button onclick="openBackupModal()" title="Backup & Settings" class="p-2 rounded-full bg-slate-800/90 text-slate-300 hover:text-white border border-slate-700/70 active:scale-95 transition">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <button onclick="openSettingsModal()" title="Settings & Backup" class="p-2.5 rounded-xl bg-[#1E242D] border-[1.5px] border-[#2B313B] text-[#9AA4B2] hover:text-white active:scale-95 transition">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
             <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
           </svg>
         </button>
       </div>
+
     </div>
   </header>
 
   <!-- =====================================================================
-       MAIN SCROLLABLE CONTAINER (ALL 4 SECTIONS + TOP HABIT HERO)
+       MAIN CONTENT CONTAINER
        ===================================================================== -->
-  <main class="max-w-lg mx-auto px-3.5 pt-3 space-y-6">
+  <main class="max-w-lg mx-auto px-3.5 pt-5 space-y-8">
 
     <!-- ===================================================================
-         HERO SECTION: DAILY HABIT CHECKLIST + GITHUB HEATMAP
+         TOP BLOCK: DAILY CHECKLIST & HEATMAP
          =================================================================== -->
-    <section id="sec-habits" class="scroll-mt-16 space-y-3.5">
+    <section id="sec-habits" class="scroll-mt-20 section-block border-t-4 border-t-[#39D353]">
       
-      <!-- Date Bar & Perfect Day Status -->
-      <div class="flex items-center justify-between bg-[#131b2e] border border-slate-800/90 rounded-2xl px-3.5 py-2.5 shadow-lg">
-        <div class="flex items-center gap-1.5">
-          <button onclick="shiftSelectedDate(-1)" class="p-1.5 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-slate-300 active:scale-90 transition" title="Previous Day">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24">
+      <!-- Section Header Bar -->
+      <div class="section-header-bar flex items-center justify-between">
+        <div class="flex items-center gap-2.5">
+          <span class="w-3 h-3 rounded-sm bg-[#39D353] inline-block"></span>
+          <h2 class="text-[19px] font-black uppercase tracking-wider text-white">Daily Checklist</h2>
+        </div>
+        <div class="flex items-center gap-2">
+          <span id="perfectBadge" class="hidden px-2.5 py-1 rounded-lg bg-[#0E4429] border border-[#39D353] text-xs font-black text-[#39D353] tracking-wider">★ +120 XP</span>
+          <span id="dailyCountText" class="text-xl font-black text-[#39D353] tabular-nums">0/3</span>
+        </div>
+      </div>
+
+      <div class="p-4 space-y-4">
+        
+        <!-- Date Selector Bar -->
+        <div class="flex items-center justify-between bg-[#0C0E11] border-[1.5px] border-[#2B313B] rounded-xl px-3 py-2.5">
+          <button onclick="shiftSelectedDate(-1)" class="p-2 rounded-lg bg-[#1E242D] text-white active:scale-90 transition" aria-label="Previous Day">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.6" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
             </svg>
           </button>
-          <div class="px-1">
-            <div class="flex items-center gap-1.5">
-              <span id="selectedDateLabel" class="font-extrabold text-sm text-white">Today</span>
-              <span id="perfectDayPill" class="hidden px-2 py-0.5 rounded-full text-[10px] font-extrabold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">★ 3/3 PERFECT</span>
+
+          <div class="text-center">
+            <div class="flex items-center justify-center gap-2">
+              <span id="activeDateTitle" class="text-lg font-extrabold text-white">Today</span>
+              <button id="resetTodayBtn" onclick="selectToday()" class="hidden px-2 py-0.5 rounded bg-[#E87A35] text-black text-xs font-black uppercase">
+                Today
+              </button>
             </div>
-            <p id="selectedDateSub" class="text-[11px] text-slate-400">Tuesday, Oct 27</p>
+            <p id="activeDateFormatted" class="text-sm font-semibold text-[#9AA4B2]">Tuesday, Oct 27</p>
           </div>
-          <button onclick="shiftSelectedDate(1)" class="p-1.5 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-slate-300 active:scale-90 transition" title="Next Day">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24">
+
+          <button onclick="shiftSelectedDate(1)" class="p-2 rounded-lg bg-[#1E242D] text-white active:scale-90 transition" aria-label="Next Day">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.6" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
             </svg>
           </button>
         </div>
 
-        <div class="flex items-center gap-2">
-          <button id="jumpTodayBtn" onclick="selectToday()" class="hidden px-2.5 py-1 rounded-lg bg-indigo-600/20 border border-indigo-500/30 text-indigo-300 text-[11px] font-bold active:scale-95 transition">
-            Back to Today
-          </button>
-          <div class="text-right">
-            <span id="dailyCompletionFraction" class="text-sm font-black text-emerald-400">0/3</span>
-            <p class="text-[10px] text-slate-400">Daily Core</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- THE 3 NON-NEGOTIABLE DAILY HABITS -->
-      <div class="space-y-2.5">
-        
-        <!-- HABIT 1: FRENCH DAILY -->
-        <div id="habitCard-french" class="rounded-2xl bg-[#131b2e] border border-slate-800/90 p-3.5 transition-all duration-200 shadow-md">
-          <div class="flex items-center justify-between gap-3">
-            <div onclick="toggleHabit('french')" class="flex items-center gap-3 flex-1 cursor-pointer">
-              <button id="habitCheck-french" class="w-8 h-8 rounded-xl border-2 border-slate-600 flex items-center justify-center transition-all shrink-0">
-                <svg class="w-5 h-5 text-slate-950 hidden" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
+        <!-- THE 3 DAILY HABITS (BIG 20PX TEXT, MINIMAL SUBTEXT) -->
+        <div class="space-y-3">
+          
+          <!-- 1. FRENCH DAILY -->
+          <div id="habitRow-french" class="rounded-2xl bg-[#0C0E11] border-[1.5px] border-[#2B313B] p-4 flex items-center justify-between gap-3 transition-all">
+            <div onclick="toggleHabit('french')" class="flex items-center gap-3.5 flex-1 cursor-pointer">
+              <button id="habitBox-french" class="w-9 h-9 rounded-xl border-2 border-[#9AA4B2] flex items-center justify-center shrink-0 transition-all">
+                <svg class="w-6 h-6 text-black hidden" fill="none" stroke="currentColor" stroke-width="3.5" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
               </button>
-              <div>
-                <div class="flex items-center gap-2">
-                  <span class="text-base">🇫🇷</span>
-                  <h3 id="habitTitle-french" class="font-extrabold text-sm text-white">1. French Daily</h3>
-                  <span class="text-[10px] font-mono font-bold px-1.5 py-0.5 rounded bg-blue-500/15 text-blue-400 border border-blue-500/20">+30 XP</span>
-                </div>
-                <p class="text-[11px] text-slate-400 mt-0.5">Le Mille flashcards, listening, or speaking practice</p>
-              </div>
+              <span id="habitLabel-french" class="text-[20px] font-extrabold text-white leading-tight">1. French Daily</span>
             </div>
 
-            <!-- Open French App Shortcut -->
-            <a id="habitFrenchLink" href="index.html" class="shrink-0 px-2.5 py-1.5 rounded-xl bg-slate-800/90 hover:bg-slate-700 text-indigo-300 border border-slate-700 text-[11px] font-bold flex items-center gap-1 active:scale-95 transition">
-              <span>Study</span>
-              <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-              </svg>
+            <a id="frenchAppBtn" href="index.html" class="shrink-0 px-3.5 py-2 rounded-xl bg-[#1E242D] hover:bg-[#2B313B] border border-[#2B313B] text-sm font-bold text-[#F3F5F8] flex items-center gap-1.5 active:scale-95 transition">
+              <span>Cards</span>
+              <span>↗</span>
             </a>
           </div>
-        </div>
 
-        <!-- HABIT 2: GYM / YOGA / WALK -->
-        <div id="habitCard-movement" class="rounded-2xl bg-[#131b2e] border border-slate-800/90 p-3.5 transition-all duration-200 shadow-md">
-          <div class="flex items-center justify-between gap-2">
-            <div onclick="toggleHabit('movement')" class="flex items-center gap-3 flex-1 cursor-pointer">
-              <button id="habitCheck-movement" class="w-8 h-8 rounded-xl border-2 border-slate-600 flex items-center justify-center transition-all shrink-0">
-                <svg class="w-5 h-5 text-slate-950 hidden" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-                </svg>
-              </button>
-              <div>
-                <div class="flex items-center gap-2">
-                  <span class="text-base">💪</span>
-                  <h3 id="habitTitle-movement" class="font-extrabold text-sm text-white">2. Gym / Yoga / Walk</h3>
-                  <span class="text-[10px] font-mono font-bold px-1.5 py-0.5 rounded bg-amber-500/15 text-amber-400 border border-amber-500/20">+30 XP</span>
-                </div>
-                <p class="text-[11px] text-slate-400 mt-0.5">Daily physical movement & body vitality</p>
+          <!-- 2. GYM / YOGA / WALK -->
+          <div id="habitRow-movement" class="rounded-2xl bg-[#0C0E11] border-[1.5px] border-[#2B313B] p-4 flex flex-col gap-3 transition-all">
+            <div class="flex items-center justify-between gap-3">
+              <div onclick="toggleHabit('movement')" class="flex items-center gap-3.5 flex-1 cursor-pointer">
+                <button id="habitBox-movement" class="w-9 h-9 rounded-xl border-2 border-[#9AA4B2] flex items-center justify-center shrink-0 transition-all">
+                  <svg class="w-6 h-6 text-black hidden" fill="none" stroke="currentColor" stroke-width="3.5" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                  </svg>
+                </button>
+                <span id="habitLabel-movement" class="text-[20px] font-extrabold text-white leading-tight">2. Gym / Yoga / Walk</span>
               </div>
             </div>
 
-            <!-- Sub-activity quick pills (Gym, Yoga, Walk) -->
-            <div class="flex items-center gap-1 shrink-0">
-              <button onclick="toggleMovementSubTag('Gym')" id="subTag-Gym" class="px-2 py-1 rounded-lg text-[10px] font-bold bg-slate-800 text-slate-400 border border-slate-700 transition">Gym</button>
-              <button onclick="toggleMovementSubTag('Yoga')" id="subTag-Yoga" class="px-2 py-1 rounded-lg text-[10px] font-bold bg-slate-800 text-slate-400 border border-slate-700 transition">Yoga</button>
-              <button onclick="toggleMovementSubTag('Walk')" id="subTag-Walk" class="px-2 py-1 rounded-lg text-[10px] font-bold bg-slate-800 text-slate-400 border border-slate-700 transition">Walk</button>
+            <!-- Big Activity Selector Pills -->
+            <div class="grid grid-cols-3 gap-2 pl-12">
+              <button onclick="toggleMoveTag('Gym')" id="tagBtn-Gym" class="py-1.5 rounded-xl text-sm font-bold border border-[#2B313B] bg-[#15191F] text-[#9AA4B2] transition">Gym</button>
+              <button onclick="toggleMoveTag('Yoga')" id="tagBtn-Yoga" class="py-1.5 rounded-xl text-sm font-bold border border-[#2B313B] bg-[#15191F] text-[#9AA4B2] transition">Yoga</button>
+              <button onclick="toggleMoveTag('Walk')" id="tagBtn-Walk" class="py-1.5 rounded-xl text-sm font-bold border border-[#2B313B] bg-[#15191F] text-[#9AA4B2] transition">Walk</button>
             </div>
           </div>
-        </div>
 
-        <!-- HABIT 3: NO SELF HARM -->
-        <div id="habitCard-clean" class="rounded-2xl bg-[#131b2e] border border-slate-800/90 p-3.5 transition-all duration-200 shadow-md">
-          <div class="flex items-center justify-between gap-3">
-            <div onclick="toggleHabit('clean')" class="flex items-center gap-3 flex-1 cursor-pointer">
-              <button id="habitCheck-clean" class="w-8 h-8 rounded-xl border-2 border-slate-600 flex items-center justify-center transition-all shrink-0">
-                <svg class="w-5 h-5 text-slate-950 hidden" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
+          <!-- 3. NO SELF HARM -->
+          <div id="habitRow-clean" class="rounded-2xl bg-[#0C0E11] border-[1.5px] border-[#2B313B] p-4 flex items-center justify-between gap-3 transition-all">
+            <div onclick="toggleHabit('clean')" class="flex items-center gap-3.5 flex-1 cursor-pointer">
+              <button id="habitBox-clean" class="w-9 h-9 rounded-xl border-2 border-[#9AA4B2] flex items-center justify-center shrink-0 transition-all">
+                <svg class="w-6 h-6 text-black hidden" fill="none" stroke="currentColor" stroke-width="3.5" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
               </button>
-              <div>
-                <div class="flex items-center gap-2">
-                  <span class="text-base">🛡️</span>
-                  <h3 id="habitTitle-clean" class="font-extrabold text-sm text-white">3. No Self Harm</h3>
-                  <span class="text-[10px] font-mono font-bold px-1.5 py-0.5 rounded bg-emerald-500/15 text-emerald-400 border border-emerald-500/20">+30 XP</span>
-                </div>
-                <p class="text-[11px] text-slate-400 mt-0.5">Self-care, inner fortitude & clean streak</p>
-              </div>
+              <span id="habitLabel-clean" class="text-[20px] font-extrabold text-white leading-tight">3. No Self Harm</span>
             </div>
 
-            <!-- Clean Streak Shield Badge -->
-            <div class="shrink-0 px-2.5 py-1 rounded-xl bg-emerald-500/10 border border-emerald-500/25 text-right">
-              <span id="cleanStreakShieldCount" class="text-xs font-extrabold text-emerald-400">0d</span>
-              <p class="text-[9px] uppercase tracking-wider text-emerald-300/70">Clean</p>
+            <div class="shrink-0 px-3 py-1.5 rounded-xl bg-[#15191F] border border-[#2B313B] text-right">
+              <span id="cleanStreakPill" class="text-base font-black text-[#39D353] tabular-nums">0d</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- GITHUB CONTRIBUTIONS HEATMAP -->
+        <div class="pt-3 border-t-[1.5px] border-[#2B313B]">
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-sm font-extrabold uppercase tracking-wider text-[#9AA4B2]">Consistency Heatmap</span>
+            <div class="flex items-center bg-[#0C0E11] p-1 rounded-xl border border-[#2B313B] text-xs font-bold">
+              <button onclick="setHeatmapMode('github')" id="hmTab-github" class="px-3 py-1 rounded-lg bg-[#1E242D] text-white transition">18 Weeks</button>
+              <button onclick="setHeatmapMode('month')" id="hmTab-month" class="px-3 py-1 rounded-lg text-[#9AA4B2] transition">Month</button>
+            </div>
+          </div>
+
+          <!-- View 1: GitHub 18-Week Matrix -->
+          <div id="hmGithubView" class="overflow-x-auto no-scrollbar pb-1">
+            <div class="min-w-max">
+              <div id="ghMonthsRow" class="flex text-xs font-mono font-bold text-[#9AA4B2] mb-1.5 pl-8"></div>
+              <div class="flex items-start gap-2">
+                <div class="grid grid-rows-7 gap-[4px] text-[10px] font-mono font-bold text-[#9AA4B2] pr-1 leading-[14px]">
+                  <span>M</span><span></span><span>W</span><span></span><span>F</span><span></span><span>S</span>
+                </div>
+                <div id="ghGridCells" class="gh-grid"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- View 2: Monthly Heatmap Squares -->
+          <div id="hmMonthView" class="hidden">
+            <div class="flex items-center justify-between mb-2.5">
+              <button onclick="shiftHmMonth(-1)" class="px-3 py-1.5 rounded-xl bg-[#0C0E11] border border-[#2B313B] text-sm font-bold">‹ Prev</button>
+              <span id="hmMonthLabel" class="text-base font-extrabold text-white">October 2026</span>
+              <button onclick="shiftHmMonth(1)" class="px-3 py-1.5 rounded-xl bg-[#0C0E11] border border-[#2B313B] text-sm font-bold">Next ›</button>
+            </div>
+            <div class="grid grid-cols-7 gap-1.5 text-center text-xs font-bold text-[#9AA4B2] mb-1.5">
+              <span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span><span>S</span>
+            </div>
+            <div id="hmMonthCells" class="grid grid-cols-7 gap-1.5"></div>
+          </div>
+
+          <!-- Legend -->
+          <div class="flex items-center justify-between text-xs font-semibold text-[#9AA4B2] mt-3 pt-2.5 border-t border-[#2B313B]/60">
+            <span id="hmSelectedStat">Tap any square to log date</span>
+            <div class="flex items-center gap-1.5">
+              <span>0</span>
+              <span class="w-3.5 h-3.5 rounded-[3px] bg-[#0C0E11] border border-[#2B313B] inline-block"></span>
+              <span class="w-3.5 h-3.5 rounded-[3px] bg-[#0E4429] inline-block"></span>
+              <span class="w-3.5 h-3.5 rounded-[3px] bg-[#006D32] inline-block"></span>
+              <span class="w-3.5 h-3.5 rounded-[3px] bg-[#39D353] inline-block"></span>
+              <span>3/3</span>
             </div>
           </div>
         </div>
 
       </div>
-
-      <!-- GITHUB CONTRIBUTIONS STYLE HEATMAP CARD -->
-      <div class="rounded-3xl bg-[#0d1117] border border-slate-800/90 p-4 shadow-xl">
-        <!-- Heatmap Header & View Toggle -->
-        <div class="flex items-center justify-between mb-3">
-          <div>
-            <h2 class="font-extrabold text-xs uppercase tracking-wider text-slate-300 flex items-center gap-1.5">
-              <span class="w-2.5 h-2.5 rounded-sm bg-[#39d353] inline-block"></span>
-              <span>Habit Contributions Heatmap</span>
-            </h2>
-            <p class="text-[11px] text-slate-400 mt-0.5">Tap any square to inspect or log that date</p>
-          </div>
-
-          <!-- Toggle: GitHub Grid vs Monthly Squares -->
-          <div class="flex items-center bg-slate-900 p-0.5 rounded-xl border border-slate-800 text-[11px] font-bold">
-            <button onclick="setHeatmapMode('github')" id="hmMode-github" class="px-2.5 py-1 rounded-lg bg-slate-800 text-emerald-400 transition">GitHub Grid</button>
-            <button onclick="setHeatmapMode('month')" id="hmMode-month" class="px-2.5 py-1 rounded-lg text-slate-400 transition">Month</button>
-          </div>
-        </div>
-
-        <!-- 4 Mini Streak Stat Boxes -->
-        <div class="grid grid-cols-4 gap-2 mb-3.5">
-          <div class="rounded-xl bg-[#161b22] border border-slate-800/80 p-2 text-center">
-            <p class="text-[10px] text-slate-400">Streak</p>
-            <p id="statCurrentStreak" class="text-sm font-black text-emerald-400 mt-0.5">0d</p>
-          </div>
-          <div class="rounded-xl bg-[#161b22] border border-slate-800/80 p-2 text-center">
-            <p class="text-[10px] text-slate-400">Best</p>
-            <p id="statBestStreak" class="text-sm font-black text-white mt-0.5">0d</p>
-          </div>
-          <div class="rounded-xl bg-[#161b22] border border-slate-800/80 p-2 text-center">
-            <p class="text-[10px] text-slate-400">3/3 Days</p>
-            <p id="statPerfectDays" class="text-sm font-black text-[#39d353] mt-0.5">0</p>
-          </div>
-          <div class="rounded-xl bg-[#161b22] border border-slate-800/80 p-2 text-center">
-            <p class="text-[10px] text-slate-400">30d Rate</p>
-            <p id="statMonthRate" class="text-sm font-black text-teal-300 mt-0.5">0%</p>
-          </div>
-        </div>
-
-        <!-- VIEW A: CLASSIC GITHUB 7x18 ROLLING WEEKS HEATMAP -->
-        <div id="heatmapGithubContainer" class="overflow-x-auto no-scrollbar pb-1">
-          <div class="min-w-max">
-            <!-- Month Labels Row -->
-            <div id="ghMonthLabels" class="flex text-[10px] font-mono text-slate-400 mb-1 pl-7"></div>
-            <div class="flex items-start gap-1.5">
-              <!-- Day-of-week Labels -->
-              <div class="grid grid-rows-7 gap-[4px] text-[9px] font-mono text-slate-500 pr-1 leading-[13px]">
-                <span>Mon</span>
-                <span></span>
-                <span>Wed</span>
-                <span></span>
-                <span>Fri</span>
-                <span></span>
-                <span>Sun</span>
-              </div>
-              <!-- The 7-row Contribution Matrix -->
-              <div id="ghMatrixGrid" class="gh-grid"></div>
-            </div>
-          </div>
-        </div>
-
-        <!-- VIEW B: MONTHLY TOUCH-FRIENDLY HEATMAP SQUARES -->
-        <div id="heatmapMonthContainer" class="hidden">
-          <div class="flex items-center justify-between mb-2">
-            <button onclick="shiftHeatmapMonth(-1)" class="px-2 py-1 rounded-lg bg-slate-800 text-xs font-bold text-slate-300">‹ Prev</button>
-            <span id="hmMonthTitle" class="text-xs font-extrabold text-white">October 2026</span>
-            <button onclick="shiftHeatmapMonth(1)" class="px-2 py-1 rounded-lg bg-slate-800 text-xs font-bold text-slate-300">Next ›</button>
-          </div>
-          <div class="grid grid-cols-7 gap-1.5 text-center text-[10px] font-bold text-slate-500 mb-1">
-            <span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span><span>S</span>
-          </div>
-          <div id="hmMonthGrid" class="grid grid-cols-7 gap-1.5"></div>
-        </div>
-
-        <!-- GitHub Legend Footer -->
-        <div class="flex items-center justify-between text-[10px] text-slate-400 mt-3 pt-2.5 border-t border-slate-800/80">
-          <span id="heatmapHoverInfo">Each square = daily habit completion</span>
-          <div class="flex items-center gap-1">
-            <span>0/3</span>
-            <span class="w-3 h-3 rounded-[3px] bg-[#161b22] border border-slate-700/60 inline-block"></span>
-            <span class="w-3 h-3 rounded-[3px] bg-[#0e4429] inline-block" title="1/3 Habits"></span>
-            <span class="w-3 h-3 rounded-[3px] bg-[#006d32] inline-block" title="2/3 Habits"></span>
-            <span class="w-3 h-3 rounded-[3px] bg-[#39d353] inline-block" title="3/3 Perfect Day"></span>
-            <span>3/3</span>
-          </div>
-        </div>
-      </div>
-
     </section>
 
     <!-- ===================================================================
-         SECTION 1: RUNNING TASKS (LONG LIST OF ITEMS)
+         SECTION 01 // RUNNING TASKS
          =================================================================== -->
-    <section id="sec-tasks" class="scroll-mt-16 rounded-3xl bg-[#131b2e] border border-slate-800/90 p-4 shadow-xl">
-      <!-- Header -->
-      <div class="flex items-center justify-between mb-3">
-        <div class="flex items-center gap-2">
-          <div class="w-7 h-7 rounded-xl bg-blue-500/15 border border-blue-500/30 text-blue-400 flex items-center justify-center text-sm font-bold">1</div>
-          <div>
-            <h2 class="font-extrabold text-base text-white leading-tight">Running Tasks</h2>
-            <p class="text-[11px] text-slate-400">Master brain-dump list • +15 XP per task</p>
-          </div>
+    <section id="sec-tasks" class="scroll-mt-20 section-block border-t-4 border-t-[#E87A35]">
+      
+      <!-- Architectural Header -->
+      <div class="section-header-bar flex items-center justify-between">
+        <div class="flex items-center gap-2.5">
+          <span class="px-2 py-0.5 rounded bg-[#E87A35] text-black font-mono text-xs font-black">01</span>
+          <h2 class="text-[19px] font-black uppercase tracking-wider text-white">Running Tasks</h2>
         </div>
-        <span id="runningTaskCountBadge" class="px-2.5 py-1 rounded-full bg-slate-800 text-[11px] font-bold text-slate-300">0 open</span>
+        <span id="tasksCountPill" class="text-base font-extrabold text-[#9AA4B2] tabular-nums">0 Open</span>
       </div>
 
-      <!-- Quick Add Input Row -->
-      <form onsubmit="addRunningTask(event)" class="flex items-center gap-2 mb-3">
-        <div class="relative flex-1">
+      <div class="p-4 space-y-4">
+        <!-- Add Task Form (17px input) -->
+        <form onsubmit="addRunningTask(event)" class="flex gap-2">
           <input
-            id="runningTaskInput"
+            id="taskInput"
             type="text"
-            placeholder="Add to running task list..."
-            class="w-full pl-3.5 pr-16 py-2.5 rounded-2xl bg-[#090d16] border border-slate-700/80 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-blue-500"
+            placeholder="New task..."
+            class="flex-1 bg-[#0C0E11] border-[1.5px] border-[#2B313B] rounded-xl px-4 py-3 text-[17px] font-medium text-white placeholder-[#9AA4B2]/60 focus:outline-none focus:border-[#E87A35]"
           />
-          <!-- Priority selector inside input -->
-          <button
-            type="button"
-            onclick="cycleNewTaskPriority()"
-            id="newTaskPriorityBtn"
-            class="absolute right-2 top-1/2 -translate-y-1/2 px-2 py-1 rounded-lg bg-slate-800 text-[10px] font-bold text-slate-300 border border-slate-700"
-            title="Tap to change priority"
-          >
-            Normal
+          <button type="submit" class="px-5 py-3 rounded-xl bg-[#E87A35] hover:bg-[#f08844] text-black font-black text-base active:scale-95 transition shrink-0">
+            Add
           </button>
-        </div>
-        <button type="submit" class="px-4 py-2.5 rounded-2xl bg-blue-600 hover:bg-blue-500 active:scale-95 text-white font-extrabold text-sm shadow-lg shadow-blue-600/25 transition shrink-0">
-          + Add
-        </button>
-      </form>
+        </form>
 
-      <!-- Filter Tabs & Clear Completed -->
-      <div class="flex items-center justify-between gap-2 mb-3 text-xs">
-        <div class="flex items-center gap-1 bg-[#090d16] p-1 rounded-xl border border-slate-800">
-          <button onclick="setTaskFilter('all')" id="taskFilter-all" class="px-2.5 py-1 rounded-lg font-bold bg-slate-800 text-white transition">All</button>
-          <button onclick="setTaskFilter('active')" id="taskFilter-active" class="px-2.5 py-1 rounded-lg font-semibold text-slate-400 transition">Open</button>
-          <button onclick="setTaskFilter('done')" id="taskFilter-done" class="px-2.5 py-1 rounded-lg font-semibold text-slate-400 transition">Done</button>
-        </div>
-        <button onclick="clearCompletedRunningTasks()" id="clearDoneTasksBtn" class="text-[11px] font-semibold text-slate-400 hover:text-rose-400 transition">
-          Clear Done
-        </button>
-      </div>
+        <!-- Active Tasks List -->
+        <div id="activeTasksList" class="space-y-2.5"></div>
 
-      <!-- Long Running List Container -->
-      <div id="runningTasksList" class="space-y-2 max-h-[380px] overflow-y-auto pr-0.5">
-        <!-- Populated dynamically -->
+        <!-- Collapsible Completed Drawer -->
+        <div id="completedTasksWrap" class="hidden pt-2 border-t border-[#2B313B]">
+          <div class="flex items-center justify-between mb-2">
+            <button onclick="toggleCompletedDrawer()" class="text-sm font-bold text-[#9AA4B2] flex items-center gap-1.5 py-1">
+              <span id="completedArrow">▸</span>
+              <span id="completedCountLabel">Completed (0)</span>
+            </button>
+            <button onclick="clearCompletedTasks()" class="text-xs font-bold uppercase tracking-wider text-[#E87A35] px-2 py-1 rounded hover:bg-[#1E242D]">
+              Clear Done
+            </button>
+          </div>
+          <div id="completedTasksList" class="hidden space-y-2"></div>
+        </div>
       </div>
     </section>
 
     <!-- ===================================================================
-         SECTION 2: WEEKLY PLAN (4-SQUARE 2x2 LIFE GRID)
+         SECTION 02 // WEEKLY PLAN (4-SQUARE MATRIX)
          =================================================================== -->
-    <section id="sec-weekly" class="scroll-mt-16 rounded-3xl bg-[#131b2e] border border-slate-800/90 p-4 shadow-xl">
-      <!-- Section Header -->
-      <div class="flex items-center justify-between mb-3">
-        <div class="flex items-center gap-2">
-          <div class="w-7 h-7 rounded-xl bg-purple-500/15 border border-purple-500/30 text-purple-400 flex items-center justify-center text-sm font-bold">2</div>
-          <div>
-            <h2 class="font-extrabold text-base text-white leading-tight">Weekly Plan</h2>
-            <p id="weeklyDateRangeLabel" class="text-[11px] text-slate-400">4 Life Quadrants • +20 XP each</p>
-          </div>
+    <section id="sec-weekly" class="scroll-mt-20 section-block border-t-4 border-t-[#F59E0B]">
+      
+      <!-- Architectural Header -->
+      <div class="section-header-bar flex items-center justify-between">
+        <div class="flex items-center gap-2.5">
+          <span class="px-2 py-0.5 rounded bg-[#F59E0B] text-black font-mono text-xs font-black">02</span>
+          <h2 class="text-[19px] font-black uppercase tracking-wider text-white">Weekly Plan</h2>
         </div>
-        <button onclick="clearDoneWeeklyItems()" class="px-2.5 py-1 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-[11px] font-bold border border-slate-700 active:scale-95 transition">
+        <button onclick="clearDoneWeekly()" class="px-3 py-1.5 rounded-xl bg-[#0C0E11] border border-[#2B313B] text-xs font-extrabold uppercase tracking-wider text-[#9AA4B2] active:scale-95 transition">
           Clear Done
         </button>
       </div>
 
-      <!-- 4-SQUARE (2x2) QUADRANT GRID -->
-      <div class="grid grid-cols-2 gap-2.5">
+      <!-- 4-SQUARE MATRIX WITH HIGH-CONTRAST BORDERS -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 divide-y-[2px] sm:divide-y-0 sm:gap-[2px] bg-[#2B313B]">
         
         <!-- SQUARE 1: CAREER -->
-        <div class="rounded-2xl bg-[#090d16] border border-blue-500/30 p-3 flex flex-col justify-between min-h-[210px]">
+        <div class="bg-[#15191F] p-4 flex flex-col justify-between min-h-[220px]">
           <div>
-            <div class="flex items-center justify-between pb-2 mb-2 border-b border-slate-800/90">
-              <div class="flex items-center gap-1.5">
-                <span class="text-sm">💼</span>
-                <h3 class="font-extrabold text-xs text-blue-400 uppercase tracking-wider">Career</h3>
-              </div>
-              <span id="quadCount-career" class="text-[10px] font-mono font-bold text-slate-400">0/0</span>
+            <div class="flex items-center justify-between pb-2.5 mb-3 border-b-[1.5px] border-[#2B313B]">
+              <h3 class="text-[17px] font-black uppercase tracking-wider text-[#E87A35]">01. Career</h3>
+              <span id="qCount-career" class="text-sm font-mono font-bold text-[#9AA4B2] tabular-nums">0/0</span>
             </div>
-            <div id="quadList-career" class="space-y-1.5 max-h-36 overflow-y-auto pr-0.5"></div>
+            <div id="qList-career" class="space-y-2.5"></div>
           </div>
 
-          <form onsubmit="addQuadrantItem(event, 'career')" class="mt-2.5 pt-2 border-t border-slate-800/60 flex items-center gap-1">
+          <form onsubmit="addQuadItem(event, 'career')" class="mt-4 pt-2.5 border-t border-[#2B313B] flex gap-2">
             <input
-              id="quadInput-career"
+              id="qInput-career"
               type="text"
-              placeholder="+ Career goal..."
-              class="w-full bg-slate-900/90 border border-slate-800 rounded-lg px-2 py-1.5 text-[11px] text-white placeholder-slate-500 focus:outline-none focus:border-blue-500"
+              placeholder="+ Add Career..."
+              class="flex-1 bg-[#0C0E11] border border-[#2B313B] rounded-xl px-3 py-2 text-[16px] text-white placeholder-[#9AA4B2]/60 focus:outline-none focus:border-[#E87A35]"
             />
-            <button type="submit" class="px-2 py-1.5 rounded-lg bg-blue-600/20 text-blue-400 font-bold text-xs shrink-0">+</button>
+            <button type="submit" class="px-3.5 py-2 rounded-xl bg-[#1E242D] border border-[#2B313B] text-white font-black text-base">+</button>
           </form>
         </div>
 
         <!-- SQUARE 2: HEALTH -->
-        <div class="rounded-2xl bg-[#090d16] border border-emerald-500/30 p-3 flex flex-col justify-between min-h-[210px]">
+        <div class="bg-[#15191F] p-4 flex flex-col justify-between min-h-[220px]">
           <div>
-            <div class="flex items-center justify-between pb-2 mb-2 border-b border-slate-800/90">
-              <div class="flex items-center gap-1.5">
-                <span class="text-sm">🌿</span>
-                <h3 class="font-extrabold text-xs text-emerald-400 uppercase tracking-wider">Health</h3>
-              </div>
-              <span id="quadCount-health" class="text-[10px] font-mono font-bold text-slate-400">0/0</span>
+            <div class="flex items-center justify-between pb-2.5 mb-3 border-b-[1.5px] border-[#2B313B]">
+              <h3 class="text-[17px] font-black uppercase tracking-wider text-[#39D353]">02. Health</h3>
+              <span id="qCount-health" class="text-sm font-mono font-bold text-[#9AA4B2] tabular-nums">0/0</span>
             </div>
-            <div id="quadList-health" class="space-y-1.5 max-h-36 overflow-y-auto pr-0.5"></div>
+            <div id="qList-health" class="space-y-2.5"></div>
           </div>
 
-          <form onsubmit="addQuadrantItem(event, 'health')" class="mt-2.5 pt-2 border-t border-slate-800/60 flex items-center gap-1">
+          <form onsubmit="addQuadItem(event, 'health')" class="mt-4 pt-2.5 border-t border-[#2B313B] flex gap-2">
             <input
-              id="quadInput-health"
+              id="qInput-health"
               type="text"
-              placeholder="+ Health goal..."
-              class="w-full bg-slate-900/90 border border-slate-800 rounded-lg px-2 py-1.5 text-[11px] text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500"
+              placeholder="+ Add Health..."
+              class="flex-1 bg-[#0C0E11] border border-[#2B313B] rounded-xl px-3 py-2 text-[16px] text-white placeholder-[#9AA4B2]/60 focus:outline-none focus:border-[#39D353]"
             />
-            <button type="submit" class="px-2 py-1.5 rounded-lg bg-emerald-600/20 text-emerald-400 font-bold text-xs shrink-0">+</button>
+            <button type="submit" class="px-3.5 py-2 rounded-xl bg-[#1E242D] border border-[#2B313B] text-white font-black text-base">+</button>
           </form>
         </div>
 
         <!-- SQUARE 3: HOUSE STUFFS -->
-        <div class="rounded-2xl bg-[#090d16] border border-amber-500/30 p-3 flex flex-col justify-between min-h-[210px]">
+        <div class="bg-[#15191F] p-4 flex flex-col justify-between min-h-[220px]">
           <div>
-            <div class="flex items-center justify-between pb-2 mb-2 border-b border-slate-800/90">
-              <div class="flex items-center gap-1.5">
-                <span class="text-sm">🏠</span>
-                <h3 class="font-extrabold text-xs text-amber-400 uppercase tracking-wider">House Stuffs</h3>
-              </div>
-              <span id="quadCount-house" class="text-[10px] font-mono font-bold text-slate-400">0/0</span>
+            <div class="flex items-center justify-between pb-2.5 mb-3 border-b-[1.5px] border-[#2B313B]">
+              <h3 class="text-[17px] font-black uppercase tracking-wider text-[#F59E0B]">03. House Stuffs</h3>
+              <span id="qCount-house" class="text-sm font-mono font-bold text-[#9AA4B2] tabular-nums">0/0</span>
             </div>
-            <div id="quadList-house" class="space-y-1.5 max-h-36 overflow-y-auto pr-0.5"></div>
+            <div id="qList-house" class="space-y-2.5"></div>
           </div>
 
-          <form onsubmit="addQuadrantItem(event, 'house')" class="mt-2.5 pt-2 border-t border-slate-800/60 flex items-center gap-1">
+          <form onsubmit="addQuadItem(event, 'house')" class="mt-4 pt-2.5 border-t border-[#2B313B] flex gap-2">
             <input
-              id="quadInput-house"
+              id="qInput-house"
               type="text"
-              placeholder="+ House task..."
-              class="w-full bg-slate-900/90 border border-slate-800 rounded-lg px-2 py-1.5 text-[11px] text-white placeholder-slate-500 focus:outline-none focus:border-amber-500"
+              placeholder="+ Add House..."
+              class="flex-1 bg-[#0C0E11] border border-[#2B313B] rounded-xl px-3 py-2 text-[16px] text-white placeholder-[#9AA4B2]/60 focus:outline-none focus:border-[#F59E0B]"
             />
-            <button type="submit" class="px-2 py-1.5 rounded-lg bg-amber-600/20 text-amber-400 font-bold text-xs shrink-0">+</button>
+            <button type="submit" class="px-3.5 py-2 rounded-xl bg-[#1E242D] border border-[#2B313B] text-white font-black text-base">+</button>
           </form>
         </div>
 
         <!-- SQUARE 4: FUN / RANDOM -->
-        <div class="rounded-2xl bg-[#090d16] border border-rose-500/30 p-3 flex flex-col justify-between min-h-[210px]">
+        <div class="bg-[#15191F] p-4 flex flex-col justify-between min-h-[220px]">
           <div>
-            <div class="flex items-center justify-between pb-2 mb-2 border-b border-slate-800/90">
-              <div class="flex items-center gap-1.5">
-                <span class="text-sm">✨</span>
-                <h3 class="font-extrabold text-xs text-rose-400 uppercase tracking-wider">Fun / Random</h3>
-              </div>
-              <span id="quadCount-fun" class="text-[10px] font-mono font-bold text-slate-400">0/0</span>
+            <div class="flex items-center justify-between pb-2.5 mb-3 border-b-[1.5px] border-[#2B313B]">
+              <h3 class="text-[17px] font-black uppercase tracking-wider text-[#F3F5F8]">04. Fun / Random</h3>
+              <span id="qCount-fun" class="text-sm font-mono font-bold text-[#9AA4B2] tabular-nums">0/0</span>
             </div>
-            <div id="quadList-fun" class="space-y-1.5 max-h-36 overflow-y-auto pr-0.5"></div>
+            <div id="qList-fun" class="space-y-2.5"></div>
           </div>
 
-          <form onsubmit="addQuadrantItem(event, 'fun')" class="mt-2.5 pt-2 border-t border-slate-800/60 flex items-center gap-1">
+          <form onsubmit="addQuadItem(event, 'fun')" class="mt-4 pt-2.5 border-t border-[#2B313B] flex gap-2">
             <input
-              id="quadInput-fun"
+              id="qInput-fun"
               type="text"
-              placeholder="+ Fun / random..."
-              class="w-full bg-slate-900/90 border border-slate-800 rounded-lg px-2 py-1.5 text-[11px] text-white placeholder-slate-500 focus:outline-none focus:border-rose-500"
+              placeholder="+ Add Fun..."
+              class="flex-1 bg-[#0C0E11] border border-[#2B313B] rounded-xl px-3 py-2 text-[16px] text-white placeholder-[#9AA4B2]/60 focus:outline-none focus:border-white"
             />
-            <button type="submit" class="px-2 py-1.5 rounded-lg bg-rose-600/20 text-rose-400 font-bold text-xs shrink-0">+</button>
+            <button type="submit" class="px-3.5 py-2 rounded-xl bg-[#1E242D] border border-[#2B313B] text-white font-black text-base">+</button>
           </form>
         </div>
 
@@ -566,317 +483,225 @@
     </section>
 
     <!-- ===================================================================
-         SECTION 3: SIMPLE IOS-STYLE MONTH CALENDAR
+         SECTION 03 // MONTH CALENDAR
          =================================================================== -->
-    <section id="sec-calendar" class="scroll-mt-16 rounded-3xl bg-[#131b2e] border border-slate-800/90 p-4 shadow-xl">
-      <!-- Header -->
-      <div class="flex items-center justify-between mb-3">
-        <div class="flex items-center gap-2">
-          <div class="w-7 h-7 rounded-xl bg-rose-500/15 border border-rose-500/30 text-rose-400 flex items-center justify-center text-sm font-bold">3</div>
-          <div>
-            <h2 id="iosCalMonthLabel" class="font-extrabold text-base text-white leading-tight">October 2026</h2>
-            <p class="text-[11px] text-slate-400">iOS Month View • Habits & Day Notes</p>
-          </div>
+    <section id="sec-calendar" class="scroll-mt-20 section-block border-t-4 border-t-[#9AA4B2]">
+      
+      <!-- Architectural Header -->
+      <div class="section-header-bar flex items-center justify-between">
+        <div class="flex items-center gap-2.5">
+          <span class="px-2 py-0.5 rounded bg-[#9AA4B2] text-black font-mono text-xs font-black">03</span>
+          <h2 id="calMonthHeader" class="text-[19px] font-black uppercase tracking-wider text-white">October 2026</h2>
         </div>
 
-        <div class="flex items-center gap-1">
-          <button onclick="shiftCalendarMonth(-1)" class="p-2 rounded-xl bg-[#090d16] border border-slate-800 text-slate-300 active:scale-95">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
-            </svg>
-          </button>
-          <button onclick="jumpCalendarToToday()" class="px-2.5 py-1.5 rounded-xl bg-[#090d16] border border-slate-800 text-xs font-bold text-rose-400 active:scale-95">
-            Today
-          </button>
-          <button onclick="shiftCalendarMonth(1)" class="p-2 rounded-xl bg-[#090d16] border border-slate-800 text-slate-300 active:scale-95">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
-            </svg>
-          </button>
+        <div class="flex items-center gap-1.5">
+          <button onclick="shiftCalMonth(-1)" class="px-3 py-1.5 rounded-xl bg-[#0C0E11] border border-[#2B313B] text-white font-bold active:scale-95">‹</button>
+          <button onclick="jumpCalToday()" class="px-3 py-1.5 rounded-xl bg-[#0C0E11] border border-[#2B313B] text-xs font-extrabold uppercase text-[#E87A35] active:scale-95">Today</button>
+          <button onclick="shiftCalMonth(1)" class="px-3 py-1.5 rounded-xl bg-[#0C0E11] border border-[#2B313B] text-white font-bold active:scale-95">›</button>
         </div>
       </div>
 
-      <!-- Day of Week Headers -->
-      <div class="grid grid-cols-7 text-center text-[11px] font-bold text-slate-500 pb-2 border-b border-slate-800/80">
-        <span>MON</span><span>TUE</span><span>WED</span><span>THU</span><span>FRI</span><span>SAT</span><span>SUN</span>
-      </div>
-
-      <!-- Month Days Grid -->
-      <div id="iosCalendarGrid" class="grid grid-cols-7 gap-1 pt-2">
-        <!-- Populated dynamically -->
-      </div>
-
-      <!-- Legend for Dots -->
-      <div class="flex items-center justify-center gap-4 text-[10px] text-slate-400 mt-3 pt-2 border-t border-slate-800/60">
-        <span class="flex items-center gap-1"><i class="w-2 h-2 rounded-full bg-blue-400 inline-block"></i> French</span>
-        <span class="flex items-center gap-1"><i class="w-2 h-2 rounded-full bg-amber-400 inline-block"></i> Gym/Yoga/Walk</span>
-        <span class="flex items-center gap-1"><i class="w-2 h-2 rounded-full bg-emerald-400 inline-block"></i> No Self Harm</span>
-        <span class="flex items-center gap-1"><i class="w-2 h-2 rounded-full bg-purple-400 inline-block"></i> Event</span>
-      </div>
-
-      <!-- Selected Day Detail Drawer (Inside Calendar Card) -->
-      <div class="mt-3.5 pt-3 border-t border-slate-800 rounded-2xl bg-[#090d16] p-3.5 border">
-        <div class="flex items-center justify-between mb-2.5">
-          <div>
-            <span class="text-[10px] font-bold uppercase tracking-wider text-rose-400">Selected Day</span>
-            <h4 id="calDrawerDateTitle" class="font-extrabold text-sm text-white">Tuesday, Oct 27, 2026</h4>
-          </div>
-          <!-- Quick 3-Habit Toggles for Selected Calendar Day -->
-          <div class="flex items-center gap-1">
-            <button onclick="toggleHabit('french')" id="calQuick-french" class="px-2 py-1 rounded-lg text-[11px] font-bold border transition">🇫🇷</button>
-            <button onclick="toggleHabit('movement')" id="calQuick-movement" class="px-2 py-1 rounded-lg text-[11px] font-bold border transition">💪</button>
-            <button onclick="toggleHabit('clean')" id="calQuick-clean" class="px-2 py-1 rounded-lg text-[11px] font-bold border transition">🛡️</button>
-          </div>
+      <div class="p-4 space-y-4">
+        <!-- Weekday Headers -->
+        <div class="grid grid-cols-7 text-center text-xs font-extrabold text-[#9AA4B2] pb-2 border-b border-[#2B313B]">
+          <span>MON</span><span>TUE</span><span>WED</span><span>THU</span><span>FRI</span><span>SAT</span><span>SUN</span>
         </div>
 
-        <!-- Day Events / Notes List -->
-        <div id="calDayEventsList" class="space-y-1.5 mb-2.5"></div>
+        <!-- Calendar Grid -->
+        <div id="calGrid" class="grid grid-cols-7 gap-1.5"></div>
 
-        <!-- Add Event/Note to Selected Date -->
-        <form onsubmit="addCalendarEvent(event)" class="flex items-center gap-1.5">
-          <input
-            id="calEventInput"
-            type="text"
-            placeholder="Add event or note for this day..."
-            class="flex-1 bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-rose-500"
-          />
-          <button type="submit" class="px-3 py-2 rounded-xl bg-rose-500/20 border border-rose-500/30 text-rose-300 text-xs font-bold active:scale-95 transition">
-            + Note
-          </button>
-        </form>
+        <!-- Selected Date Inspector & Day Note -->
+        <div class="rounded-2xl bg-[#0C0E11] border-[1.5px] border-[#2B313B] p-4 space-y-3">
+          <div class="flex items-center justify-between gap-2">
+            <h4 id="calSelectedLabel" class="text-[17px] font-extrabold text-white">Tuesday, Oct 27</h4>
+            <div class="flex items-center gap-1.5">
+              <button onclick="toggleHabit('french')" id="calQuick-french" class="px-2.5 py-1.5 rounded-lg text-xs font-extrabold border transition">1. FR</button>
+              <button onclick="toggleHabit('movement')" id="calQuick-movement" class="px-2.5 py-1.5 rounded-lg text-xs font-extrabold border transition">2. GYM</button>
+              <button onclick="toggleHabit('clean')" id="calQuick-clean" class="px-2.5 py-1.5 rounded-lg text-xs font-extrabold border transition">3. CLEAN</button>
+            </div>
+          </div>
+
+          <div id="calEventsList" class="space-y-2"></div>
+
+          <form onsubmit="addCalEvent(event)" class="flex gap-2">
+            <input
+              id="calEventInput"
+              type="text"
+              placeholder="Add note for this date..."
+              class="flex-1 bg-[#15191F] border border-[#2B313B] rounded-xl px-3.5 py-2.5 text-[16px] text-white placeholder-[#9AA4B2]/60 focus:outline-none focus:border-[#E87A35]"
+            />
+            <button type="submit" class="px-4 py-2.5 rounded-xl bg-[#1E242D] border border-[#2B313B] text-white font-bold text-sm shrink-0">
+              + Note
+            </button>
+          </form>
+        </div>
       </div>
     </section>
 
     <!-- ===================================================================
-         SECTION 4: LEVEL UP STATUS (RPG CHARACTER & CONSISTENCY DASHBOARD)
+         SECTION 04 // LEVEL STATUS (PROGRESSIVE RPG CURVE & MILESTONES)
          =================================================================== -->
-    <section id="sec-levelup" class="scroll-mt-16 rounded-3xl bg-[#131b2e] border border-slate-800/90 p-4 shadow-xl space-y-4">
-      <!-- Section Header -->
-      <div class="flex items-center justify-between">
-        <div class="flex items-center gap-2">
-          <div class="w-7 h-7 rounded-xl bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 flex items-center justify-center text-sm font-bold">4</div>
-          <div>
-            <h2 class="font-extrabold text-base text-white leading-tight">Level Up Status</h2>
-            <p class="text-[11px] text-slate-400">RPG Character Sheet & Consistency Milestones</p>
-          </div>
+    <section id="sec-level" class="scroll-mt-20 section-block border-t-4 border-t-[#39D353]">
+      
+      <!-- Architectural Header -->
+      <div class="section-header-bar flex items-center justify-between">
+        <div class="flex items-center gap-2.5">
+          <span class="px-2 py-0.5 rounded bg-[#39D353] text-black font-mono text-xs font-black">04</span>
+          <h2 class="text-[19px] font-black uppercase tracking-wider text-white">Level Status</h2>
         </div>
-        <span id="rpgTotalXpPill" class="px-2.5 py-1 rounded-full bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 font-mono text-xs font-extrabold">0 XP</span>
+        <span id="totalXpHeaderBadge" class="font-mono text-base font-black text-[#E87A35] tabular-nums">0 XP</span>
       </div>
 
-      <!-- RPG Character Hero Card -->
-      <div class="rounded-2xl bg-gradient-to-br from-emerald-950/90 via-[#090d16] to-indigo-950/90 border border-emerald-500/30 p-4 shadow-lg">
-        <div class="flex items-center justify-between gap-3 mb-3">
-          <div class="flex items-center gap-3">
-            <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-emerald-400 to-teal-600 p-0.5 shadow-lg shadow-emerald-500/20">
-              <div class="w-full h-full bg-[#090d16] rounded-[14px] flex flex-col items-center justify-center">
-                <span class="text-[9px] font-bold text-emerald-400 uppercase">LEVEL</span>
-                <span id="rpgLevelBig" class="text-2xl font-black text-white leading-none">1</span>
-              </div>
-            </div>
+      <div class="p-4 space-y-5">
+        
+        <!-- Big Level & Rank Card -->
+        <div class="rounded-2xl bg-[#0C0E11] border-[1.5px] border-[#2B313B] p-5">
+          <div class="flex items-center justify-between gap-4 mb-4">
             <div>
-              <span class="text-[10px] font-bold uppercase tracking-widest text-emerald-400">Current Class Rank</span>
-              <h3 id="rpgRankTitle" class="text-lg font-extrabold text-white leading-tight">Awakened Novice</h3>
-              <p id="rpgNextLevelSub" class="text-xs text-slate-400 mt-0.5">100 XP to Level 2</p>
+              <span class="text-xs font-extrabold uppercase tracking-widest text-[#9AA4B2]">Current Rank</span>
+              <h3 id="levelRankName" class="text-2xl font-black text-white mt-0.5">I. Initiate</h3>
+              <p id="levelNextNeeded" class="text-sm font-bold text-[#E87A35] mt-1 tabular-nums">350 XP to Level 2</p>
+            </div>
+            <div class="px-4 py-3 rounded-2xl bg-[#15191F] border-2 border-[#E87A35] text-center min-w-[84px]">
+              <span class="text-[10px] font-black uppercase tracking-widest text-[#9AA4B2] block">LEVEL</span>
+              <span id="levelBigNumber" class="text-4xl font-black text-white tabular-nums leading-none">1</span>
             </div>
           </div>
+
+          <!-- Progressive XP Bar -->
+          <div class="w-full h-4 bg-[#15191F] rounded-full overflow-hidden border border-[#2B313B] p-0.5">
+            <div id="levelProgressBar" class="h-full rounded-full bg-gradient-to-r from-[#E87A35] to-[#F59E0B] transition-all duration-500" style="width: 2%"></div>
+          </div>
+          <div class="flex items-center justify-between text-xs font-mono font-bold text-[#9AA4B2] mt-2 tabular-nums">
+            <span id="levelStepProgressText">0 / 350 XP</span>
+            <span>+30 Habit • +30 Perfect • +25 Weekly • +15 Task</span>
+          </div>
         </div>
 
-        <!-- Level Progress Bar -->
-        <div class="w-full h-3 bg-slate-900/90 rounded-full overflow-hidden border border-slate-800 p-0.5">
-          <div id="rpgLevelProgressBar" class="h-full rounded-full bg-gradient-to-r from-emerald-500 via-teal-400 to-cyan-400 transition-all duration-500" style="width: 5%"></div>
-        </div>
-      </div>
-
-      <!-- 90-Day Neuro-Consistency / Clean Reset Tracker -->
-      <div class="rounded-2xl bg-[#090d16] border border-slate-800 p-3.5">
-        <div class="flex items-center justify-between text-xs mb-1.5">
-          <span class="font-bold text-slate-200 flex items-center gap-1.5">
-            <span>🧬</span>
-            <span>90-Day Habit & Brain Reset</span>
-          </span>
-          <span id="reset90Label" class="font-mono font-bold text-emerald-400">0 / 90 Days</span>
-        </div>
-        <div class="w-full h-2.5 bg-slate-900 rounded-full overflow-hidden border border-slate-800">
-          <div id="reset90Bar" class="h-full bg-gradient-to-r from-indigo-500 via-emerald-500 to-[#39d353] transition-all duration-500" style="width: 0%"></div>
-        </div>
-        <div class="flex justify-between text-[10px] text-slate-500 mt-1 font-mono">
-          <span>Day 1</span>
-          <span>21d Habit</span>
-          <span>45d Halfway</span>
-          <span>90d Mastery</span>
-        </div>
-      </div>
-
-      <!-- 4 Core RPG Attribute Bars -->
-      <div class="grid grid-cols-2 gap-2.5">
-        <!-- INT (French) -->
-        <div class="rounded-2xl bg-[#090d16] border border-slate-800 p-3">
-          <div class="flex items-center justify-between text-xs mb-1">
-            <span class="font-extrabold text-blue-400">🧠 INT • French</span>
-            <span id="statAttrInt" class="font-mono font-bold text-white">Lv 1</span>
+        <!-- 4 Core Discipline Metrics (Big 32px Numerals) -->
+        <div class="grid grid-cols-2 gap-3">
+          <div class="rounded-2xl bg-[#0C0E11] border-[1.5px] border-[#2B313B] p-4">
+            <span class="text-xs font-extrabold uppercase tracking-wider text-[#9AA4B2]">Current Streak</span>
+            <p id="metricCurrentStreak" class="text-3xl font-black text-[#F59E0B] tabular-nums mt-1">0d</p>
           </div>
-          <div class="w-full h-1.5 bg-slate-900 rounded-full overflow-hidden mb-1">
-            <div id="barAttrInt" class="h-full bg-blue-500 transition-all" style="width: 10%"></div>
+          <div class="rounded-2xl bg-[#0C0E11] border-[1.5px] border-[#2B313B] p-4">
+            <span class="text-xs font-extrabold uppercase tracking-wider text-[#9AA4B2]">Best Streak</span>
+            <p id="metricBestStreak" class="text-3xl font-black text-white tabular-nums mt-1">0d</p>
           </div>
-          <p id="subAttrInt" class="text-[10px] text-slate-400">0 French sessions</p>
+          <div class="rounded-2xl bg-[#0C0E11] border-[1.5px] border-[#2B313B] p-4">
+            <span class="text-xs font-extrabold uppercase tracking-wider text-[#9AA4B2]">Perfect Days (3/3)</span>
+            <p id="metricPerfectDays" class="text-3xl font-black text-[#39D353] tabular-nums mt-1">0</p>
+          </div>
+          <div class="rounded-2xl bg-[#0C0E11] border-[1.5px] border-[#2B313B] p-4">
+            <span class="text-xs font-extrabold uppercase tracking-wider text-[#9AA4B2]">30-Day Rate</span>
+            <p id="metric30DayRate" class="text-3xl font-black text-white tabular-nums mt-1">0%</p>
+          </div>
         </div>
 
-        <!-- VIT (Gym/Yoga/Walk + Health) -->
-        <div class="rounded-2xl bg-[#090d16] border border-slate-800 p-3">
-          <div class="flex items-center justify-between text-xs mb-1">
-            <span class="font-extrabold text-amber-400">💪 VIT • Vitality</span>
-            <span id="statAttrVit" class="font-mono font-bold text-white">Lv 1</span>
-          </div>
-          <div class="w-full h-1.5 bg-slate-900 rounded-full overflow-hidden mb-1">
-            <div id="barAttrVit" class="h-full bg-amber-500 transition-all" style="width: 10%"></div>
-          </div>
-          <p id="subAttrVit" class="text-[10px] text-slate-400">0 Movement days</p>
+        <!-- Earned Milestones Grid -->
+        <div>
+          <h3 class="text-sm font-black uppercase tracking-wider text-[#9AA4B2] mb-3">Earned Milestones</h3>
+          <div id="milestonesGrid" class="grid grid-cols-2 sm:grid-cols-4 gap-2.5"></div>
         </div>
 
-        <!-- ZEN (No Self Harm Fortitude) -->
-        <div class="rounded-2xl bg-[#090d16] border border-slate-800 p-3">
-          <div class="flex items-center justify-between text-xs mb-1">
-            <span class="font-extrabold text-emerald-400">🛡️ ZEN • Fortitude</span>
-            <span id="statAttrZen" class="font-mono font-bold text-white">Lv 1</span>
-          </div>
-          <div class="w-full h-1.5 bg-slate-900 rounded-full overflow-hidden mb-1">
-            <div id="barAttrZen" class="h-full bg-emerald-500 transition-all" style="width: 10%"></div>
-          </div>
-          <p id="subAttrZen" class="text-[10px] text-slate-400">0 Clean days</p>
-        </div>
-
-        <!-- EXE (Tasks & Weekly Quadrants) -->
-        <div class="rounded-2xl bg-[#090d16] border border-slate-800 p-3">
-          <div class="flex items-center justify-between text-xs mb-1">
-            <span class="font-extrabold text-purple-400">⚡ EXE • Execution</span>
-            <span id="statAttrExe" class="font-mono font-bold text-white">Lv 1</span>
-          </div>
-          <div class="w-full h-1.5 bg-slate-900 rounded-full overflow-hidden mb-1">
-            <div id="barAttrExe" class="h-full bg-purple-500 transition-all" style="width: 10%"></div>
-          </div>
-          <p id="subAttrExe" class="text-[10px] text-slate-400">0 Tasks crushed</p>
-        </div>
-      </div>
-
-      <!-- Unlockable Achievement Badges -->
-      <div>
-        <h3 class="text-xs font-extrabold uppercase tracking-wider text-slate-400 mb-2">Achievement Badges</h3>
-        <div id="achievementsGrid" class="grid grid-cols-4 gap-2">
-          <!-- Populated dynamically -->
-        </div>
       </div>
     </section>
 
   </main>
 
   <!-- =====================================================================
-       STICKY IOS BOTTOM NAVIGATION BAR (QUICK JUMP TO ANY SECTION)
+       STICKY BOTTOM NAVIGATION BAR
        ===================================================================== -->
-  <nav class="fixed bottom-0 inset-x-0 z-40 ios-glass bg-[#090d16]/90 border-t border-slate-800/90 pb-[env(safe-area-inset-bottom,0px)]">
-    <div class="max-w-lg mx-auto grid grid-cols-5 px-2 py-1.5">
-      <button onclick="scrollToSection('sec-habits')" class="flex flex-col items-center justify-center py-1 text-emerald-400 active:scale-90 transition">
-        <span class="text-base leading-none mb-0.5">🔥</span>
-        <span class="text-[10px] font-bold">Habits</span>
+  <nav class="fixed bottom-0 inset-x-0 z-40 ios-glass bg-[#0C0E11]/95 border-t-[1.5px] border-[#2B313B] pb-[env(safe-area-inset-bottom,0px)]">
+    <div class="max-w-lg mx-auto grid grid-cols-5 px-2 py-2">
+      <button onclick="scrollToSection('sec-habits')" class="flex flex-col items-center justify-center py-1 text-[#F3F5F8] active:scale-95 transition">
+        <span class="text-xs font-mono font-black text-[#39D353]">TOP</span>
+        <span class="text-xs font-extrabold mt-0.5">Habits</span>
       </button>
-      <button onclick="scrollToSection('sec-tasks')" class="flex flex-col items-center justify-center py-1 text-slate-400 hover:text-blue-400 active:scale-90 transition">
-        <span class="text-base leading-none mb-0.5">☑️</span>
-        <span class="text-[10px] font-bold">Tasks</span>
+      <button onclick="scrollToSection('sec-tasks')" class="flex flex-col items-center justify-center py-1 text-[#9AA4B2] hover:text-white active:scale-95 transition">
+        <span class="text-xs font-mono font-black text-[#E87A35]">01</span>
+        <span class="text-xs font-extrabold mt-0.5">Tasks</span>
       </button>
-      <button onclick="scrollToSection('sec-weekly')" class="flex flex-col items-center justify-center py-1 text-slate-400 hover:text-purple-400 active:scale-90 transition">
-        <span class="text-base leading-none mb-0.5">⊞</span>
-        <span class="text-[10px] font-bold">4-Square</span>
+      <button onclick="scrollToSection('sec-weekly')" class="flex flex-col items-center justify-center py-1 text-[#9AA4B2] hover:text-white active:scale-95 transition">
+        <span class="text-xs font-mono font-black text-[#F59E0B]">02</span>
+        <span class="text-xs font-extrabold mt-0.5">Weekly</span>
       </button>
-      <button onclick="scrollToSection('sec-calendar')" class="flex flex-col items-center justify-center py-1 text-slate-400 hover:text-rose-400 active:scale-90 transition">
-        <span class="text-base leading-none mb-0.5">📅</span>
-        <span class="text-[10px] font-bold">Calendar</span>
+      <button onclick="scrollToSection('sec-calendar')" class="flex flex-col items-center justify-center py-1 text-[#9AA4B2] hover:text-white active:scale-95 transition">
+        <span class="text-xs font-mono font-black text-[#9AA4B2]">03</span>
+        <span class="text-xs font-extrabold mt-0.5">Calendar</span>
       </button>
-      <button onclick="scrollToSection('sec-levelup')" class="flex flex-col items-center justify-center py-1 text-slate-400 hover:text-emerald-400 active:scale-90 transition">
-        <span class="text-base leading-none mb-0.5">⚡</span>
-        <span class="text-[10px] font-bold">Level Up</span>
+      <button onclick="scrollToSection('sec-level')" class="flex flex-col items-center justify-center py-1 text-[#9AA4B2] hover:text-white active:scale-95 transition">
+        <span class="text-xs font-mono font-black text-[#39D353]">04</span>
+        <span class="text-xs font-extrabold mt-0.5">Level</span>
       </button>
     </div>
   </nav>
 
   <!-- =====================================================================
-       MODAL: BACKUP / RESTORE & FRENCH APP URL SETTINGS
+       SETTINGS & DATA BACKUP MODAL
        ===================================================================== -->
-  <div id="backupModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/70 backdrop-blur-sm p-4">
-    <div class="w-full max-w-sm rounded-3xl bg-[#131b2e] border border-slate-700 p-5 shadow-2xl space-y-4">
-      <div class="flex items-center justify-between">
-        <h3 class="font-extrabold text-base text-white">Settings & Data Backup</h3>
-        <button onclick="closeBackupModal()" class="p-1.5 rounded-full bg-slate-800 text-slate-400">✕</button>
+  <div id="settingsModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/80 backdrop-blur-sm p-4">
+    <div class="w-full max-w-sm rounded-2xl bg-[#15191F] border-[1.5px] border-[#2B313B] p-5 shadow-2xl space-y-4">
+      <div class="flex items-center justify-between border-b border-[#2B313B] pb-3">
+        <h3 class="text-lg font-black uppercase tracking-wider text-white">Settings & Backup</h3>
+        <button onclick="closeSettingsModal()" class="px-2.5 py-1 rounded-lg bg-[#1E242D] text-[#9AA4B2] font-bold">✕</button>
       </div>
 
-      <!-- Configure French App filename on GitHub Pages -->
       <div>
-        <label class="block text-xs font-bold text-slate-300 mb-1">French App Link (on your GitHub Pages):</label>
+        <label class="block text-sm font-bold text-white mb-1.5">French Flashcards Link:</label>
         <div class="flex gap-2">
           <input
             id="frenchUrlInput"
             type="text"
-            placeholder="index.html or french.html"
-            class="flex-1 bg-[#090d16] border border-slate-700 rounded-xl px-3 py-2 text-xs text-white"
+            placeholder="index.html"
+            class="flex-1 bg-[#0C0E11] border border-[#2B313B] rounded-xl px-3.5 py-2.5 text-base text-white"
           />
-          <button onclick="saveFrenchUrl()" class="px-3 py-2 rounded-xl bg-indigo-600 text-white text-xs font-bold">Save</button>
+          <button onclick="saveFrenchUrl()" class="px-4 py-2.5 rounded-xl bg-[#E87A35] text-black font-black text-sm">Save</button>
         </div>
-        <p class="text-[10px] text-slate-400 mt-1">Default is <code>index.html</code>. Change if you named your French app <code>french.html</code>.</p>
       </div>
 
-      <!-- Sound Effects Toggle -->
-      <div class="flex items-center justify-between py-2 border-y border-slate-800">
-        <div>
-          <p class="text-xs font-bold text-white">RPG Sound Effects</p>
-          <p class="text-[10px] text-slate-400">Subtle chime on habit check & Level Up</p>
-        </div>
-        <button onclick="toggleSoundSetting()" id="soundToggleBtn" class="px-3 py-1.5 rounded-xl bg-emerald-500/20 text-emerald-400 text-xs font-bold">
-          ON
-        </button>
-      </div>
-
-      <!-- Export / Import Backup -->
-      <div class="space-y-2">
-        <p class="text-xs font-bold text-slate-300">Backup or Restore Progress (JSON):</p>
+      <div class="space-y-2 pt-2 border-t border-[#2B313B]">
+        <label class="block text-sm font-bold text-white">Backup / Restore Data (JSON):</label>
         <div class="grid grid-cols-2 gap-2">
-          <button onclick="exportBackupJson()" class="py-2.5 rounded-xl bg-emerald-600 text-white text-xs font-bold shadow active:scale-95 transition">
-            ⬇ Copy Backup
+          <button onclick="exportBackupJson()" class="py-2.5 rounded-xl bg-[#1E242D] border border-[#2B313B] text-white text-sm font-bold active:scale-95">
+            Copy Backup
           </button>
-          <button onclick="importBackupJson()" class="py-2.5 rounded-xl bg-slate-800 border border-slate-700 text-slate-200 text-xs font-bold active:scale-95 transition">
-            ⬆ Paste Restore
+          <button onclick="importBackupJson()" class="py-2.5 rounded-xl bg-[#E87A35] text-black text-sm font-black active:scale-95">
+            Restore JSON
           </button>
         </div>
         <textarea
-          id="backupJsonTextarea"
+          id="backupTextarea"
           rows="3"
-          placeholder="Tap 'Copy Backup' to export your data, or paste backup JSON here and tap 'Paste Restore'..."
-          class="w-full bg-[#090d16] border border-slate-800 rounded-xl p-2.5 text-[10px] font-mono text-slate-300 focus:outline-none focus:border-emerald-500"
+          placeholder="Backup JSON..."
+          class="w-full bg-[#0C0E11] border border-[#2B313B] rounded-xl p-3 text-xs font-mono text-[#9AA4B2]"
         ></textarea>
       </div>
 
-      <button onclick="closeBackupModal()" class="w-full py-2.5 rounded-xl bg-slate-800 text-slate-300 text-xs font-bold">
-        Done
+      <button onclick="closeSettingsModal()" class="w-full py-3 rounded-xl bg-[#1E242D] text-white text-sm font-extrabold uppercase tracking-wider">
+        Close
       </button>
     </div>
   </div>
 
-  <!-- FLOATING TOAST / XP NOTIFICATION -->
-  <div id="toastBanner" class="fixed top-16 left-1/2 -translate-x-1/2 z-50 pointer-events-none opacity-0 transition-all duration-300 transform -translate-y-2">
-    <div class="px-4 py-2 rounded-full bg-emerald-500 text-slate-950 text-xs font-extrabold shadow-xl shadow-emerald-500/30 flex items-center gap-1.5">
-      <span id="toastText">+30 XP!</span>
+  <!-- FLOATING TOAST -->
+  <div id="toastBanner" class="fixed top-20 left-1/2 -translate-x-1/2 z-50 pointer-events-none opacity-0 transition-all duration-200 transform -translate-y-2">
+    <div class="px-4 py-2 rounded-xl bg-[#E87A35] text-black text-sm font-black shadow-xl">
+      <span id="toastText">+30 XP</span>
     </div>
   </div>
 
   <!-- =====================================================================
-       APPLICATION JAVASCRIPT
+       APPLICATION LOGIC
        ===================================================================== -->
   <script>
     const STORAGE_KEY = 'life_os_tracker_v1';
 
-    // Helper: Format local date as YYYY-MM-DD (avoids UTC timezone drift)
-    function toDateKey(dateObj) {
-      const y = dateObj.getFullYear();
-      const m = String(dateObj.getMonth() + 1).padStart(2, '0');
-      const d = String(dateObj.getDate()).padStart(2, '0');
-      return `${y}-${m}-${d}`;
+    function toDateKey(d) {
+      const y = d.getFullYear();
+      const m = String(d.getMonth() + 1).padStart(2, '0');
+      const day = String(d.getDate()).padStart(2, '0');
+      return `${y}-${m}-${day}`;
     }
 
     function parseDateKey(key) {
@@ -884,60 +709,34 @@
       return new Date(y, m - 1, d);
     }
 
-    const TODAY_KEY = toDateKey(new Date());
-
-    // Default Initial State
     let state = {
-      selectedDate: TODAY_KEY,
-      heatmapMode: 'github', // 'github' | 'month'
-       frenchAppUrl: 'index.html',
-      soundEnabled: true,
-      bonusXp: 0,
-      // logs[dateKey] = { french: bool, movement: bool, clean: bool, moveTags: ['Gym','Yoga','Walk'] }
+      selectedDate: toDateKey(new Date()),
+      heatmapMode: 'github',
+      frenchAppUrl: 'index.html',
+      completedDrawerOpen: false,
+      bankedXp: 0,
       logs: {},
-      // runningTasks = [{ id, text, done, priority: 'normal'|'high'|'quick', pinned: bool, createdAt }]
       runningTasks: [
-        { id: 't1', text: 'Complete 20 French flashcards in Le Mille', done: false, priority: 'high', pinned: true },
-        { id: 't2', text: '30 min walk or yoga flow', done: false, priority: 'normal', pinned: false },
-        { id: 't3', text: 'Organize desk & plan the week', done: false, priority: 'quick', pinned: false }
+        { id: 't1', text: 'Complete 20 French flashcards', done: false, pinned: true },
+        { id: 't2', text: '30 min walk or yoga session', done: false, pinned: false }
       ],
-      taskFilter: 'all',
-      newTaskPriority: 'normal',
-      // 4-Square Weekly Plan
       quadrants: {
-        career: [
-          { id: 'q1', text: 'Deep work block (2 hrs)', done: false },
-          { id: 'q2', text: 'Review weekly goals & priorities', done: false }
-        ],
-        health: [
-          { id: 'q3', text: '3x Gym / Yoga sessions', done: false },
-          { id: 'q4', text: 'Hydrate & sleep before midnight', done: false }
-        ],
-        house: [
-          { id: 'q5', text: 'Grocery run & meal prep', done: false },
-          { id: 'q6', text: 'Laundry & tidy bedroom', done: false }
-        ],
-        fun: [
-          { id: 'q7', text: 'Watch a French movie or podcast', done: false },
-          { id: 'q8', text: 'Catch up with a friend', done: false }
-        ]
+        career: [{ id: 'q1', text: 'Deep work block (2 hrs)', done: false }],
+        health: [{ id: 'q2', text: '3x Gym / Yoga sessions', done: false }],
+        house: [{ id: 'q3', text: 'Groceries & room reset', done: false }],
+        fun: [{ id: 'q4', text: 'French film or music', done: false }]
       },
-      // calendarEvents[dateKey] = [{ id, text }]
       calendarEvents: {}
     };
 
-    // Calendar & Month Heatmap navigation cursors
-    let calCursorYear = new Date().getFullYear();
-    let calCursorMonth = new Date().getMonth();
-    let hmCursorYear = new Date().getFullYear();
-    let hmCursorMonth = new Date().getMonth();
+    let calYear = new Date().getFullYear();
+    let calMonth = new Date().getMonth();
+    let hmYear = new Date().getFullYear();
+    let hmMonth = new Date().getMonth();
 
-    // =====================================================================
-    // LOAD & SAVE STATE
-    // =====================================================================
     function loadState() {
       try {
-        const raw = localStorage.getItem(STORAGE_KEY);
+        const raw = localStorage.getItem(STORAGE_KEY) || localStorage.getItem('lifeOS_v1');
         if (raw) {
           const parsed = JSON.parse(raw);
           state = {
@@ -945,13 +744,13 @@
             ...parsed,
             quadrants: { ...state.quadrants, ...(parsed.quadrants || {}) },
             logs: parsed.logs || {},
-            calendarEvents: parsed.calendarEvents || {}
+            calendarEvents: parsed.calendarEvents || {},
+            bankedXp: (parsed.bankedXp || 0) + (parsed.bonusXp || 0)
           };
         }
-        // Always start selectedDate on Today when opening fresh
         state.selectedDate = toDateKey(new Date());
       } catch (e) {
-        console.warn('Failed to load state:', e);
+        console.warn('Load state error:', e);
       }
     }
 
@@ -959,7 +758,7 @@
       try {
         localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
       } catch (e) {
-        console.warn('Failed to save state:', e);
+        console.warn('Save state error:', e);
       }
     }
 
@@ -974,117 +773,115 @@
     }
 
     function getHabitCount(dateKey) {
-      const log = state.logs[dateKey];
-      if (!log) return 0;
-      return (log.french ? 1 : 0) + (log.movement ? 1 : 0) + (log.clean ? 1 : 0);
+      const l = state.logs[dateKey];
+      if (!l) return 0;
+      return (l.french ? 1 : 0) + (l.movement ? 1 : 0) + (l.clean ? 1 : 0);
     }
 
     // =====================================================================
-    // WEB AUDIO SYNTHESIZED SOUND EFFECTS (ZERO EXTERNAL FILES)
+    // PROGRESSIVE LEVELING ENGINE (HARD & EARNED)
     // =====================================================================
-    let audioCtx = null;
-    function playTone(type = 'check') {
-      if (!state.soundEnabled) return;
-      try {
-        if (!audioCtx) {
-          const AudioContext = window.AudioContext || window.webkitAudioContext;
-          audioCtx = new AudioContext();
-        }
-        if (audioCtx.state === 'suspended') audioCtx.resume();
+    const RANKS = [
+      { minLv: 1, title: 'I. Initiate' },
+      { minLv: 2, title: 'II. Grounded' },
+      { minLv: 4, title: 'III. Disciplined' },
+      { minLv: 6, title: 'IV. Relentless' },
+      { minLv: 9, title: 'V. Vanguard' },
+      { minLv: 12, title: 'VI. Ironclad' },
+      { minLv: 16, title: 'VII. Sovereign' },
+      { minLv: 20, title: 'VIII. Apex' }
+    ];
 
-        const now = audioCtx.currentTime;
-        if (type === 'check') {
-          const osc = audioCtx.createOscillator();
-          const gain = audioCtx.createGain();
-          osc.type = 'sine';
-          osc.frequency.setValueAtTime(523.25, now); // C5
-          osc.frequency.exponentialRampToValueAtTime(659.25, now + 0.09); // E5
-          gain.gain.setValueAtTime(0.12, now);
-          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.18);
-          osc.connect(gain);
-          gain.connect(audioCtx.destination);
-          osc.start(now);
-          osc.stop(now + 0.18);
-        } else if (type === 'perfect') {
-          // 3-note arpeggio for 3/3 Perfect Day!
-          [523.25, 659.25, 783.99, 1046.5].forEach((freq, idx) => {
-            const osc = audioCtx.createOscillator();
-            const gain = audioCtx.createGain();
-            osc.type = 'triangle';
-            osc.frequency.setValueAtTime(freq, now + idx * 0.07);
-            gain.gain.setValueAtTime(0.14, now + idx * 0.07);
-            gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.07 + 0.25);
-            osc.connect(gain);
-            gain.connect(audioCtx.destination);
-            osc.start(now + idx * 0.07);
-            osc.stop(now + idx * 0.07 + 0.25);
-          });
-        }
-      } catch (e) {}
+    // XP required to advance from `level` to `level + 1`
+    // Lv 1->2: 350 XP (~3 perfect days)
+    // Lv 2->3: 482 XP (~4 perfect days)
+    // Lv 5->6: 848 XP (~1 week)
+    // Lv 10->11: 1,245 XP (~10+ days)
+    function xpRequiredForLevelStep(level) {
+      return Math.round(350 * Math.pow(level, 0.55));
+    }
+
+    function calculateLevelData(totalXp) {
+      let level = 1;
+      let remaining = totalXp;
+      let stepReq = xpRequiredForLevelStep(level);
+
+      while (remaining >= stepReq) {
+        remaining -= stepReq;
+        level++;
+        stepReq = xpRequiredForLevelStep(level);
+      }
+
+      let rankTitle = RANKS[0].title;
+      for (const r of RANKS) {
+        if (level >= r.minLv) rankTitle = r.title;
+      }
+
+      const pct = Math.min(100, Math.round((remaining / stepReq) * 100));
+      return {
+        level,
+        rankTitle,
+        xpInLevel: remaining,
+        stepReq,
+        xpNeeded: stepReq - remaining,
+        pct
+      };
     }
 
     // =====================================================================
-    // DAILY HABITS & DATE SELECTION
+    // DAILY CHECKLIST & HABITS
     // =====================================================================
-    function shiftSelectedDate(deltaDays) {
-      const curr = parseDateKey(state.selectedDate);
-      curr.setDate(curr.getDate() + deltaDays);
-      selectDateKey(toDateKey(curr));
+    function shiftSelectedDate(days) {
+      const d = parseDateKey(state.selectedDate);
+      d.setDate(d.getDate() + days);
+      selectDateKey(toDateKey(d));
     }
 
     function selectToday() {
-      const todayKey = toDateKey(new Date());
-      selectDateKey(todayKey);
+      selectDateKey(toDateKey(new Date()));
     }
 
     function selectDateKey(dateKey) {
       state.selectedDate = dateKey;
       const d = parseDateKey(dateKey);
-      calCursorYear = d.getFullYear();
-      calCursorMonth = d.getMonth();
+      calYear = d.getFullYear();
+      calMonth = d.getMonth();
       saveState();
       renderAll();
     }
 
-    function toggleHabit(habitKey) {
+    function toggleHabit(key) {
       const log = getDayLog(state.selectedDate);
-      const prevCount = getHabitCount(state.selectedDate);
-      log[habitKey] = !log[habitKey];
-      const newCount = getHabitCount(state.selectedDate);
-
+      const prev = getHabitCount(state.selectedDate);
+      log[key] = !log[key];
+      const next = getHabitCount(state.selectedDate);
       saveState();
 
-      // Pop animation
-      const checkBtn = document.getElementById(`habitCheck-${habitKey}`);
-      if (checkBtn) {
-        checkBtn.classList.remove('animate-pop');
-        void checkBtn.offsetWidth;
-        checkBtn.classList.add('animate-pop');
+      const box = document.getElementById(`habitBox-${key}`);
+      if (box) {
+        box.classList.remove('animate-pop');
+        void box.offsetWidth;
+        box.classList.add('animate-pop');
       }
 
-      if (log[habitKey]) {
-        if (newCount === 3 && prevCount < 3) {
-          playTone('perfect');
-          showToast('★ 3/3 PERFECT DAY! +80 XP');
+      if (log[key]) {
+        if (next === 3 && prev < 3) {
+          showToast('★ 3/3 PERFECT DAY! +60 XP');
         } else {
-          playTone('check');
-          showToast('+30 XP!');
+          showToast('+30 XP');
         }
       }
-
       renderAll();
     }
 
-    function toggleMovementSubTag(tag) {
+    function toggleMoveTag(tag) {
       const log = getDayLog(state.selectedDate);
       const idx = log.moveTags.indexOf(tag);
       if (idx === -1) {
         log.moveTags.push(tag);
-        // Automatically mark Habit 2 (Gym/Yoga/Walk) done when selecting a sub-tag!
         if (!log.movement) {
           log.movement = true;
-          playTone('check');
-          showToast(`💪 ${tag} logged! +30 XP`);
+          showToast(`${tag} +30 XP`);
         }
       } else {
         log.moveTags.splice(idx, 1);
@@ -1093,173 +890,138 @@
       renderAll();
     }
 
-    function renderDailyHabitsSection() {
+    function renderHabits() {
       const todayKey = toDateKey(new Date());
       const selDate = parseDateKey(state.selectedDate);
       const isToday = state.selectedDate === todayKey;
 
-      const labelEl = document.getElementById('selectedDateLabel');
-      const subEl = document.getElementById('selectedDateSub');
-      const jumpBtn = document.getElementById('jumpTodayBtn');
+      document.getElementById('activeDateTitle').textContent = isToday ? 'Today' : state.selectedDate;
+      const resetBtn = document.getElementById('resetTodayBtn');
+      if (isToday) resetBtn.classList.add('hidden');
+      else resetBtn.classList.remove('hidden');
 
-      if (isToday) {
-        labelEl.textContent = 'Today';
-        jumpBtn.classList.add('hidden');
-      } else {
-        const diff = Math.round((selDate - parseDateKey(todayKey)) / (1000 * 60 * 60 * 24));
-        labelEl.textContent = diff === -1 ? 'Yesterday' : diff === 1 ? 'Tomorrow' : state.selectedDate;
-        jumpBtn.classList.remove('hidden');
-      }
-
-      subEl.textContent = selDate.toLocaleDateString('en-US', {
+      document.getElementById('activeDateFormatted').textContent = selDate.toLocaleDateString('en-US', {
         weekday: 'long',
         month: 'short',
-        day: 'numeric',
-        year: 'numeric'
+        day: 'numeric'
       });
 
       const log = getDayLog(state.selectedDate);
       const count = getHabitCount(state.selectedDate);
 
-      document.getElementById('dailyCompletionFraction').textContent = `${count}/3`;
-      const perfectPill = document.getElementById('perfectDayPill');
-      if (count === 3) perfectPill.classList.remove('hidden');
-      else perfectPill.classList.add('hidden');
+      document.getElementById('dailyCountText').textContent = `${count}/3`;
+      const pBadge = document.getElementById('perfectBadge');
+      if (count === 3) pBadge.classList.remove('hidden');
+      else pBadge.classList.add('hidden');
 
-      // Style each of the 3 habit cards
-      const configs = [
-        { key: 'french', activeBg: 'border-blue-500/60 bg-blue-950/20', checkBg: 'bg-blue-400 border-blue-400' },
-        { key: 'movement', activeBg: 'border-amber-500/60 bg-amber-950/20', checkBg: 'bg-amber-400 border-amber-400' },
-        { key: 'clean', activeBg: 'border-emerald-500/60 bg-emerald-950/20', checkBg: 'bg-emerald-400 border-emerald-400' }
-      ];
-
-      configs.forEach(({ key, activeBg, checkBg }) => {
+      ['french', 'movement', 'clean'].forEach(key => {
         const done = !!log[key];
-        const card = document.getElementById(`habitCard-${key}`);
-        const check = document.getElementById(`habitCheck-${key}`);
-        const title = document.getElementById(`habitTitle-${key}`);
-        const svg = check.querySelector('svg');
+        const row = document.getElementById(`habitRow-${key}`);
+        const box = document.getElementById(`habitBox-${key}`);
+        const label = document.getElementById(`habitLabel-${key}`);
+        const svg = box.querySelector('svg');
 
         if (done) {
-          card.className = `rounded-2xl border p-3.5 transition-all duration-200 shadow-md ${activeBg}`;
-          check.className = `w-8 h-8 rounded-xl border-2 flex items-center justify-center transition-all shrink-0 ${checkBg}`;
+          row.className = key === 'movement'
+            ? 'rounded-2xl bg-[#0E4429]/40 border-[1.5px] border-[#39D353] p-4 flex flex-col gap-3 transition-all'
+            : 'rounded-2xl bg-[#0E4429]/40 border-[1.5px] border-[#39D353] p-4 flex items-center justify-between gap-3 transition-all';
+          box.className = 'w-9 h-9 rounded-xl border-2 border-[#39D353] bg-[#39D353] flex items-center justify-center shrink-0 transition-all';
           svg.classList.remove('hidden');
-          title.classList.add('line-through', 'text-slate-300');
+          label.className = 'text-[20px] font-extrabold text-[#39D353] line-through leading-tight';
         } else {
-          card.className = 'rounded-2xl bg-[#131b2e] border border-slate-800/90 p-3.5 transition-all duration-200 shadow-md';
-          check.className = 'w-8 h-8 rounded-xl border-2 border-slate-600 flex items-center justify-center transition-all shrink-0';
+          row.className = key === 'movement'
+            ? 'rounded-2xl bg-[#0C0E11] border-[1.5px] border-[#2B313B] p-4 flex flex-col gap-3 transition-all'
+            : 'rounded-2xl bg-[#0C0E11] border-[1.5px] border-[#2B313B] p-4 flex items-center justify-between gap-3 transition-all';
+          box.className = 'w-9 h-9 rounded-xl border-2 border-[#9AA4B2] flex items-center justify-center shrink-0 transition-all';
           svg.classList.add('hidden');
-          title.classList.remove('line-through', 'text-slate-300');
+          label.className = 'text-[20px] font-extrabold text-white leading-tight';
         }
       });
 
-      // Movement sub-tags (Gym, Yoga, Walk)
       ['Gym', 'Yoga', 'Walk'].forEach(tag => {
-        const btn = document.getElementById(`subTag-${tag}`);
+        const btn = document.getElementById(`tagBtn-${tag}`);
         const active = log.moveTags.includes(tag);
         if (active) {
-          btn.className = 'px-2 py-1 rounded-lg text-[10px] font-extrabold bg-amber-400 text-slate-950 border border-amber-300 transition';
+          btn.className = 'py-1.5 rounded-xl text-sm font-black border border-[#E87A35] bg-[#E87A35] text-black transition';
         } else {
-          btn.className = 'px-2 py-1 rounded-lg text-[10px] font-bold bg-slate-800 text-slate-400 border border-slate-700 transition';
+          btn.className = 'py-1.5 rounded-xl text-sm font-bold border border-[#2B313B] bg-[#15191F] text-[#9AA4B2] transition';
         }
       });
 
-      // Update French App Links
-      document.getElementById('headerFrenchLink').href = state.frenchAppUrl || 'index.html';
-      document.getElementById('habitFrenchLink').href = state.frenchAppUrl || 'index.html';
+      document.getElementById('frenchAppBtn').href = state.frenchAppUrl || 'index.html';
     }
 
     // =====================================================================
-    // GITHUB CONTRIBUTIONS HEATMAP & STREAK ENGINE
+    // STATS & GITHUB HEATMAP
     // =====================================================================
-    function computeStreaksAndStats() {
+    function computeStats() {
       const today = new Date();
       let currentStreak = 0;
       let cleanStreak = 0;
 
-      // Calculate Current Streak (days in a row with >=1 habit completed, starting from Today or Yesterday)
-      let cursor = new Date(today);
-      if (getHabitCount(toDateKey(cursor)) === 0) {
-        cursor.setDate(cursor.getDate() - 1);
-      }
-      while (getHabitCount(toDateKey(cursor)) > 0) {
+      let cur = new Date(today);
+      if (getHabitCount(toDateKey(cur)) === 0) cur.setDate(cur.getDate() - 1);
+      while (getHabitCount(toDateKey(cur)) > 0) {
         currentStreak++;
-        cursor.setDate(cursor.getDate() - 1);
+        cur.setDate(cur.getDate() - 1);
       }
 
-      // Calculate Clean (No Self Harm) Streak
-      let cleanCursor = new Date(today);
-      if (!state.logs[toDateKey(cleanCursor)]?.clean) {
-        cleanCursor.setDate(cleanCursor.getDate() - 1);
-      }
-      while (state.logs[toDateKey(cleanCursor)]?.clean) {
+      let cCur = new Date(today);
+      if (!state.logs[toDateKey(cCur)]?.clean) cCur.setDate(cCur.getDate() - 1);
+      while (state.logs[toDateKey(cCur)]?.clean) {
         cleanStreak++;
-        cleanCursor.setDate(cleanCursor.getDate() - 1);
+        cCur.setDate(cCur.getDate() - 1);
       }
 
-      // Best streak & total Perfect Days across all logged dates
-      const allKeys = Object.keys(state.logs).sort();
+      const keys = Object.keys(state.logs).sort();
       let bestStreak = currentStreak;
-      let tempStreak = 0;
+      let running = 0;
       let prevDate = null;
       let perfectDays = 0;
-      let activeDaysTotal = 0;
-      let frenchTotal = 0;
-      let movementTotal = 0;
-      let cleanTotal = 0;
+      let totalHabitsLogged = 0;
 
-      allKeys.forEach(k => {
+      keys.forEach(k => {
         const c = getHabitCount(k);
-        const l = state.logs[k];
-        if (l?.french) frenchTotal++;
-        if (l?.movement) movementTotal++;
-        if (l?.clean) cleanTotal++;
-
+        totalHabitsLogged += c;
         if (c > 0) {
-          activeDaysTotal++;
           if (c === 3) perfectDays++;
           const d = parseDateKey(k);
-          if (prevDate && Math.round((d - prevDate) / (1000 * 60 * 60 * 24)) === 1) {
-            tempStreak++;
+          if (prevDate && Math.round((d - prevDate) / 86400000) === 1) {
+            running++;
           } else {
-            tempStreak = 1;
+            running = 1;
           }
-          if (tempStreak > bestStreak) bestStreak = tempStreak;
+          if (running > bestStreak) bestStreak = running;
           prevDate = d;
         } else {
-          tempStreak = 0;
+          running = 0;
           prevDate = null;
         }
       });
 
-      // Last 30 days completion percentage
-      let possible30 = 30 * 3;
       let done30 = 0;
       const d30 = new Date(today);
       for (let i = 0; i < 30; i++) {
         done30 += getHabitCount(toDateKey(d30));
         d30.setDate(d30.getDate() - 1);
       }
-      const monthRate = Math.round((done30 / possible30) * 100);
+      const rate30 = Math.round((done30 / 90) * 100);
 
       return {
         currentStreak,
         cleanStreak,
         bestStreak,
         perfectDays,
-        activeDaysTotal,
-        monthRate,
-        frenchTotal,
-        movementTotal,
-        cleanTotal
+        totalHabitsLogged,
+        rate30
       };
     }
 
-    function getGithubColorClass(count) {
-      if (count === 1) return 'bg-[#0e4429] border-[#155d38]';
-      if (count === 2) return 'bg-[#006d32] border-[#26a641]/50';
-      if (count >= 3) return 'bg-[#39d353] border-[#6fdd8b] shadow-sm shadow-[#39d353]/30';
-      return 'bg-[#161b22] border-slate-800/80';
+    function ghColorClass(count) {
+      if (count === 1) return 'bg-[#0E4429] border-[#155d38]';
+      if (count === 2) return 'bg-[#006D32] border-[#26A641]';
+      if (count >= 3) return 'bg-[#39D353] border-[#6fdd8b]';
+      return 'bg-[#0C0E11] border-[#2B313B]';
     }
 
     function setHeatmapMode(mode) {
@@ -1268,399 +1030,312 @@
       renderHeatmap();
     }
 
-    function shiftHeatmapMonth(delta) {
-      hmCursorMonth += delta;
-      if (hmCursorMonth > 11) { hmCursorMonth = 0; hmCursorYear++; }
-      if (hmCursorMonth < 0) { hmCursorMonth = 11; hmCursorYear--; }
+    function shiftHmMonth(delta) {
+      hmMonth += delta;
+      if (hmMonth > 11) { hmMonth = 0; hmYear++; }
+      if (hmMonth < 0) { hmMonth = 11; hmYear--; }
       renderHeatmap();
     }
 
     function renderHeatmap() {
-      const stats = computeStreaksAndStats();
+      const ghTab = document.getElementById('hmTab-github');
+      const moTab = document.getElementById('hmTab-month');
+      const ghView = document.getElementById('hmGithubView');
+      const moView = document.getElementById('hmMonthView');
 
-      // Update header & streak cards
-      document.getElementById('headerStreakCount').textContent = stats.currentStreak;
-      document.getElementById('cleanStreakShieldCount').textContent = `${stats.cleanStreak}d`;
-      document.getElementById('statCurrentStreak').textContent = `${stats.currentStreak}d`;
-      document.getElementById('statBestStreak').textContent = `${stats.bestStreak}d`;
-      document.getElementById('statPerfectDays').textContent = stats.perfectDays;
-      document.getElementById('statMonthRate').textContent = `${stats.monthRate}%`;
-
-      // Toggle UI buttons
-      const ghBtn = document.getElementById('hmMode-github');
-      const moBtn = document.getElementById('hmMode-month');
-      const ghWrap = document.getElementById('heatmapGithubContainer');
-      const moWrap = document.getElementById('heatmapMonthContainer');
+      const selCount = getHabitCount(state.selectedDate);
+      document.getElementById('hmSelectedStat').textContent = `${state.selectedDate}: ${selCount}/3 completed`;
 
       if (state.heatmapMode === 'github') {
-        ghBtn.className = 'px-2.5 py-1 rounded-lg bg-slate-800 text-emerald-400 transition';
-        moBtn.className = 'px-2.5 py-1 rounded-lg text-slate-400 transition';
-        ghWrap.classList.remove('hidden');
-        moWrap.classList.add('hidden');
-        renderGithubRollingMatrix();
-      } else {
-        moBtn.className = 'px-2.5 py-1 rounded-lg bg-slate-800 text-emerald-400 transition';
-        ghBtn.className = 'px-2.5 py-1 rounded-lg text-slate-400 transition';
-        moWrap.classList.remove('hidden');
-        ghWrap.classList.add('hidden');
-        renderMonthlyHeatmapGrid();
-      }
-    }
+        ghTab.className = 'px-3 py-1 rounded-lg bg-[#1E242D] text-white transition';
+        moTab.className = 'px-3 py-1 rounded-lg text-[#9AA4B2] transition';
+        ghView.classList.remove('hidden');
+        moView.classList.add('hidden');
 
-    function renderGithubRollingMatrix() {
-      const weeksToShow = 18;
-      const today = new Date();
-      // Align end of grid to the Sunday of the current week
-      const dayOfWeekMon0 = (today.getDay() + 6) % 7; // Mon=0 ... Sun=6
-      const endOfCurrentWeek = new Date(today);
-      endOfCurrentWeek.setDate(today.getDate() + (6 - dayOfWeekMon0));
+        const weeks = 18;
+        const today = new Date();
+        const dowMon0 = (today.getDay() + 6) % 7;
+        const endWeek = new Date(today);
+        endWeek.setDate(today.getDate() + (6 - dowMon0));
 
-      const totalDays = weeksToShow * 7;
-      const startDate = new Date(endOfCurrentWeek);
-      startDate.setDate(endOfCurrentWeek.getDate() - totalDays + 1);
+        const startDate = new Date(endWeek);
+        startDate.setDate(endWeek.getDate() - (weeks * 7) + 1);
 
-      const matrixEl = document.getElementById('ghMatrixGrid');
-      const monthLabelsEl = document.getElementById('ghMonthLabels');
+        let cells = '';
+        let months = '';
+        let lastM = -1;
+        const todayKey = toDateKey(today);
+        const cur = new Date(startDate);
 
-      let cellsHtml = '';
-      let monthsHtml = '';
-      let lastMonth = -1;
-      const todayKey = toDateKey(today);
+        for (let w = 0; w < weeks; w++) {
+          const m = cur.getMonth();
+          if (m !== lastM) {
+            months += `<span style="width:18px" class="inline-block overflow-visible">${cur.toLocaleDateString('en-US', { month: 'short' })}</span>`;
+            lastM = m;
+          } else {
+            months += `<span style="width:18px" class="inline-block"></span>`;
+          }
 
-      const cursor = new Date(startDate);
-      for (let w = 0; w < weeksToShow; w++) {
-        const m = cursor.getMonth();
-        const mName = cursor.toLocaleDateString('en-US', { month: 'short' });
-        if (m !== lastMonth) {
-          monthsHtml += `<span style="width:17px" class="inline-block overflow-visible">${mName}</span>`;
-          lastMonth = m;
-        } else {
-          monthsHtml += `<span style="width:17px" class="inline-block"></span>`;
+          for (let d = 0; d < 7; d++) {
+            const k = toDateKey(cur);
+            const c = getHabitCount(k);
+            const isFuture = k > todayKey;
+            const isSel = k === state.selectedDate;
+            const cls = isFuture ? 'bg-[#0C0E11]/40 border-[#2B313B]/40 opacity-35' : ghColorClass(c);
+            const ring = isSel ? 'ring-2 ring-[#E87A35] scale-110 z-10' : '';
+
+            cells += `<button onclick="selectDateKey('${k}')" class="w-[14px] h-[14px] rounded-[3px] border ${cls} ${ring}"></button>`;
+            cur.setDate(cur.getDate() + 1);
+          }
         }
 
-        for (let d = 0; d < 7; d++) {
-          const key = toDateKey(cursor);
-          const count = getHabitCount(key);
-          const isFuture = key > todayKey;
-          const isSelected = key === state.selectedDate;
-          const colorCls = isFuture ? 'bg-slate-900/40 border-slate-800/30 opacity-40' : getGithubColorClass(count);
-          const ringCls = isSelected ? 'ring-2 ring-white scale-110 z-10' : '';
+        document.getElementById('ghMonthsRow').innerHTML = months;
+        document.getElementById('ghGridCells').innerHTML = cells;
+        ghView.scrollLeft = ghView.scrollWidth;
+      } else {
+        moTab.className = 'px-3 py-1 rounded-lg bg-[#1E242D] text-white transition';
+        ghTab.className = 'px-3 py-1 rounded-lg text-[#9AA4B2] transition';
+        moView.classList.remove('hidden');
+        ghView.classList.add('hidden');
 
-          cellsHtml += `
-            <button
-              onclick="selectDateKey('${key}')"
-              title="${key}: ${count}/3 habits"
-              class="w-[13px] h-[13px] rounded-[3px] border ${colorCls} ${ringCls} transition-transform active:scale-90"
-            ></button>
+        const first = new Date(hmYear, hmMonth, 1);
+        const days = new Date(hmYear, hmMonth + 1, 0).getDate();
+        const offset = (first.getDay() + 6) % 7;
+
+        document.getElementById('hmMonthLabel').textContent = first.toLocaleDateString('en-US', {
+          month: 'long',
+          year: 'numeric'
+        });
+
+        let html = '';
+        for (let i = 0; i < offset; i++) html += `<div class="h-10"></div>`;
+        for (let day = 1; day <= days; day++) {
+          const k = toDateKey(new Date(hmYear, hmMonth, day));
+          const c = getHabitCount(k);
+          const isSel = k === state.selectedDate;
+          const cls = ghColorClass(c);
+          const ring = isSel ? 'ring-2 ring-[#E87A35]' : '';
+          html += `
+            <button onclick="selectDateKey('${k}')" class="h-10 rounded-xl border ${cls} ${ring} font-mono text-sm font-bold flex items-center justify-center">
+              ${day}
+            </button>
           `;
-          cursor.setDate(cursor.getDate() + 1);
         }
+        document.getElementById('hmMonthCells').innerHTML = html;
       }
-
-      monthLabelsEl.innerHTML = monthsHtml;
-      matrixEl.innerHTML = cellsHtml;
-
-      // Scroll container to the right (most recent week)
-      const scrollContainer = document.getElementById('heatmapGithubContainer');
-      scrollContainer.scrollLeft = scrollContainer.scrollWidth;
-    }
-
-    function renderMonthlyHeatmapGrid() {
-      const firstDay = new Date(hmCursorYear, hmCursorMonth, 1);
-      const daysInMonth = new Date(hmCursorYear, hmCursorMonth + 1, 0).getDate();
-      const startOffset = (firstDay.getDay() + 6) % 7; // Mon=0 .. Sun=6
-
-      document.getElementById('hmMonthTitle').textContent = firstDay.toLocaleDateString('en-US', {
-        month: 'long',
-        year: 'numeric'
-      });
-
-      let html = '';
-      for (let i = 0; i < startOffset; i++) {
-        html += `<div class="h-9"></div>`;
-      }
-
-      for (let day = 1; day <= daysInMonth; day++) {
-        const dObj = new Date(hmCursorYear, hmCursorMonth, day);
-        const key = toDateKey(dObj);
-        const count = getHabitCount(key);
-        const isSelected = key === state.selectedDate;
-        const colorCls = getGithubColorClass(count);
-        const ringCls = isSelected ? 'ring-2 ring-white font-black' : '';
-
-        html += `
-          <button
-            onclick="selectDateKey('${key}')"
-            class="h-9 rounded-xl border ${colorCls} ${ringCls} flex flex-col items-center justify-center text-xs font-bold transition active:scale-95"
-          >
-            <span>${day}</span>
-          </button>
-        `;
-      }
-
-      document.getElementById('hmMonthGrid').innerHTML = html;
     }
 
     // =====================================================================
-    // SECTION 1: RUNNING TASKS (LONG LIST)
+    // SECTION 01 // RUNNING TASKS
     // =====================================================================
-    function cycleNewTaskPriority() {
-      const order = ['normal', 'high', 'quick'];
-      const next = order[(order.indexOf(state.newTaskPriority) + 1) % order.length];
-      state.newTaskPriority = next;
-      const btn = document.getElementById('newTaskPriorityBtn');
-      if (next === 'high') {
-        btn.textContent = '🔥 High';
-        btn.className = 'absolute right-2 top-1/2 -translate-y-1/2 px-2 py-1 rounded-lg bg-rose-500/20 text-[10px] font-extrabold text-rose-400 border border-rose-500/30';
-      } else if (next === 'quick') {
-        btn.textContent = '⚡ Quick';
-        btn.className = 'absolute right-2 top-1/2 -translate-y-1/2 px-2 py-1 rounded-lg bg-amber-500/20 text-[10px] font-extrabold text-amber-400 border border-amber-500/30';
-      } else {
-        btn.textContent = 'Normal';
-        btn.className = 'absolute right-2 top-1/2 -translate-y-1/2 px-2 py-1 rounded-lg bg-slate-800 text-[10px] font-bold text-slate-300 border border-slate-700';
-      }
-    }
-
     function addRunningTask(e) {
       e.preventDefault();
-      const input = document.getElementById('runningTaskInput');
+      const input = document.getElementById('taskInput');
       const text = input.value.trim();
       if (!text) return;
 
       state.runningTasks.unshift({
-        id: 'rt_' + Date.now(),
+        id: 't_' + Date.now(),
         text,
         done: false,
-        priority: state.newTaskPriority,
-        pinned: state.newTaskPriority === 'high'
+        pinned: false
       });
-
       input.value = '';
       saveState();
-      renderRunningTasks();
-      renderLevelUpSection();
+      renderTasks();
+      renderLevelSection();
     }
 
-    function toggleRunningTask(id) {
+    function toggleTask(id) {
       const item = state.runningTasks.find(t => t.id === id);
       if (!item) return;
       item.done = !item.done;
-      if (item.done) {
-        playTone('check');
-        showToast('☑️ Task Done! +15 XP');
-      }
+      if (item.done) showToast('Task Done • +15 XP');
       saveState();
-      renderRunningTasks();
-      renderLevelUpSection();
+      renderTasks();
+      renderLevelSection();
     }
 
-    function togglePinRunningTask(id) {
+    function togglePinTask(id) {
       const item = state.runningTasks.find(t => t.id === id);
       if (!item) return;
       item.pinned = !item.pinned;
       saveState();
-      renderRunningTasks();
+      renderTasks();
     }
 
-    function deleteRunningTask(id) {
+    function deleteTask(id) {
       state.runningTasks = state.runningTasks.filter(t => t.id !== id);
       saveState();
-      renderRunningTasks();
-      renderLevelUpSection();
+      renderTasks();
+      renderLevelSection();
     }
 
-    function setTaskFilter(filter) {
-      state.taskFilter = filter;
-      saveState();
-      renderRunningTasks();
+    function toggleCompletedDrawer() {
+      state.completedDrawerOpen = !state.completedDrawerOpen;
+      renderTasks();
     }
 
-    function clearCompletedRunningTasks() {
+    function clearCompletedTasks() {
       const doneCount = state.runningTasks.filter(t => t.done).length;
       if (doneCount === 0) return;
-      // Preserve XP earned from cleared tasks in bonusXp so user never loses XP!
-      state.bonusXp = (state.bonusXp || 0) + doneCount * 15;
+      state.bankedXp = (state.bankedXp || 0) + doneCount * 15;
       state.runningTasks = state.runningTasks.filter(t => !t.done);
       saveState();
-      renderRunningTasks();
-      renderLevelUpSection();
-      showToast(`Cleared ${doneCount} completed tasks (XP kept!)`);
+      renderTasks();
+      renderLevelSection();
+      showToast(`Cleared ${doneCount} tasks (XP Saved)`);
     }
 
-    function renderRunningTasks() {
-      const openCount = state.runningTasks.filter(t => !t.done).length;
-      const doneCount = state.runningTasks.filter(t => t.done).length;
-      document.getElementById('runningTaskCountBadge').textContent = `${openCount} open • ${doneCount} done`;
+    function renderTasks() {
+      const active = state.runningTasks
+        .filter(t => !t.done)
+        .sort((a, b) => (a.pinned === b.pinned ? 0 : a.pinned ? -1 : 1));
+      const completed = state.runningTasks.filter(t => t.done);
 
-      ['all', 'active', 'done'].forEach(f => {
-        const btn = document.getElementById(`taskFilter-${f}`);
-        if (state.taskFilter === f) {
-          btn.className = 'px-2.5 py-1 rounded-lg font-bold bg-slate-800 text-white transition';
-        } else {
-          btn.className = 'px-2.5 py-1 rounded-lg font-semibold text-slate-400 transition';
-        }
-      });
+      document.getElementById('tasksCountPill').textContent = `${active.length} Open`;
 
-      const sorted = [...state.runningTasks].sort((a, b) => {
-        if (a.done !== b.done) return a.done ? 1 : -1;
-        if (a.pinned !== b.pinned) return a.pinned ? -1 : 1;
-        return 0;
-      });
-
-      const filtered = sorted.filter(t => {
-        if (state.taskFilter === 'active') return !t.done;
-        if (state.taskFilter === 'done') return t.done;
-        return true;
-      });
-
-      const listEl = document.getElementById('runningTasksList');
-      if (filtered.length === 0) {
-        listEl.innerHTML = `
-          <div class="text-center py-6 text-xs text-slate-500 border border-dashed border-slate-800 rounded-2xl">
-            No tasks in this view. Add an item above!
-          </div>
-        `;
-        return;
-      }
-
-      listEl.innerHTML = filtered.map(t => {
-        const pBadge = t.priority === 'high'
-          ? `<span class="px-1.5 py-0.5 rounded bg-rose-500/15 text-rose-400 text-[10px] font-bold">🔥</span>`
-          : t.priority === 'quick'
-          ? `<span class="px-1.5 py-0.5 rounded bg-amber-500/15 text-amber-400 text-[10px] font-bold">⚡</span>`
-          : '';
-
-        return `
-          <div class="flex items-center justify-between gap-2 p-2.5 rounded-2xl bg-[#090d16] border ${t.pinned && !t.done ? 'border-blue-500/40' : 'border-slate-800/90'} transition">
-            <div onclick="toggleRunningTask('${t.id}')" class="flex items-center gap-2.5 flex-1 min-w-0 cursor-pointer">
-              <button class="w-5 h-5 rounded-lg border ${t.done ? 'bg-blue-500 border-blue-500 text-slate-950' : 'border-slate-600'} flex items-center justify-center shrink-0 text-xs font-black">
-                ${t.done ? '✓' : ''}
-              </button>
-              <span class="text-xs font-medium break-words ${t.done ? 'line-through text-slate-500' : 'text-slate-100'}">${escapeHtml(t.text)}</span>
-              ${pBadge}
+      const activeEl = document.getElementById('activeTasksList');
+      if (active.length === 0) {
+        activeEl.innerHTML = `<div class="py-6 text-center text-base font-semibold text-[#9AA4B2] border border-dashed border-[#2B313B] rounded-xl">No open tasks</div>`;
+      } else {
+        activeEl.innerHTML = active.map(t => `
+          <div class="flex items-center justify-between gap-3 p-3.5 rounded-xl bg-[#0C0E11] border-[1.5px] ${t.pinned ? 'border-[#E87A35]' : 'border-[#2B313B]'}">
+            <div onclick="toggleTask('${t.id}')" class="flex items-center gap-3 flex-1 cursor-pointer min-w-0">
+              <button class="w-7 h-7 rounded-lg border-2 border-[#9AA4B2] shrink-0"></button>
+              <span class="text-[18px] font-semibold text-white break-words leading-snug">${escapeHtml(t.text)}</span>
             </div>
             <div class="flex items-center gap-1 shrink-0">
-              <button onclick="togglePinRunningTask('${t.id}')" title="Pin to top" class="p-1 rounded-lg ${t.pinned ? 'text-blue-400 bg-blue-500/10' : 'text-slate-600 hover:text-slate-400'} text-xs">
-                📌
-              </button>
-              <button onclick="deleteRunningTask('${t.id}')" title="Delete" class="p-1 rounded-lg text-slate-600 hover:text-rose-400 text-xs">
-                ✕
-              </button>
+              <button onclick="togglePinTask('${t.id}')" class="px-2 py-1 rounded-lg text-sm font-black ${t.pinned ? 'text-[#E87A35]' : 'text-[#9AA4B2]/50'}">★</button>
+              <button onclick="deleteTask('${t.id}')" class="px-2 py-1 rounded-lg text-sm font-bold text-[#9AA4B2] hover:text-white">✕</button>
             </div>
           </div>
-        `;
-      }).join('');
+        `).join('');
+      }
+
+      const compWrap = document.getElementById('completedTasksWrap');
+      const compList = document.getElementById('completedTasksList');
+      if (completed.length === 0) {
+        compWrap.classList.add('hidden');
+      } else {
+        compWrap.classList.remove('hidden');
+        document.getElementById('completedCountLabel').textContent = `Completed (${completed.length})`;
+        document.getElementById('completedArrow').textContent = state.completedDrawerOpen ? '▾' : '▸';
+        if (state.completedDrawerOpen) {
+          compList.classList.remove('hidden');
+          compList.innerHTML = completed.map(t => `
+            <div class="flex items-center justify-between gap-3 p-3 rounded-xl bg-[#0C0E11]/60 border border-[#2B313B]">
+              <div onclick="toggleTask('${t.id}')" class="flex items-center gap-3 flex-1 cursor-pointer min-w-0">
+                <button class="w-6 h-6 rounded-lg bg-[#39D353] text-black font-black text-xs flex items-center justify-center shrink-0">✓</button>
+                <span class="text-[17px] font-medium text-[#9AA4B2] line-through break-words">${escapeHtml(t.text)}</span>
+              </div>
+              <button onclick="deleteTask('${t.id}')" class="px-2 py-1 text-sm text-[#9AA4B2]">✕</button>
+            </div>
+          `).join('');
+        } else {
+          compList.classList.add('hidden');
+        }
+      }
     }
 
     // =====================================================================
-    // SECTION 2: WEEKLY PLAN (4-SQUARE LIFE GRID)
+    // SECTION 02 // WEEKLY PLAN (4-SQUARE)
     // =====================================================================
-    function addQuadrantItem(e, quadKey) {
+    function addQuadItem(e, quad) {
       e.preventDefault();
-      const input = document.getElementById(`quadInput-${quadKey}`);
+      const input = document.getElementById(`qInput-${quad}`);
       const text = input.value.trim();
       if (!text) return;
 
-      state.quadrants[quadKey].push({
+      state.quadrants[quad].push({
         id: 'q_' + Date.now(),
         text,
         done: false
       });
-
       input.value = '';
       saveState();
-      renderWeeklyQuadrants();
-      renderLevelUpSection();
+      renderWeekly();
+      renderLevelSection();
     }
 
-    function toggleQuadrantItem(quadKey, itemId) {
-      const list = state.quadrants[quadKey] || [];
-      const item = list.find(i => i.id === itemId);
+    function toggleQuadItem(quad, id) {
+      const list = state.quadrants[quad] || [];
+      const item = list.find(i => i.id === id);
       if (!item) return;
       item.done = !item.done;
-      if (item.done) {
-        playTone('check');
-        showToast('⊞ Quadrant Goal Done! +20 XP');
-      }
+      if (item.done) showToast('Weekly Goal • +25 XP');
       saveState();
-      renderWeeklyQuadrants();
-      renderLevelUpSection();
+      renderWeekly();
+      renderLevelSection();
     }
 
-    function deleteQuadrantItem(quadKey, itemId) {
-      state.quadrants[quadKey] = (state.quadrants[quadKey] || []).filter(i => i.id !== itemId);
+    function deleteQuadItem(quad, id) {
+      state.quadrants[quad] = (state.quadrants[quad] || []).filter(i => i.id !== id);
       saveState();
-      renderWeeklyQuadrants();
-      renderLevelUpSection();
+      renderWeekly();
+      renderLevelSection();
     }
 
-    function clearDoneWeeklyItems() {
+    function clearDoneWeekly() {
       let cleared = 0;
       ['career', 'health', 'house', 'fun'].forEach(q => {
-        const doneInQuad = (state.quadrants[q] || []).filter(i => i.done).length;
-        cleared += doneInQuad;
+        const done = (state.quadrants[q] || []).filter(i => i.done).length;
+        cleared += done;
         state.quadrants[q] = (state.quadrants[q] || []).filter(i => !i.done);
       });
       if (cleared > 0) {
-        state.bonusXp = (state.bonusXp || 0) + cleared * 20;
+        state.bankedXp = (state.bankedXp || 0) + cleared * 25;
         saveState();
-        renderWeeklyQuadrants();
-        renderLevelUpSection();
-        showToast(`Cleared ${cleared} weekly items (XP banked!)`);
+        renderWeekly();
+        renderLevelSection();
+        showToast(`Cleared ${cleared} weekly items (XP Saved)`);
       }
     }
 
-    function renderWeeklyQuadrants() {
-      const accents = {
-        career: 'bg-blue-500 border-blue-500',
-        health: 'bg-emerald-500 border-emerald-500',
-        house: 'bg-amber-500 border-amber-500',
-        fun: 'bg-rose-500 border-rose-500'
-      };
-
+    function renderWeekly() {
       ['career', 'health', 'house', 'fun'].forEach(q => {
         const items = state.quadrants[q] || [];
-        const doneCount = items.filter(i => i.done).length;
-        document.getElementById(`quadCount-${q}`).textContent = `${doneCount}/${items.length}`;
+        const done = items.filter(i => i.done).length;
+        document.getElementById(`qCount-${q}`).textContent = `${done}/${items.length}`;
 
-        const container = document.getElementById(`quadList-${q}`);
+        const listEl = document.getElementById(`qList-${q}`);
         if (items.length === 0) {
-          container.innerHTML = `<p class="text-[11px] text-slate-600 italic py-2">No items yet</p>`;
+          listEl.innerHTML = `<p class="text-sm font-medium text-[#9AA4B2]/50 py-2">Empty</p>`;
           return;
         }
 
-        container.innerHTML = items.map(item => `
-          <div class="flex items-start justify-between gap-1.5 group py-0.5">
-            <div onclick="toggleQuadrantItem('${q}', '${item.id}')" class="flex items-start gap-1.5 flex-1 cursor-pointer min-w-0">
-              <button class="w-4 h-4 mt-0.5 rounded border ${item.done ? accents[q] + ' text-slate-950' : 'border-slate-600'} flex items-center justify-center shrink-0 text-[10px] font-black">
+        listEl.innerHTML = items.map(item => `
+          <div class="flex items-start justify-between gap-2.5 py-1">
+            <div onclick="toggleQuadItem('${q}', '${item.id}')" class="flex items-start gap-2.5 flex-1 cursor-pointer min-w-0">
+              <button class="w-6 h-6 mt-0.5 rounded-lg border-2 ${item.done ? 'bg-[#39D353] border-[#39D353] text-black' : 'border-[#9AA4B2]'} flex items-center justify-center shrink-0 text-xs font-black">
                 ${item.done ? '✓' : ''}
               </button>
-              <span class="text-[11px] leading-snug break-words ${item.done ? 'line-through text-slate-500' : 'text-slate-200'}">${escapeHtml(item.text)}</span>
+              <span class="text-[17px] font-semibold leading-snug break-words ${item.done ? 'line-through text-[#9AA4B2]' : 'text-white'}">${escapeHtml(item.text)}</span>
             </div>
-            <button onclick="deleteQuadrantItem('${q}', '${item.id}')" class="text-[10px] text-slate-600 hover:text-rose-400 px-1">✕</button>
+            <button onclick="deleteQuadItem('${q}', '${item.id}')" class="text-sm font-bold text-[#9AA4B2] px-1.5">✕</button>
           </div>
         `).join('');
       });
     }
 
     // =====================================================================
-    // SECTION 3: SIMPLE IOS-STYLE MONTH CALENDAR
+    // SECTION 03 // MONTH CALENDAR
     // =====================================================================
-    function shiftCalendarMonth(delta) {
-      calCursorMonth += delta;
-      if (calCursorMonth > 11) { calCursorMonth = 0; calCursorYear++; }
-      if (calCursorMonth < 0) { calCursorMonth = 11; calCursorYear--; }
-      renderIosCalendar();
+    function shiftCalMonth(delta) {
+      calMonth += delta;
+      if (calMonth > 11) { calMonth = 0; calYear++; }
+      if (calMonth < 0) { calMonth = 11; calYear--; }
+      renderCalendar();
     }
 
-    function jumpCalendarToToday() {
+    function jumpCalToday() {
       const now = new Date();
-      calCursorYear = now.getFullYear();
-      calCursorMonth = now.getMonth();
+      calYear = now.getFullYear();
+      calMonth = now.getMonth();
       selectDateKey(toDateKey(now));
     }
 
-    function addCalendarEvent(e) {
+    function addCalEvent(e) {
       e.preventDefault();
       const input = document.getElementById('calEventInput');
       const text = input.value.trim();
@@ -1673,288 +1348,222 @@
         id: 'ev_' + Date.now(),
         text
       });
-
       input.value = '';
       saveState();
-      renderIosCalendar();
-      showToast('📅 Note added to calendar');
+      renderCalendar();
     }
 
-    function deleteCalendarEvent(dateKey, evId) {
+    function deleteCalEvent(dateKey, id) {
       if (!state.calendarEvents[dateKey]) return;
-      state.calendarEvents[dateKey] = state.calendarEvents[dateKey].filter(e => e.id !== evId);
+      state.calendarEvents[dateKey] = state.calendarEvents[dateKey].filter(e => e.id !== id);
       saveState();
-      renderIosCalendar();
+      renderCalendar();
     }
 
-    function renderIosCalendar() {
-      const firstDay = new Date(calCursorYear, calCursorMonth, 1);
-      const daysInMonth = new Date(calCursorYear, calCursorMonth + 1, 0).getDate();
-      const startOffset = (firstDay.getDay() + 6) % 7; // Mon=0 .. Sun=6
+    function renderCalendar() {
+      const first = new Date(calYear, calMonth, 1);
+      const days = new Date(calYear, calMonth + 1, 0).getDate();
+      const offset = (first.getDay() + 6) % 7;
       const todayKey = toDateKey(new Date());
 
-      document.getElementById('iosCalMonthLabel').textContent = firstDay.toLocaleDateString('en-US', {
+      document.getElementById('calMonthHeader').textContent = first.toLocaleDateString('en-US', {
         month: 'long',
         year: 'numeric'
       });
 
       let html = '';
-      for (let i = 0; i < startOffset; i++) {
-        html += `<div class="h-12"></div>`;
-      }
+      for (let i = 0; i < offset; i++) html += `<div class="h-14"></div>`;
 
-      for (let day = 1; day <= daysInMonth; day++) {
-        const dObj = new Date(calCursorYear, calCursorMonth, day);
-        const key = toDateKey(dObj);
-        const log = state.logs[key] || {};
-        const count = getHabitCount(key);
-        const events = state.calendarEvents[key] || [];
-        const isToday = key === todayKey;
-        const isSelected = key === state.selectedDate;
+      for (let day = 1; day <= days; day++) {
+        const k = toDateKey(new Date(calYear, calMonth, day));
+        const log = state.logs[k] || {};
+        const count = getHabitCount(k);
+        const evs = state.calendarEvents[k] || [];
+        const isToday = k === todayKey;
+        const isSel = k === state.selectedDate;
 
-        const dayBg = isSelected
-          ? 'bg-slate-800 border-white/80 ring-1 ring-white'
+        const cellCls = isSel
+          ? 'bg-[#1E242D] border-2 border-[#E87A35]'
           : count === 3
-          ? 'bg-emerald-950/30 border-emerald-500/40'
-          : 'bg-[#090d16] border-slate-800/80';
+          ? 'bg-[#0E4429]/50 border border-[#39D353]/60'
+          : 'bg-[#0C0E11] border border-[#2B313B]';
 
-        const numBadge = isToday
-          ? 'bg-rose-500 text-white px-1.5 rounded-full font-black'
-          : count === 3
-          ? 'text-emerald-300 font-extrabold'
-          : 'text-slate-200 font-semibold';
+        const numCls = isToday
+          ? 'bg-[#E87A35] text-black px-2 py-0.5 rounded-md font-black'
+          : 'text-white font-bold';
 
         html += `
-          <button
-            onclick="selectDateKey('${key}')"
-            class="h-12 rounded-xl border ${dayBg} flex flex-col items-center justify-between py-1.5 transition active:scale-95"
-          >
-            <span class="text-xs leading-none ${numBadge}">${day}</span>
-            <div class="flex items-center gap-0.5 h-1.5">
-              ${log.french ? '<span class="w-1.5 h-1.5 rounded-full bg-blue-400"></span>' : ''}
-              ${log.movement ? '<span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>' : ''}
-              ${log.clean ? '<span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>' : ''}
-              ${events.length > 0 ? '<span class="w-1.5 h-1.5 rounded-full bg-purple-400"></span>' : ''}
+          <button onclick="selectDateKey('${k}')" class="h-14 rounded-xl ${cellCls} flex flex-col items-center justify-between py-2 active:scale-95 transition">
+            <span class="text-sm tabular-nums leading-none ${numCls}">${day}</span>
+            <div class="flex items-center gap-1 h-2">
+              ${log.french ? '<span class="w-2 h-2 rounded-full bg-[#39D353]"></span>' : ''}
+              ${log.movement ? '<span class="w-2 h-2 rounded-full bg-[#39D353]"></span>' : ''}
+              ${log.clean ? '<span class="w-2 h-2 rounded-full bg-[#39D353]"></span>' : ''}
+              ${evs.length > 0 ? '<span class="w-2 h-2 rounded-full bg-[#F59E0B]"></span>' : ''}
             </div>
           </button>
         `;
       }
 
-      document.getElementById('iosCalendarGrid').innerHTML = html;
+      document.getElementById('calGrid').innerHTML = html;
 
-      // Render Selected Date Drawer below calendar
       const selObj = parseDateKey(state.selectedDate);
-      document.getElementById('calDrawerDateTitle').textContent = selObj.toLocaleDateString('en-US', {
-        weekday: 'long',
+      document.getElementById('calSelectedLabel').textContent = selObj.toLocaleDateString('en-US', {
+        weekday: 'short',
         month: 'short',
         day: 'numeric',
         year: 'numeric'
       });
 
-      const selLog = getDayLog(state.selectedDate);
-      const qFrench = document.getElementById('calQuick-french');
-      const qMove = document.getElementById('calQuick-movement');
-      const qClean = document.getElementById('calQuick-clean');
+      const sLog = getDayLog(state.selectedDate);
+      ['french', 'movement', 'clean'].forEach(k => {
+        const btn = document.getElementById(`calQuick-${k}`);
+        if (sLog[k]) {
+          btn.className = 'px-2.5 py-1.5 rounded-lg text-xs font-black bg-[#39D353] border-[#39D353] text-black transition';
+        } else {
+          btn.className = 'px-2.5 py-1.5 rounded-lg text-xs font-bold bg-[#15191F] border-[#2B313B] text-[#9AA4B2] transition';
+        }
+      });
 
-      qFrench.className = `px-2.5 py-1 rounded-lg text-xs font-bold border transition ${selLog.french ? 'bg-blue-500/25 border-blue-400 text-white' : 'bg-slate-900 border-slate-800 opacity-50'}`;
-      qMove.className = `px-2.5 py-1 rounded-lg text-xs font-bold border transition ${selLog.movement ? 'bg-amber-500/25 border-amber-400 text-white' : 'bg-slate-900 border-slate-800 opacity-50'}`;
-      qClean.className = `px-2.5 py-1 rounded-lg text-xs font-bold border transition ${selLog.clean ? 'bg-emerald-500/25 border-emerald-400 text-white' : 'bg-slate-900 border-slate-800 opacity-50'}`;
-
-      const evList = state.calendarEvents[state.selectedDate] || [];
-      const evContainer = document.getElementById('calDayEventsList');
-      if (evList.length === 0) {
-        evContainer.innerHTML = `<p class="text-[11px] text-slate-500 italic">No events or notes logged for this date.</p>`;
+      const events = state.calendarEvents[state.selectedDate] || [];
+      const evContainer = document.getElementById('calEventsList');
+      if (events.length === 0) {
+        evContainer.innerHTML = '';
       } else {
-        evContainer.innerHTML = evList.map(ev => `
-          <div class="flex items-center justify-between px-2.5 py-1.5 rounded-xl bg-slate-900 border border-slate-800 text-xs">
-            <span class="flex items-center gap-2 text-slate-200">
-              <i class="w-2 h-2 rounded-full bg-purple-400"></i>
-              <span>${escapeHtml(ev.text)}</span>
-            </span>
-            <button onclick="deleteCalendarEvent('${state.selectedDate}', '${ev.id}')" class="text-slate-500 hover:text-rose-400">✕</button>
+        evContainer.innerHTML = events.map(ev => `
+          <div class="flex items-center justify-between px-3 py-2 rounded-xl bg-[#15191F] border border-[#2B313B]">
+            <span class="text-[16px] font-semibold text-white">${escapeHtml(ev.text)}</span>
+            <button onclick="deleteCalEvent('${state.selectedDate}', '${ev.id}')" class="text-sm font-bold text-[#9AA4B2] px-2">✕</button>
           </div>
         `).join('');
       }
     }
 
     // =====================================================================
-    // SECTION 4: LEVEL UP STATUS (RPG PROGRESSION & ACHIEVEMENTS)
+    // SECTION 04 // LEVEL STATUS & MILESTONES
     // =====================================================================
-    const RPG_RANKS = [
-      { minLv: 1, title: 'Awakened Novice' },
-      { minLv: 2, title: 'Habit Apprentice' },
-      { minLv: 4, title: 'Disciplined Initiate' },
-      { minLv: 6, title: 'Momentum Builder' },
-      { minLv: 9, title: 'Dopamine Architect' },
-      { minLv: 12, title: 'Relentless Guardian' },
-      { minLv: 16, title: 'Vanguard of Focus' },
-      { minLv: 20, title: 'Grandmaster of Will' },
-      { minLv: 25, title: 'Sovereign of Life OS' }
-    ];
+    function renderLevelSection() {
+      const stats = computeStats();
 
-    function renderLevelUpSection() {
-      const stats = computeStreaksAndStats();
-
-      // Calculate total XP from all sources
-      const habitXp = (stats.frenchTotal + stats.movementTotal + stats.cleanTotal) * 30;
-      const perfectBonusXp = stats.perfectDays * 50;
-      const runningDoneCount = state.runningTasks.filter(t => t.done).length;
-      let quadDoneCount = 0;
+      // XP Calculation:
+      // +30 XP per habit + 30 XP Perfect Day bonus (120 XP per 3/3 day)
+      // +15 XP per completed task
+      // +25 XP per completed weekly item
+      const habitXp = stats.totalHabitsLogged * 30;
+      const perfectBonusXp = stats.perfectDays * 30;
+      const tasksDone = state.runningTasks.filter(t => t.done).length;
+      let weeklyDone = 0;
       ['career', 'health', 'house', 'fun'].forEach(q => {
-        quadDoneCount += (state.quadrants[q] || []).filter(i => i.done).length;
+        weeklyDone += (state.quadrants[q] || []).filter(i => i.done).length;
       });
 
-      const totalXp = habitXp + perfectBonusXp + (runningDoneCount * 15) + (quadDoneCount * 20) + (state.bonusXp || 0);
+      const totalXp = habitXp + perfectBonusXp + (tasksDone * 15) + (weeklyDone * 25) + (state.bankedXp || 0);
+      const lvData = calculateLevelData(totalXp);
 
-      // Leveling curve: 150 XP per level for smooth, motivating daily level-ups
-      const xpPerLevel = 150;
-      const level = Math.floor(totalXp / xpPerLevel) + 1;
-      const xpIntoLevel = totalXp % xpPerLevel;
-      const xpNeeded = xpPerLevel - xpIntoLevel;
-      const levelPct = Math.min(100, Math.round((xpIntoLevel / xpPerLevel) * 100));
+      // Update Sticky Header
+      document.getElementById('topLevelNum').textContent = lvData.level;
+      document.getElementById('topRankTitle').textContent = lvData.rankTitle;
+      document.getElementById('topXpBar').style.width = `${lvData.pct}%`;
+      document.getElementById('topXpText').textContent = `${lvData.xpInLevel} / ${lvData.stepReq} XP`;
+      document.getElementById('topStreakNum').textContent = `${stats.currentStreak}d`;
+      document.getElementById('cleanStreakPill').textContent = `${stats.cleanStreak}d`;
 
-      let rankTitle = RPG_RANKS[0].title;
-      for (const r of RPG_RANKS) {
-        if (level >= r.minLv) rankTitle = r.title;
-      }
+      // Update Section 04
+      document.getElementById('totalXpHeaderBadge').textContent = `${totalXp} XP TOTAL`;
+      document.getElementById('levelRankName').textContent = lvData.rankTitle;
+      document.getElementById('levelNextNeeded').textContent = `${lvData.xpNeeded} XP needed for Level ${lvData.level + 1}`;
+      document.getElementById('levelBigNumber').textContent = lvData.level;
+      document.getElementById('levelProgressBar').style.width = `${Math.max(3, lvData.pct)}%`;
+      document.getElementById('levelStepProgressText').textContent = `${lvData.xpInLevel} / ${lvData.stepReq} XP (${lvData.pct}%)`;
 
-      // Update Sticky Top Header & Section 4 Hero Card
-      document.getElementById('headerLevelNum').textContent = level;
-      document.getElementById('headerRankBadge').textContent = rankTitle;
-      document.getElementById('headerXpBar').style.width = `${levelPct}%`;
-      document.getElementById('headerXpText').textContent = `${totalXp} XP`;
+      document.getElementById('metricCurrentStreak').textContent = `${stats.currentStreak}d`;
+      document.getElementById('metricBestStreak').textContent = `${stats.bestStreak}d`;
+      document.getElementById('metricPerfectDays').textContent = stats.perfectDays;
+      document.getElementById('metric30DayRate').textContent = `${stats.rate30}%`;
 
-      document.getElementById('rpgTotalXpPill').textContent = `${totalXp} XP Total`;
-      document.getElementById('rpgLevelBig').textContent = level;
-      document.getElementById('rpgRankTitle').textContent = rankTitle;
-      document.getElementById('rpgNextLevelSub').textContent = `${xpNeeded} XP to Level ${level + 1} (${levelPct}%)`;
-      document.getElementById('rpgLevelProgressBar').style.width = `${levelPct}%`;
+      const totalCompletedItems = tasksDone + weeklyDone + Math.floor((state.bankedXp || 0) / 20);
 
-      // 90-Day Neuro-Consistency Progress Bar (based on total active days)
-      const resetDays = Math.min(90, stats.activeDaysTotal);
-      const resetPct = Math.round((resetDays / 90) * 100);
-      document.getElementById('reset90Label').textContent = `${stats.activeDaysTotal} / 90 Days`;
-      document.getElementById('reset90Bar').style.width = `${resetPct}%`;
-
-      // 4 RPG Attribute Stats
-      const intLv = Math.floor(stats.frenchTotal / 5) + 1;
-      const intPct = ((stats.frenchTotal % 5) / 5) * 100;
-      document.getElementById('statAttrInt').textContent = `Lv ${intLv}`;
-      document.getElementById('barAttrInt').style.width = `${Math.max(12, intPct)}%`;
-      document.getElementById('subAttrInt').textContent = `${stats.frenchTotal} French days logged`;
-
-      const healthQuadDone = (state.quadrants.health || []).filter(i => i.done).length;
-      const vitPoints = stats.movementTotal + healthQuadDone;
-      const vitLv = Math.floor(vitPoints / 5) + 1;
-      const vitPct = ((vitPoints % 5) / 5) * 100;
-      document.getElementById('statAttrVit').textContent = `Lv ${vitLv}`;
-      document.getElementById('barAttrVit').style.width = `${Math.max(12, vitPct)}%`;
-      document.getElementById('subAttrVit').textContent = `${stats.movementTotal} Gym/Yoga/Walk days`;
-
-      const zenLv = Math.floor(stats.cleanTotal / 5) + 1;
-      const zenPct = ((stats.cleanTotal % 5) / 5) * 100;
-      document.getElementById('statAttrZen').textContent = `Lv ${zenLv}`;
-      document.getElementById('barAttrZen').style.width = `${Math.max(12, zenPct)}%`;
-      document.getElementById('subAttrZen').textContent = `${stats.cleanTotal} Clean days (${stats.cleanStreak}d streak)`;
-
-      const exePoints = runningDoneCount + quadDoneCount + Math.floor((state.bonusXp || 0) / 15);
-      const exeLv = Math.floor(exePoints / 5) + 1;
-      const exePct = ((exePoints % 5) / 5) * 100;
-      document.getElementById('statAttrExe').textContent = `Lv ${exeLv}`;
-      document.getElementById('barAttrExe').style.width = `${Math.max(12, exePct)}%`;
-      document.getElementById('subAttrExe').textContent = `${exePoints} Tasks & Weekly items done`;
-
-      // Render Unlockable Achievement Badges
-      const badges = [
-        { icon: '🌱', name: 'First Step', desc: '1st habit logged', unlocked: stats.activeDaysTotal >= 1 },
-        { icon: '💎', name: 'Trinity 3/3', desc: 'First 3/3 Perfect Day', unlocked: stats.perfectDays >= 1 },
-        { icon: '🔥', name: '7-Day Flame', desc: '7d habit streak', unlocked: stats.bestStreak >= 7 },
-        { icon: '🇫🇷', name: 'Francophone', desc: '7 French days', unlocked: stats.frenchTotal >= 7 },
-        { icon: '🏋️', name: 'Vitality', desc: '7 Movement days', unlocked: stats.movementTotal >= 7 },
-        { icon: '🛡️', name: 'Unbreakable', desc: '14 Clean days', unlocked: stats.cleanTotal >= 14 },
-        { icon: '⚔️', name: 'Task Slayer', desc: '10 Tasks done', unlocked: exePoints >= 10 },
-        { icon: '👑', name: '30-Day Titan', desc: '30 Active days', unlocked: stats.activeDaysTotal >= 30 }
+      const milestones = [
+        { title: 'First 3/3 Day', req: '1 Perfect Day', done: stats.perfectDays >= 1 },
+        { title: '7-Day Streak', req: '7d Consistency', done: stats.bestStreak >= 7 },
+        { title: '14-Day Streak', req: '2 Weeks Solid', done: stats.bestStreak >= 14 },
+        { title: '30-Day Streak', req: 'Iron Discipline', done: stats.bestStreak >= 30 },
+        { title: '10 Tasks Done', req: 'Execution', done: totalCompletedItems >= 10 },
+        { title: '25 Perfect Days', req: '25x 3/3 Days', done: stats.perfectDays >= 25 },
+        { title: 'Level 5', req: 'Rank IV+', done: lvData.level >= 5 },
+        { title: 'Level 10', req: 'Rank V+', done: lvData.level >= 10 }
       ];
 
-      document.getElementById('achievementsGrid').innerHTML = badges.map(b => `
-        <div class="rounded-2xl p-2.5 text-center border transition ${
-          b.unlocked
-            ? 'bg-emerald-950/30 border-emerald-500/40 text-white shadow-sm'
-            : 'bg-[#090d16] border-slate-800/70 opacity-40 grayscale'
+      document.getElementById('milestonesGrid').innerHTML = milestones.map(m => `
+        <div class="rounded-xl p-3 border-[1.5px] ${
+          m.done
+            ? 'bg-[#0E4429]/40 border-[#39D353] text-white'
+            : 'bg-[#0C0E11] border-[#2B313B] text-[#9AA4B2]/40'
         }">
-          <div class="text-xl mb-1">${b.icon}</div>
-          <p class="text-[10px] font-extrabold leading-tight">${b.name}</p>
-          <p class="text-[9px] text-slate-400 mt-0.5 leading-tight">${b.desc}</p>
+          <div class="flex items-center justify-between mb-1">
+            <span class="text-xs font-mono font-black uppercase ${m.done ? 'text-[#39D353]' : 'text-[#9AA4B2]/40'}">${m.done ? 'UNLOCKED' : 'LOCKED'}</span>
+            <span>${m.done ? '✓' : '•'}</span>
+          </div>
+          <p class="text-[15px] font-extrabold leading-tight">${m.title}</p>
+          <p class="text-xs font-semibold opacity-75 mt-0.5">${m.req}</p>
         </div>
       `).join('');
     }
 
     // =====================================================================
-    // UTILITIES, NAVIGATION & BACKUP MODAL
+    // NAVIGATION & SETTINGS MODAL
     // =====================================================================
     function scrollToSection(id) {
       const el = document.getElementById(id);
       if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
-    function openBackupModal() {
+    function openSettingsModal() {
       document.getElementById('frenchUrlInput').value = state.frenchAppUrl || 'index.html';
-      document.getElementById('soundToggleBtn').textContent = state.soundEnabled ? 'ON' : 'OFF';
-      const m = document.getElementById('backupModal');
+      const m = document.getElementById('settingsModal');
       m.classList.remove('hidden');
       m.classList.add('flex');
     }
 
-    function closeBackupModal() {
-      const m = document.getElementById('backupModal');
+    function closeSettingsModal() {
+      const m = document.getElementById('settingsModal');
       m.classList.add('hidden');
       m.classList.remove('flex');
     }
 
     function saveFrenchUrl() {
-      const val = document.getElementById('frenchUrlInput').value.trim() || 'index.html';
-      state.frenchAppUrl = val;
+      state.frenchAppUrl = document.getElementById('frenchUrlInput').value.trim() || 'index.html';
       saveState();
-      renderDailyHabitsSection();
-      showToast('French App Link Saved!');
-    }
-
-    function toggleSoundSetting() {
-      state.soundEnabled = !state.soundEnabled;
-      saveState();
-      document.getElementById('soundToggleBtn').textContent = state.soundEnabled ? 'ON' : 'OFF';
-      if (state.soundEnabled) playTone('check');
+      renderHabits();
+      showToast('Saved Link');
     }
 
     function exportBackupJson() {
-      const area = document.getElementById('backupJsonTextarea');
+      const area = document.getElementById('backupTextarea');
       area.value = JSON.stringify(state);
       area.select();
       try {
         document.execCommand('copy');
-        showToast('📋 Backup JSON copied to clipboard!');
+        showToast('Backup Copied');
       } catch (e) {
-        showToast('Backup generated below — copy it!');
+        showToast('Copy JSON below');
       }
     }
 
     function importBackupJson() {
-      const raw = document.getElementById('backupJsonTextarea').value.trim();
-      if (!raw) {
-        showToast('Paste your backup JSON first');
-        return;
-      }
+      const raw = document.getElementById('backupTextarea').value.trim();
+      if (!raw) return;
       try {
         const parsed = JSON.parse(raw);
         if (parsed && typeof parsed === 'object') {
           state = { ...state, ...parsed };
           saveState();
           renderAll();
-          closeBackupModal();
-          showToast('✓ Progress Restored Successfully!');
+          closeSettingsModal();
+          showToast('Data Restored');
         }
       } catch (e) {
-        showToast('Invalid JSON format');
+        showToast('Invalid JSON');
       }
     }
 
@@ -1968,7 +1577,7 @@
       toastTimer = setTimeout(() => {
         banner.classList.add('opacity-0', '-translate-y-2');
         banner.classList.remove('opacity-100', 'translate-y-0');
-      }, 1900);
+      }, 1700);
     }
 
     function escapeHtml(str) {
@@ -1979,56 +1588,17 @@
         .replace(/"/g, '&quot;');
     }
 
-    // Generate custom iOS Home Screen Icon via Canvas
-    function generateTouchIcon() {
-      try {
-        const canvas = document.createElement('canvas');
-        canvas.width = 180;
-        canvas.height = 180;
-        const ctx = canvas.getContext('2d');
-
-        const grad = ctx.createLinearGradient(0, 0, 180, 180);
-        grad.addColorStop(0, '#052e16');
-        grad.addColorStop(0.5, '#0f172a');
-        grad.addColorStop(1, '#1e1b4b');
-        ctx.fillStyle = grad;
-        ctx.fillRect(0, 0, 180, 180);
-
-        // Draw 4 GitHub-style emerald squares
-        const colors = ['#0e4429', '#006d32', '#26a641', '#39d353'];
-        colors.forEach((c, i) => {
-          ctx.fillStyle = c;
-          const x = 38 + (i % 2) * 56;
-          const y = 32 + Math.floor(i / 2) * 56;
-          ctx.beginPath();
-          ctx.roundRect(x, y, 46, 46, 10);
-          ctx.fill();
-        });
-
-        ctx.fillStyle = '#ffffff';
-        ctx.font = '900 22px -apple-system, sans-serif';
-        ctx.textAlign = 'center';
-        ctx.fillText('LIFE OS', 90, 158);
-
-        const link = document.createElement('link');
-        link.rel = 'apple-touch-icon';
-        link.href = canvas.toDataURL('image/png');
-        document.head.appendChild(link);
-      } catch (e) {}
-    }
-
     function renderAll() {
-      renderDailyHabitsSection();
+      renderHabits();
       renderHeatmap();
-      renderRunningTasks();
-      renderWeeklyQuadrants();
-      renderIosCalendar();
-      renderLevelUpSection();
+      renderTasks();
+      renderWeekly();
+      renderCalendar();
+      renderLevelSection();
     }
 
     window.onload = function () {
       loadState();
-      generateTouchIcon();
       renderAll();
     };
   </script>
